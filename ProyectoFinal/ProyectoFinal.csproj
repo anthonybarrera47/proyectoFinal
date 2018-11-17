@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +54,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\FactoriaBLL.cs" />
+    <Compile Include="BLL\ProductoresBLL.cs" />
+    <Compile Include="BLL\RepositorioBase.cs" />
+    <Compile Include="BLL\IRepository.cs" />
+    <Compile Include="BLL\TipoArrozBLL.cs" />
+    <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Factoria.cs" />
+    <Compile Include="Entidades\Pesadas.cs" />
+    <Compile Include="Entidades\Productores.cs" />
+    <Compile Include="Entidades\TiposArroz.cs" />
+    <Compile Include="UI\Consulta\ConsultaProductores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\ConsultaProductores.Designer.cs">
+      <DependentUpon>ConsultaProductores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\ModeloDeUsuario.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDeUsuario.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\ModeloDeUsuario.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDeUsuario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\ModeloDeUsuario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\Usuario.cs">
+      <DependentUpon>ModeloDeUsuario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroFactoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroFactoria.Designer.cs">
+      <DependentUpon>RegistroFactoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroProductores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroProductores.Designer.cs">
+      <DependentUpon>RegistroProductores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroTiposArroz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroTiposArroz.Designer.cs">
+      <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +128,23 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Consulta\ConsultaProductores.resx">
+      <DependentUpon>ConsultaProductores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\RegistroFactoria.resx">
+      <DependentUpon>RegistroFactoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\RegistroProductores.resx">
+      <DependentUpon>RegistroProductores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\RegistroTiposArroz.resx">
+      <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,9 +158,50 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EntityDeploy Include="UI\Login\ModeloDeUsuario.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloDeUsuario.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="UI\Login\ModeloDeUsuario.edmx.diagram">
+      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\Reportes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_search_173095.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_search_1730951.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_floppy_285657.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_1-04_511562.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_manilla-folder-new_23456.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UI\Login\ModeloDeUsuario.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloDeUsuario.Context.cs</LastGenOutput>
+      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
+    </Content>
+    <Content Include="UI\Login\ModeloDeUsuario.edmx.sql" />
+    <Content Include="UI\Login\ModeloDeUsuario.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModeloDeUsuario.cs</LastGenOutput>
+      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
