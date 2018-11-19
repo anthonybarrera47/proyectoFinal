@@ -11,14 +11,14 @@ namespace ProyectoFinal.Entidades
     {
         [Key]
         public int Id { get; set; }
-        public int PesadaId { get; set; }
+        public int PesadasId { get; set; }
         public decimal Kilos { get; set; }
         public decimal CantidadDeSacos { get; set; }
 
         public PesadasDetalle()
         {
             Id = 0;
-            PesadaId = 0;
+            PesadasId = 0;
             Kilos = 0;
             CantidadDeSacos = 0;
         }
@@ -26,7 +26,7 @@ namespace ProyectoFinal.Entidades
         public PesadasDetalle(int id, int pesadaId, decimal kilos, decimal cantidadDeSacos)
         {
             Id = id;
-            PesadaId = pesadaId;
+            PesadasId = pesadaId;
             Kilos = kilos;
             CantidadDeSacos = cantidadDeSacos;
         }

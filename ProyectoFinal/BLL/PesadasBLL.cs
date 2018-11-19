@@ -91,7 +91,7 @@ namespace ProyectoFinal.BLL
                 var Eliminar = db.pesadas.Find(Id);
                 if(Eliminar!=null)
                 {
-                    db.pesadaDetalle.RemoveRange(db.pesadaDetalle.Where(x => x.PesadaId == Eliminar.PesadasId));
+                    db.pesadaDetalle.RemoveRange(db.pesadaDetalle.Where(x => x.PesadasId == Eliminar.PesadasId));
                     db.Entry(Eliminar).State = EntityState.Deleted;
                     if (db.SaveChanges() > 0)
                         paso = true;

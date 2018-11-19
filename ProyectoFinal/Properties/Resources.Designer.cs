@@ -63,6 +63,16 @@ namespace ProyectoFinal.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_sign_add_299068 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_sign-add_299068", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap if_1_04_511562 {
             get {
                 object obj = ResourceManager.GetObject("if_1-04_511562", resourceCulture);

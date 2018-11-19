@@ -63,7 +63,6 @@ namespace ProyectoFinal.BLL
         {
             Contexto db = new Contexto();
             TiposArroz tiposArroz = new TiposArroz();
-            bool paso = false;
             try
             {
                  tiposArroz = db.tiposArroz.Find(id);

@@ -201,6 +201,7 @@
     <None Include="Resources\if_manilla-folder-new_23456.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\iconfinder_sign-add_299068.png" />
     <Content Include="UI\Login\ModeloDeUsuario.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModeloDeUsuario.Context.cs</LastGenOutput>
