@@ -34,9 +34,10 @@
             this.crearFactoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearTiposDeArrozToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarProductoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarProductoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registroDePesadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,8 @@
             this.registroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearClientesToolStripMenuItem,
             this.crearFactoriasToolStripMenuItem,
-            this.crearTiposDeArrozToolStripMenuItem});
+            this.crearTiposDeArrozToolStripMenuItem,
+            this.registroDePesadasToolStripMenuItem});
             this.registroToolStripMenuItem.Name = "registroToolStripMenuItem";
             this.registroToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.registroToolStripMenuItem.Text = "Registro";
@@ -92,6 +94,13 @@
             this.consultasToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.consultasToolStripMenuItem.Text = "Consultas";
             // 
+            // consultarProductoresToolStripMenuItem
+            // 
+            this.consultarProductoresToolStripMenuItem.Name = "consultarProductoresToolStripMenuItem";
+            this.consultarProductoresToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.consultarProductoresToolStripMenuItem.Text = "Consultar Productores";
+            this.consultarProductoresToolStripMenuItem.Click += new System.EventHandler(this.consultarProductoresToolStripMenuItem_Click);
+            // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -107,12 +116,12 @@
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // consultarProductoresToolStripMenuItem
+            // registroDePesadasToolStripMenuItem
             // 
-            this.consultarProductoresToolStripMenuItem.Name = "consultarProductoresToolStripMenuItem";
-            this.consultarProductoresToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.consultarProductoresToolStripMenuItem.Text = "Consultar Productores";
-            this.consultarProductoresToolStripMenuItem.Click += new System.EventHandler(this.consultarProductoresToolStripMenuItem_Click);
+            this.registroDePesadasToolStripMenuItem.Name = "registroDePesadasToolStripMenuItem";
+            this.registroDePesadasToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.registroDePesadasToolStripMenuItem.Text = "Registro De Pesadas";
+            this.registroDePesadasToolStripMenuItem.Click += new System.EventHandler(this.registroDePesadasToolStripMenuItem_Click);
             // 
             // VentanaPrincipal
             // 
@@ -143,6 +152,7 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem crearTiposDeArrozToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarProductoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registroDePesadasToolStripMenuItem;
     }
 }
 

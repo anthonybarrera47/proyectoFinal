@@ -55,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\FactoriaBLL.cs" />
+    <Compile Include="BLL\PesadaDetalleBLL.cs" />
+    <Compile Include="BLL\PesadasBLL.cs" />
     <Compile Include="BLL\ProductoresBLL.cs" />
     <Compile Include="BLL\RepositorioBase.cs" />
     <Compile Include="BLL\IRepository.cs" />
@@ -62,8 +64,10 @@
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Factoria.cs" />
     <Compile Include="Entidades\Pesadas.cs" />
+    <Compile Include="Entidades\PesadasDetalle.cs" />
     <Compile Include="Entidades\Productores.cs" />
     <Compile Include="Entidades\TiposArroz.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="UI\Consulta\ConsultaProductores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +97,12 @@
     </Compile>
     <Compile Include="UI\Login\Usuario.cs">
       <DependentUpon>ModeloDeUsuario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroDePesadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\RegistroDePesadas.Designer.cs">
+      <DependentUpon>RegistroDePesadas.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registro\RegistroFactoria.cs">
       <SubType>Form</SubType>
@@ -135,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\RegistroDePesadas.resx">
+      <DependentUpon>RegistroDePesadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\RegistroFactoria.resx">
       <DependentUpon>RegistroFactoria.cs</DependentUpon>

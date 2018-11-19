@@ -56,5 +56,12 @@ namespace ProyectoFinal
             consultaProductores.MdiParent = this;
             consultaProductores.Show();
         }
+
+        private void registroDePesadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegistroDePesadas registroDePesadas = new RegistroDePesadas();
+            registroDePesadas.MdiParent = this;
+            registroDePesadas.Show();
+        }
     }
 }
