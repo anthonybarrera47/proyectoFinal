@@ -1,6 +1,6 @@
 ﻿namespace ProyectoFinal.UI.Consulta
 {
-    partial class ConsultaProductores
+    partial class ConsultaTipoArroz
     {
         /// <summary>
         /// Required designer variable.
@@ -52,13 +52,13 @@
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
             "ID",
-            "Nombre"});
+            "Descripcion",
+            "Quintales"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(21, 41);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(121, 24);
             this.FiltrocomboBox.TabIndex = 0;
-            this.FiltrocomboBox.SelectedIndexChanged += new System.EventHandler(this.FiltrocomboBox_SelectedIndexChanged);
-            this.FiltrocomboBox.SelectedValueChanged += new System.EventHandler(this.FiltrocomboBox_SelectedValueChanged);
+            this.FiltrocomboBox.SelectedIndexChanged += new System.EventHandler(this.FiltrocomboBox_SelectedIndexChanged_1);
             // 
             // label1
             // 
@@ -106,9 +106,11 @@
             // 
             // ProductoresdataGridView
             // 
+            this.ProductoresdataGridView.AllowUserToDeleteRows = false;
             this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
             this.ProductoresdataGridView.Name = "ProductoresdataGridView";
+            this.ProductoresdataGridView.ReadOnly = true;
             this.ProductoresdataGridView.RowTemplate.Height = 24;
             this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 503);
             this.ProductoresdataGridView.TabIndex = 8;
@@ -119,7 +121,7 @@
             this.CriteriotextBox.Name = "CriteriotextBox";
             this.CriteriotextBox.Size = new System.Drawing.Size(346, 22);
             this.CriteriotextBox.TabIndex = 9;
-            this.CriteriotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CriteriotextBox_KeyPress);
+            this.CriteriotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CriteriotextBox_KeyPress_1);
             // 
             // HastadateTimePicker
             // 
@@ -128,7 +130,6 @@
             this.HastadateTimePicker.Name = "HastadateTimePicker";
             this.HastadateTimePicker.Size = new System.Drawing.Size(129, 22);
             this.HastadateTimePicker.TabIndex = 11;
-            this.HastadateTimePicker.ValueChanged += new System.EventHandler(this.HastadateTimePicker_ValueChanged);
             // 
             // errorProvider
             // 
@@ -142,7 +143,6 @@
             this.ImprimirButton.Size = new System.Drawing.Size(103, 88);
             this.ImprimirButton.TabIndex = 12;
             this.ImprimirButton.UseVisualStyleBackColor = true;
-            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // BuscarButton
             // 
@@ -155,7 +155,7 @@
             this.BuscarButton.UseVisualStyleBackColor = true;
             this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
-            // ConsultaProductores
+            // ConsultaTipoArroz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,8 +173,8 @@
             this.Controls.Add(this.FiltrocomboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
-            this.Name = "ConsultaProductores";
-            this.Text = "Consulta De Productores";
+            this.Name = "ConsultaTipoArroz";
+            this.Text = "Consulta De Tipos De Arroz | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

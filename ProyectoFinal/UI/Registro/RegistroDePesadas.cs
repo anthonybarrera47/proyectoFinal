@@ -16,6 +16,7 @@ namespace ProyectoFinal.UI.Registro
     public partial class RegistroDePesadas : Form
     {
         decimal TotalSacos = 0, TotalKilogramos;
+        bool Confirmar = false;
         public int FilaSeleccionada { get; set; }
         Pesadas pesadas = new Pesadas();
         List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();
@@ -44,6 +45,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private void Limpiar()
         {
+            errorProvider.Clear();
             PesadaIdcomboBox.Text = string.Empty;
             ProductorIdcomboBox.Text = string.Empty;
             TipoArrozIdComboBox.Text = string.Empty;
@@ -59,10 +61,13 @@ namespace ProyectoFinal.UI.Registro
             TotalAPagarTextBox.Text = string.Empty;
             FechaRegistrodateTimePicker.Value = DateTime.Now;
             EliminarDetalleButton.Enabled = false;
+            pesadas.PesadasDetalles = new List<PesadasDetalle>();
+            DetalledataGridView.DataSource = null;
             CargarGrid();
         }
         public bool Validar()
         {
+            errorProvider.Clear();
             bool paso = true;
             if(ProductorIdcomboBox.Text == string.Empty)
             {
@@ -133,6 +138,7 @@ namespace ProyectoFinal.UI.Registro
             pesad.TotalKiloGramos = Convert.ToDecimal(TotalKGTextBox.Text);
             pesad.TotalSacos = Convert.ToDecimal(TotalSacosTextBox.Text);
             pesad.TotalPagar = Convert.ToDecimal(TotalAPagarTextBox.Text);
+            pesad.FechaRegistro = FechaRegistrodateTimePicker.Value;
             pesad.PesadasDetalles = pesadas.PesadasDetalles;
             return pesad;
         }
@@ -140,13 +146,14 @@ namespace ProyectoFinal.UI.Registro
         {
             if (!Validar())
                 return;
-            Pesadas pesadas = LlenaClase();
-            if (PesadaIdcomboBox.Text == string.Empty)
+            Pesadas pesad = LlenaClase();
+            if (PesadaIdcomboBox.Text.Equals(string.Empty))
             {
-                if (PesadasBLL.Guardar(pesadas))
+                if (PesadasBLL.Guardar(pesad))
                 {
                     MessageBox.Show("Pesada Guardada Exitosamente!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LlenaComboBox();
+                    PesadasBLL.EnviarKilaje(pesad.PesadasDetalles);
                     var resultado = MessageBox.Show("¿Quiere Imprimir un Recibo?", "AgroSoft",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultado == DialogResult.Yes)
@@ -164,7 +171,7 @@ namespace ProyectoFinal.UI.Registro
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
-                    if (PesadasBLL.Modificar(LlenaClase()))
+                    if (PesadasBLL.Modificar(pesad))
                     {
                         MessageBox.Show("Pesada Modificada Exitosamente!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (pesadasDetalles.Count != 0)
@@ -173,6 +180,11 @@ namespace ProyectoFinal.UI.Registro
                             {
                                 PesadaDetalleBLL.Eliminar(item.Id);
                             }
+                        }
+                        if(Confirmar)
+                        {
+                            PesadasBLL.DescontarKilaje(pesadasDetalles);
+                            Confirmar = false;
                         }
                         var resultad = MessageBox.Show("Desea Imprimir un recibo?", "+Ventas",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -197,7 +209,7 @@ namespace ProyectoFinal.UI.Registro
             if (!ValidarDetalle())
                 return;
             if (DetalleIdComboBox.Text == string.Empty)
-                pesadas.PesadasDetalles.Add(new PesadasDetalle(0, Convert.ToInt32(ProductorIdcomboBox.Text),
+                pesadas.PesadasDetalles.Add(new PesadasDetalle(0, Convert.ToInt32(ProductorIdcomboBox.Text),Convert.ToInt32(TipoArrozIdComboBox.Text),
                     Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
             else
             {
@@ -208,7 +220,28 @@ namespace ProyectoFinal.UI.Registro
                 {
                     var detalleId
                 }*/
-
+                if(DetalleIdComboBox.Text.Equals(string.Empty))
+                {
+                    var tipoarroz = Convert.ToInt32(TipoArrozIdComboBox.Text);
+                    if(pesadas.PesadasDetalles.Exists(x=>x.TipoArrozId == tipoarroz))
+                    {
+                        foreach(var item in pesadas.PesadasDetalles)
+                        {
+                            if(item.TipoArrozId == tipoarroz)
+                            {
+                                item.Kilos += Convert.ToDecimal(KilosPesadosnumericUpDown.Value);
+                            }
+                        }
+                    }
+                    else
+                        pesadas.PesadasDetalles.Add(new PesadasDetalle(0, Convert.ToInt32(ProductorIdcomboBox.Text), Convert.ToInt32(TipoArrozIdComboBox.Text),
+                        Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
+                }
+                else
+                {
+                    pesadas.PesadasDetalles = PesadasBLL.Editar(pesadas.PesadasDetalles, new PesadasDetalle(Convert.ToInt32(DetalleIdComboBox.Text), Convert.ToInt32(ProductorIdcomboBox.Text), Convert.ToInt32(TipoArrozIdComboBox.Text),
+                                                                Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
+                }
             }
             TotalSacosTextBox.Text = string.Empty;
             TotalKGTextBox.Text = string.Empty;
@@ -238,7 +271,7 @@ namespace ProyectoFinal.UI.Registro
 
         private void EliminarDetalleButton_Click(object sender, EventArgs e)
         {
-            bool Eliminando = false;
+            //bool Eliminando = false;
             var resultado = MessageBox.Show("¿Desea Eliminar El Detalle que ha seleccionad?",
                 "AgroSoft", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -246,11 +279,12 @@ namespace ProyectoFinal.UI.Registro
             {
                 if (FilaSeleccionada >= 0)
                 {
-                    Eliminando = true;
+                    //Eliminando = true;
+                    Confirmar = true;
                     PesadasDetalle Detalle = pesadas.PesadasDetalles.ElementAt(FilaSeleccionada);
                     TotalSacos -= Detalle.CantidadDeSacos;
                     TotalKilogramos -= Detalle.Kilos;
-                    pesadasDetalles.Add(new PesadasDetalle(Detalle.Id, Detalle.PesadasId, Detalle.Kilos, Detalle.CantidadDeSacos));
+                    pesadasDetalles.Add(new PesadasDetalle(Detalle.Id, Detalle.PesadasId,Detalle.TipoArrozId, Detalle.Kilos, Detalle.CantidadDeSacos));
                     pesadas.PesadasDetalles.RemoveAt(FilaSeleccionada);
                     DetalledataGridView.DataSource = null;
                     DetalledataGridView.DataSource = pesadas.PesadasDetalles;
@@ -284,31 +318,18 @@ namespace ProyectoFinal.UI.Registro
             TipoArrozIdComboBox.Text = Convert.ToString(pesadas.TipoArrozId);
             TotalSacos = pesadas.TotalSacos;
             TotalKilogramos = pesadas.TotalKiloGramos;
+            FaneganumericUpDown.Value = pesadas.Fanega;
+            PrecioFaneganumericUpDown.Value = pesadas.PrecioFanega;
             TotalSacosTextBox.Text = Convert.ToString(pesadas.TotalSacos);
             TotalKGTextBox.Text = Convert.ToString(pesadas.TotalKiloGramos);
             TotalAPagarTextBox.Text = Convert.ToString(pesadas.TotalPagar);
+            FechaRegistrodateTimePicker.Value = pesadas.FechaRegistro;
             DetalleIdComboBox.Enabled = true;
             EliminarButton.Enabled = true;
+            LlenarComboBoxDetalle();
             DetalledataGridView.DataSource = pesadas.PesadasDetalles;
+            
             pesadasDetalles = new List<PesadasDetalle>();
-        }
-
-        private void ProductorIdcomboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ProductorNombretextBox.Text = string.Empty;
-            ProductorNombretextBox.Text = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text)).Nombre;
-        }
-
-        private void TipoArrozIdComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            TipoArroztextBox.Text = string.Empty;
-            TipoArroztextBox.Text = TipoArrozBLL.Buscar(Convert.ToInt32(TipoArrozIdComboBox.Text)).Descripcion;
-        }
-
-        private void FactoriaIdComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            FactoriatextBox.Text = string.Empty;
-            FactoriatextBox.Text = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdComboBox.Text)).Nombre;
         }
 
         private void Calculos()
@@ -326,5 +347,63 @@ namespace ProyectoFinal.UI.Registro
             TotalAPagarTextBox.Text = Convert.ToString(Math.Round(totalApagar, 2));
         }
 
+        private void ProductorIdcomboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ProductorNombretextBox.Text = BalancetextBox.Text=string.Empty;
+            Productores productor = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text));
+            ProductorNombretextBox.Text = productor.Nombre;
+        }
+
+        private void TipoArrozIdComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            TipoArroztextBox.Text = string.Empty;
+            TipoArroztextBox.Text = TipoArrozBLL.Buscar(Convert.ToInt32(TipoArrozIdComboBox.Text)).Descripcion;
+        }
+
+        private void DetalleIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int ID, pesadaid;
+            pesadaid = Convert.ToInt32(PesadaIdcomboBox.Text);
+            ID = Convert.ToInt32(DetalleIdComboBox.Text);
+            if(pesadas.PesadasDetalles.Count() == 0)
+                pesadas.PesadasDetalles = PesadaDetalleBLL.GetList(x => x.PesadasId == pesadaid);
+            foreach(var item in pesadas.PesadasDetalles)
+            {
+                if(item.Id == ID)
+                {
+                    CantidadSaconumericUpDown.Value = item.CantidadDeSacos;
+                    KilosPesadosnumericUpDown.Value = item.Kilos;
+                    TipoArrozIdComboBox.Text = Convert.ToString(item.TipoArrozId);
+                }
+            }
+        }
+
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show("¿Desea Eliminar?", "AgroSoft",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(resultado.Equals(DialogResult.Yes))
+            {
+                PesadasBLL.ArreglarDEtalle(PesadasBLL.Buscar(Convert.ToInt32(PesadaIdcomboBox.Text)));
+                if (PesadasBLL.Eliminar(Convert.ToInt32(PesadaIdcomboBox.Text))) 
+                {
+                    MessageBox.Show("Pesada Eliminada!!", "AgroSoft",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DetalledataGridView.DataSource = null;
+                    LlenaComboBox();
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("Pesada No pudo Ser Eliminada!!", "AgroSoft",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FactoriaIdComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FactoriatextBox.Text = string.Empty;
+            FactoriatextBox.Text = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdComboBox.Text)).Nombre;
+        }
+       
     }
 }

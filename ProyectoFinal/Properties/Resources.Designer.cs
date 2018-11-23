@@ -63,6 +63,36 @@ namespace ProyectoFinal.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_006_printer_3925426 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_006-printer_3925426", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Login_in_85205 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Login_in_85205", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Login_Manager_7261 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Login Manager_7261", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_sign_add_299068 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_sign-add_299068", resourceCulture);
@@ -116,6 +146,16 @@ namespace ProyectoFinal.Properties {
         internal static System.Drawing.Bitmap if_search_1730951 {
             get {
                 object obj = ResourceManager.GetObject("if_search_1730951", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo {
+            get {
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

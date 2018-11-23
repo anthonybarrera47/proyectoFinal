@@ -11,7 +11,7 @@ namespace ProyectoFinal.BLL
 {
     public class TipoArrozBLL
     {
-        public static bool Guardar(TiposArroz tiposArroz)
+        public static bool Guardar(TipoArroz tiposArroz)
         {
             Contexto db = new Contexto();
             bool paso = false;
@@ -28,7 +28,7 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return paso;
         }
-        public static bool Modificar(TiposArroz tiposArroz)
+        public static bool Modificar(TipoArroz tiposArroz)
         {
             Contexto db = new Contexto();
             bool paso = false;
@@ -49,7 +49,7 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                TiposArroz tiposArroz = db.tiposArroz.Find(id);
+                TipoArroz tiposArroz = db.tiposArroz.Find(id);
                 db.tiposArroz.Remove(tiposArroz);
                 if (db.SaveChanges() > 0)
                     paso = true;
@@ -59,10 +59,10 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return paso;
         }
-        public static TiposArroz Buscar(int id)
+        public static TipoArroz Buscar(int id)
         {
             Contexto db = new Contexto();
-            TiposArroz tiposArroz = new TiposArroz();
+            TipoArroz tiposArroz = new TipoArroz();
             try
             {
                  tiposArroz = db.tiposArroz.Find(id);
@@ -72,10 +72,10 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return tiposArroz;
         }
-        public static List<TiposArroz> GetList(Expression<Func<TiposArroz,bool>>expression)
+        public static List<TipoArroz> GetList(Expression<Func<TipoArroz,bool>>expression)
         {
             Contexto db = new Contexto();
-            List<TiposArroz> tiposArroz = new List<TiposArroz>();
+            List<TipoArroz> tiposArroz = new List<TipoArroz>();
             try
             {
                 tiposArroz = db.tiposArroz.Where(expression).ToList();

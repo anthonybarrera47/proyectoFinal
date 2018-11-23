@@ -32,17 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,18 +68,37 @@
     <Compile Include="BLL\RepositorioBase.cs" />
     <Compile Include="BLL\IRepository.cs" />
     <Compile Include="BLL\TipoArrozBLL.cs" />
+    <Compile Include="DAL\Constantes.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Factoria.cs" />
     <Compile Include="Entidades\Pesadas.cs" />
     <Compile Include="Entidades\PesadasDetalle.cs" />
     <Compile Include="Entidades\Productores.cs" />
-    <Compile Include="Entidades\TiposArroz.cs" />
+    <Compile Include="Entidades\TipoArroz.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="UI\Consulta\ConsultaDeFactorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\ConsultaDeFactorias.Designer.cs">
+      <DependentUpon>ConsultaDeFactorias.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Consulta\ConsultaProductores.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Consulta\ConsultaProductores.Designer.cs">
       <DependentUpon>ConsultaProductores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consulta\ConsultaTipoArroz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\ConsultaTipoArroz.Designer.cs">
+      <DependentUpon>ConsultaTipoArroz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login\ConsultaDeUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login\ConsultaDeUsuarios.Designer.cs">
+      <DependentUpon>ConsultaDeUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Login\Login.cs">
       <SubType>Form</SubType>
@@ -80,23 +106,11 @@
     <Compile Include="UI\Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Login\ModeloDeUsuario.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloDeUsuario.Context.tt</DependentUpon>
+    <Compile Include="UI\Login\RegistroUsuario.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Login\ModeloDeUsuario.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloDeUsuario.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Login\ModeloDeUsuario.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Login\Usuario.cs">
-      <DependentUpon>ModeloDeUsuario.tt</DependentUpon>
+    <Compile Include="UI\Login\RegistroUsuario.Designer.cs">
+      <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registro\RegistroDePesadas.cs">
       <SubType>Form</SubType>
@@ -122,6 +136,18 @@
     <Compile Include="UI\Registro\RegistroTiposArroz.Designer.cs">
       <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\ReporteDeProductores.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDeProductores.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeProductor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeProductor.Designer.cs">
+      <DependentUpon>ReporteDeProductor.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,11 +166,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Consulta\ConsultaDeFactorias.resx">
+      <DependentUpon>ConsultaDeFactorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta\ConsultaProductores.resx">
       <DependentUpon>ConsultaProductores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\ConsultaTipoArroz.resx">
+      <DependentUpon>ConsultaTipoArroz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login\ConsultaDeUsuarios.resx">
+      <DependentUpon>ConsultaDeUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login\RegistroUsuario.resx">
+      <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\RegistroDePesadas.resx">
       <DependentUpon>RegistroDePesadas.cs</DependentUpon>
@@ -157,6 +195,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\RegistroTiposArroz.resx">
       <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDeProductores.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteDeProductores.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDeProductor.resx">
+      <DependentUpon>ReporteDeProductor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaPrincipal.aa.resx">
+      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
@@ -171,19 +219,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="UI\Login\ModeloDeUsuario.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloDeUsuario.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="UI\Login\ModeloDeUsuario.edmx.diagram">
-      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Reportes\" />
+    <None Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\if_search_173095.png" />
@@ -202,20 +243,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_sign-add_299068.png" />
-    <Content Include="UI\Login\ModeloDeUsuario.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloDeUsuario.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
-    </Content>
-    <Content Include="UI\Login\ModeloDeUsuario.edmx.sql" />
-    <Content Include="UI\Login\ModeloDeUsuario.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloDeUsuario.cs</LastGenOutput>
-      <DependentUpon>ModeloDeUsuario.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Login Manager_7261.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Login_in_85205.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_006-printer_3925426.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

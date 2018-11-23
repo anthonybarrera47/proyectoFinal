@@ -137,6 +137,47 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return pesada;
         }
+        public static void EnviarKilaje(List<PesadasDetalle> detalle)
+        {
+            foreach(var item in detalle)
+            {
+                TipoArroz kilaje = TipoArrozBLL.Buscar(item.TipoArrozId);
+                kilaje.Kilos += item.Kilos;
+                TipoArrozBLL.Modificar(kilaje);
+            }
+        }
+        public static void DescontarKilaje(List<PesadasDetalle> detalle)
+        {
+            foreach(var item in detalle)
+            {
+                var kilaje = TipoArrozBLL.Buscar(item.TipoArrozId);
+                kilaje.Kilos -= item.Kilos;
+                TipoArrozBLL.Modificar(kilaje);
+            }
+        }
+        public static void ArreglarDEtalle(Pesadas pesada)
+        {
+            foreach(var item in pesada.PesadasDetalles)
+            {
+                var tipoArroz = TipoArrozBLL.Buscar(item.TipoArrozId);
+                tipoArroz.Kilos -= item.Kilos;
+                TipoArrozBLL.Modificar(tipoArroz);
+            }
+        }
+        public static List<PesadasDetalle> Editar(List<PesadasDetalle> list,PesadasDetalle detalle)
+        {
+            foreach(var item in list)
+            {
+                if (item.Id == detalle.Id)
+                    item.Kilos = detalle.Kilos;
+            }
+            return list;
+        }
+        public static void UsuarioParaLogin(String Nombre,int id)
+        {
+            usuario.Nombre = Nombre;
+            usuario.UsuarioId = id;
+        }
         public static Usuario GetUsuario()
         {
             return usuario;

@@ -20,6 +20,7 @@ namespace ProyectoFinal.Entidades
         public decimal TotalKiloGramos { get; set; }
         public decimal TotalSacos { get; set; }
         public decimal TotalPagar { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
 

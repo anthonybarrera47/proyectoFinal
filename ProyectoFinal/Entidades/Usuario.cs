@@ -15,6 +15,8 @@ namespace ProyectoFinal.Entidades
         public string UserName { get; set; }
         public String Nombre { get; set; }
         public String Password { get; set; }
+        public String Tipo { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
         public Usuario()
         {
@@ -22,14 +24,18 @@ namespace ProyectoFinal.Entidades
             UserName = string.Empty;
             Nombre = string.Empty;
             Password = string.Empty;
+            Tipo = string.Empty;
+            FechaRegistro = DateTime.Now;
         }
 
-        public Usuario(int usuarioId, string userName, string nombre, string password)
+        public Usuario(int usuarioId, string userName, string nombre, string password, string tipo, DateTime fechaRegistro)
         {
             UsuarioId = usuarioId;
             UserName = userName;
             Nombre = nombre;
             Password = password;
+            Tipo = tipo;
+            FechaRegistro = fechaRegistro;
         }
     }
 }

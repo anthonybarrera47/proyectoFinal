@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.BLL;
+using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,10 +22,10 @@ namespace ProyectoFinal.UI.Registro
         }
         private void Limpiar()
         {
+            errorProvider.Clear();
             ProductoresIdnumericUpDown.Value = 0;
             NombreTextBox.Text = string.Empty;
             TelefonomaskedTextBox.Text = string.Empty;
-            BalancenumericUpDown.Value = 0;
             CedulaMasketTextBox.Text = string.Empty;
             FechaNacimientodateTimePicker.Value = DateTime.Now;
         }
@@ -34,7 +36,6 @@ namespace ProyectoFinal.UI.Registro
                 ProductorId = Convert.ToInt32(ProductoresIdnumericUpDown.Value),
                 Nombre = NombreTextBox.Text,
                 Telefono = TelefonomaskedTextBox.Text,
-                Balance = BalancenumericUpDown.Value,
                 Cedula = CedulaMasketTextBox.Text,
                 FechaNacimiento = FechaNacimientodateTimePicker.Value
             };
@@ -45,24 +46,24 @@ namespace ProyectoFinal.UI.Registro
             ProductoresIdnumericUpDown.Value = productores.ProductorId;
             NombreTextBox.Text =  productores.Nombre;
             TelefonomaskedTextBox.Text = productores.Telefono;
-            BalancenumericUpDown.Value = productores.Balance;
             CedulaMasketTextBox.Text = productores.Cedula;
             FechaNacimientodateTimePicker.Value = productores.FechaNacimiento;
         }
         private bool Validar()
         {
             bool paso = true;
-            if (String.IsNullOrWhiteSpace(NombreTextBox.Text))
+            Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) && nombre.IsMatch(NombreTextBox.Text)== false)
             {
-                errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio!!");
+                errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio , Ni Debe Contener caracteres!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text))
+            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text.Replace("-","")))
             {
                 errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text))
+            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-","")))
             {
                 errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
@@ -116,10 +117,9 @@ namespace ProyectoFinal.UI.Registro
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int id;
-            int.TryParse(ProductoresIdnumericUpDown.Text, out id);
+            int.TryParse(ProductoresIdnumericUpDown.Text, out int id);
 
-            if(!ExisteEnLaBaseDeDatos())
+            if (!ExisteEnLaBaseDeDatos())
             {
                 errorProvider.SetError(ProductoresIdnumericUpDown, "No Puede Borrar Un Productor Inexistente");
                 return;
@@ -135,8 +135,7 @@ namespace ProyectoFinal.UI.Registro
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int id;
-            int.TryParse(ProductoresIdnumericUpDown.Text, out id);
+            int.TryParse(ProductoresIdnumericUpDown.Text, out int id);
             Productores productores = new Productores();
 
             productores = ProductoresBLL.Buscar(id);
@@ -148,6 +147,11 @@ namespace ProyectoFinal.UI.Registro
             }
             else
                 MessageBox.Show("Productor no Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Constantes.ValidarNombreTextBox(sender, e);
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProyectoFinal.BLL;
 using System.Text.RegularExpressions;
+using ProyectoFinal.DAL;
 
 namespace ProyectoFinal.UI.Registro
 {
@@ -18,66 +19,68 @@ namespace ProyectoFinal.UI.Registro
         internal RepositorioBase<Factoria> repositorio;
         public RegistroFactoria()
         {
-            
+
             InitializeComponent();
+            LlenaComboBox();
+            
+        }
+        private void LlenaComboBox()
+        {
+            FactoriaIdcomboBox.Items.Clear();
+            foreach (var item in FactoriaBLL.GetList(x => true))
+            {
+                FactoriaIdcomboBox.Items.Add(item.FactoriaID);
+            }
         }
         private void Limpiar()
         {
             ErrorProvider.Clear();
-            FactoriaIDNumericUpDown.Value = 0;
+            FactoriaIdcomboBox.Text = string.Empty;
             NombreTextBox.Text = string.Empty;
             DireccionTextBox.Text = string.Empty;
             TelefonoTextBox.Text = string.Empty;
+            LlenaComboBox();
         }
+
         private Factoria LlenaClase()
         {
-            Factoria factoria = new Factoria()
-            {
-                FactoriaID = Convert.ToInt32(FactoriaIDNumericUpDown.Value),
-                Nombre = NombreTextBox.Text,
-                Direccion = DireccionTextBox.Text,
-                Telefono = TelefonoTextBox.Text
-            };
+            Factoria factoria = new Factoria();
+
+            if (FactoriaIdcomboBox.Text.Equals(string.Empty))
+                factoria.FactoriaID = 0;
+            else
+                factoria.FactoriaID = Convert.ToInt32(FactoriaIdcomboBox.Text);
+            factoria.Nombre = NombreTextBox.Text;
+            factoria.Direccion = DireccionTextBox.Text;
+            factoria.Telefono = TelefonoTextBox.Text;
+
 
             return factoria;
         }
-        private void LlenaCampo(Factoria factoria)
+        /*private void LlenaCampo(Factoria factoria)
         {
             FactoriaIDNumericUpDown.Value = factoria.FactoriaID;
             NombreTextBox.Text = factoria.Nombre;
             DireccionTextBox.Text = factoria.Direccion;
             TelefonoTextBox.Text = factoria.Telefono;
-        }
+        }*/
         private bool Validar()
         {
+            ErrorProvider.Clear();
             bool paso = true;
-            String nombre = NombreTextBox.Text;
-            String telefono = Telefono.Text;      
-            Regex regex = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
-            Regex regexTelefono = new Regex(@"^[+-]?\d+(\.\d+)?$");
-            if(String.IsNullOrWhiteSpace(NombreTextBox.Text))
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
                 ErrorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if(String.IsNullOrWhiteSpace(DireccionTextBox.Text))
+            if (String.IsNullOrWhiteSpace(DireccionTextBox.Text))
             {
                 ErrorProvider.SetError(DireccionTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(TelefonoTextBox.Text))
+            if (String.IsNullOrWhiteSpace(TelefonoTextBox.Text.Replace("-", "")) || TelefonoTextBox.Text.Length != 12)
             {
                 ErrorProvider.SetError(TelefonoTextBox, "Este Campo No puede Estar Vacio!!");
-                paso = false;
-            }
-            if(regex.IsMatch(nombre)==false)
-            {
-                ErrorProvider.SetError(NombreTextBox, "Este Campo Solo Debe Contener Letras");
-                paso = false;
-            }
-            if(regexTelefono.IsMatch(telefono))
-            {
-                ErrorProvider.SetError(TelefonoTextBox, "Este Campo Solo Debe Contener Numeros");
                 paso = false;
             }
             return paso;
@@ -86,9 +89,9 @@ namespace ProyectoFinal.UI.Registro
         {
             repositorio = new RepositorioBase<Factoria>();
             //Factoria factoria = repositorio.Buscar((int)FactoriaIDNumericUpDown.Value);
-            Factoria factoria = FactoriaBLL.Buscar((int)FactoriaIDNumericUpDown.Value);
+            Factoria factoria = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdcomboBox.Text));
             return (factoria != null);
-        }  
+        }
         private void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
@@ -103,7 +106,7 @@ namespace ProyectoFinal.UI.Registro
                 return;
 
             factoria = LlenaClase();
-            if (FactoriaIDNumericUpDown.Value == 0)
+            if (FactoriaIdcomboBox.Text.Equals(string.Empty))
                 //paso = repositorio.Guardar(factoria);
                 paso = FactoriaBLL.Guardar(factoria);
             else
@@ -121,13 +124,13 @@ namespace ProyectoFinal.UI.Registro
                     return;
                 }
             }
-            if(paso)
+            if (paso)
             {
                 MessageBox.Show("Factoria Guardada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
-                MessageBox.Show("No Se Pudo Guardar!!","Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
@@ -135,21 +138,21 @@ namespace ProyectoFinal.UI.Registro
             repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
             int ID;
-            int.TryParse(FactoriaIDNumericUpDown.Text, out ID);
-            
-            if(!ExisteEnLaBaseDeDatos())
+            int.TryParse(FactoriaIdcomboBox.Text, out ID);
+
+            if (!ExisteEnLaBaseDeDatos())
             {
-                ErrorProvider.SetError(FactoriaIDNumericUpDown, "No Puede Borrar Una Factoria Inexistente");
-                return; 
+                ErrorProvider.SetError(FactoriaIdcomboBox, "No Puede Borrar Una Factoria Inexistente");
+                return;
             }
             //if(repositorio.Eliminar(ID))
-            if(FactoriaBLL.Eliminar(ID))
+            if (FactoriaBLL.Eliminar(ID))
             {
                 Limpiar();
                 MessageBox.Show("Factoria Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
+        /*
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             repositorio = new RepositorioBase<Factoria>();
@@ -160,7 +163,7 @@ namespace ProyectoFinal.UI.Registro
 
             //factoria = repositorio.Buscar(ID);
             factoria = FactoriaBLL.Buscar(ID);
-            if(factoria != null)
+            if (factoria != null)
             {
                 ErrorProvider.Clear();
                 LlenaCampo(factoria);
@@ -168,6 +171,20 @@ namespace ProyectoFinal.UI.Registro
             }
             else
                 MessageBox.Show("Factoria no Encontrada!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }*/
+
+        private void FactoriaIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Factoria factoria = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdcomboBox.Text));
+            NombreTextBox.Text = factoria.Nombre;
+            DireccionTextBox.Text = factoria.Direccion;
+            TelefonoTextBox.Text = factoria.Telefono;
         }
+
+        private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Constantes.ValidarNombreTextBox(sender, e);
+        }
+
     }
 }

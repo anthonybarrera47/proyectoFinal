@@ -28,114 +28,178 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
-            this.registroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearFactoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearTiposDeArrozToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarProductoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registroDePesadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegistroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CrearClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CrearFactoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CrearTiposDeArrozToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegistroDePesadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConsultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConsultarProductoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaFactoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaTipoArrozToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HerramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.desconectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CrearUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConsultaUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.NombretoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuBar.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
             // 
             this.MenuBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registroToolStripMenuItem,
-            this.consultasToolStripMenuItem,
-            this.herramientasToolStripMenuItem});
-            this.MenuBar.Location = new System.Drawing.Point(0, 0);
+            this.RegistroToolStripMenuItem,
+            this.ConsultasToolStripMenuItem,
+            this.HerramientasToolStripMenuItem,
+            this.UsuariosToolStripMenuItem});
+            resources.ApplyResources(this.MenuBar, "MenuBar");
             this.MenuBar.Name = "MenuBar";
-            this.MenuBar.Size = new System.Drawing.Size(800, 28);
-            this.MenuBar.TabIndex = 2;
-            this.MenuBar.Text = "menuStrip1";
             // 
-            // registroToolStripMenuItem
+            // RegistroToolStripMenuItem
             // 
-            this.registroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearClientesToolStripMenuItem,
-            this.crearFactoriasToolStripMenuItem,
-            this.crearTiposDeArrozToolStripMenuItem,
-            this.registroDePesadasToolStripMenuItem});
-            this.registroToolStripMenuItem.Name = "registroToolStripMenuItem";
-            this.registroToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
-            this.registroToolStripMenuItem.Text = "Registro";
+            this.RegistroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CrearClientesToolStripMenuItem,
+            this.CrearFactoriasToolStripMenuItem,
+            this.CrearTiposDeArrozToolStripMenuItem,
+            this.RegistroDePesadasToolStripMenuItem});
+            this.RegistroToolStripMenuItem.Name = "RegistroToolStripMenuItem";
+            resources.ApplyResources(this.RegistroToolStripMenuItem, "RegistroToolStripMenuItem");
             // 
-            // crearClientesToolStripMenuItem
+            // CrearClientesToolStripMenuItem
             // 
-            this.crearClientesToolStripMenuItem.Name = "crearClientesToolStripMenuItem";
-            this.crearClientesToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.crearClientesToolStripMenuItem.Text = "Crear Productores";
-            this.crearClientesToolStripMenuItem.Click += new System.EventHandler(this.crearClientesToolStripMenuItem_Click);
+            this.CrearClientesToolStripMenuItem.Name = "CrearClientesToolStripMenuItem";
+            resources.ApplyResources(this.CrearClientesToolStripMenuItem, "CrearClientesToolStripMenuItem");
+            this.CrearClientesToolStripMenuItem.Click += new System.EventHandler(this.CrearClientesToolStripMenuItem_Click);
             // 
-            // crearFactoriasToolStripMenuItem
+            // CrearFactoriasToolStripMenuItem
             // 
-            this.crearFactoriasToolStripMenuItem.Name = "crearFactoriasToolStripMenuItem";
-            this.crearFactoriasToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.crearFactoriasToolStripMenuItem.Text = "Crear Factorias";
-            this.crearFactoriasToolStripMenuItem.Click += new System.EventHandler(this.crearFactoriasToolStripMenuItem_Click);
+            this.CrearFactoriasToolStripMenuItem.Name = "CrearFactoriasToolStripMenuItem";
+            resources.ApplyResources(this.CrearFactoriasToolStripMenuItem, "CrearFactoriasToolStripMenuItem");
+            this.CrearFactoriasToolStripMenuItem.Click += new System.EventHandler(this.CrearFactoriasToolStripMenuItem_Click);
             // 
-            // crearTiposDeArrozToolStripMenuItem
+            // CrearTiposDeArrozToolStripMenuItem
             // 
-            this.crearTiposDeArrozToolStripMenuItem.Name = "crearTiposDeArrozToolStripMenuItem";
-            this.crearTiposDeArrozToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.crearTiposDeArrozToolStripMenuItem.Text = "Crear Tipos De Arroz";
-            this.crearTiposDeArrozToolStripMenuItem.Click += new System.EventHandler(this.crearTiposDeArrozToolStripMenuItem_Click);
+            this.CrearTiposDeArrozToolStripMenuItem.Name = "CrearTiposDeArrozToolStripMenuItem";
+            resources.ApplyResources(this.CrearTiposDeArrozToolStripMenuItem, "CrearTiposDeArrozToolStripMenuItem");
+            this.CrearTiposDeArrozToolStripMenuItem.Click += new System.EventHandler(this.CrearTiposDeArrozToolStripMenuItem_Click);
             // 
-            // consultasToolStripMenuItem
+            // RegistroDePesadasToolStripMenuItem
             // 
-            this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consultarProductoresToolStripMenuItem});
-            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
-            this.consultasToolStripMenuItem.Text = "Consultas";
+            this.RegistroDePesadasToolStripMenuItem.Name = "RegistroDePesadasToolStripMenuItem";
+            resources.ApplyResources(this.RegistroDePesadasToolStripMenuItem, "RegistroDePesadasToolStripMenuItem");
+            this.RegistroDePesadasToolStripMenuItem.Click += new System.EventHandler(this.RegistroDePesadasToolStripMenuItem_Click);
             // 
-            // consultarProductoresToolStripMenuItem
+            // ConsultasToolStripMenuItem
             // 
-            this.consultarProductoresToolStripMenuItem.Name = "consultarProductoresToolStripMenuItem";
-            this.consultarProductoresToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.consultarProductoresToolStripMenuItem.Text = "Consultar Productores";
-            this.consultarProductoresToolStripMenuItem.Click += new System.EventHandler(this.consultarProductoresToolStripMenuItem_Click);
+            this.ConsultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ConsultarProductoresToolStripMenuItem,
+            this.consultaFactoriasToolStripMenuItem,
+            this.consultaTipoArrozToolStripMenuItem});
+            this.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem";
+            resources.ApplyResources(this.ConsultasToolStripMenuItem, "ConsultasToolStripMenuItem");
             // 
-            // herramientasToolStripMenuItem
+            // ConsultarProductoresToolStripMenuItem
             // 
-            this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
-            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.herramientasToolStripMenuItem.Text = "Herramientas";
+            this.ConsultarProductoresToolStripMenuItem.Name = "ConsultarProductoresToolStripMenuItem";
+            resources.ApplyResources(this.ConsultarProductoresToolStripMenuItem, "ConsultarProductoresToolStripMenuItem");
+            this.ConsultarProductoresToolStripMenuItem.Click += new System.EventHandler(this.ConsultarProductoresToolStripMenuItem_Click);
             // 
-            // salirToolStripMenuItem
+            // consultaFactoriasToolStripMenuItem
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(113, 26);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.consultaFactoriasToolStripMenuItem.Name = "consultaFactoriasToolStripMenuItem";
+            resources.ApplyResources(this.consultaFactoriasToolStripMenuItem, "consultaFactoriasToolStripMenuItem");
+            this.consultaFactoriasToolStripMenuItem.Click += new System.EventHandler(this.ConsultaFactoriasToolStripMenuItem_Click);
             // 
-            // registroDePesadasToolStripMenuItem
+            // consultaTipoArrozToolStripMenuItem
             // 
-            this.registroDePesadasToolStripMenuItem.Name = "registroDePesadasToolStripMenuItem";
-            this.registroDePesadasToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
-            this.registroDePesadasToolStripMenuItem.Text = "Registro De Pesadas";
-            this.registroDePesadasToolStripMenuItem.Click += new System.EventHandler(this.registroDePesadasToolStripMenuItem_Click);
+            this.consultaTipoArrozToolStripMenuItem.Name = "consultaTipoArrozToolStripMenuItem";
+            resources.ApplyResources(this.consultaTipoArrozToolStripMenuItem, "consultaTipoArrozToolStripMenuItem");
+            this.consultaTipoArrozToolStripMenuItem.Click += new System.EventHandler(this.ConsultaTipoArrozToolStripMenuItem_Click);
+            // 
+            // HerramientasToolStripMenuItem
+            // 
+            this.HerramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.desconectarToolStripMenuItem,
+            this.SalirToolStripMenuItem});
+            this.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem";
+            resources.ApplyResources(this.HerramientasToolStripMenuItem, "HerramientasToolStripMenuItem");
+            // 
+            // desconectarToolStripMenuItem
+            // 
+            this.desconectarToolStripMenuItem.Name = "desconectarToolStripMenuItem";
+            resources.ApplyResources(this.desconectarToolStripMenuItem, "desconectarToolStripMenuItem");
+            this.desconectarToolStripMenuItem.Click += new System.EventHandler(this.DesconectarToolStripMenuItem_Click);
+            // 
+            // SalirToolStripMenuItem
+            // 
+            this.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem";
+            resources.ApplyResources(this.SalirToolStripMenuItem, "SalirToolStripMenuItem");
+            this.SalirToolStripMenuItem.Click += new System.EventHandler(this.SalirToolStripMenuItem_Click);
+            // 
+            // UsuariosToolStripMenuItem
+            // 
+            this.UsuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CrearUsuariosToolStripMenuItem,
+            this.ConsultaUsuariosToolStripMenuItem});
+            this.UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem";
+            resources.ApplyResources(this.UsuariosToolStripMenuItem, "UsuariosToolStripMenuItem");
+            // 
+            // CrearUsuariosToolStripMenuItem
+            // 
+            this.CrearUsuariosToolStripMenuItem.Name = "CrearUsuariosToolStripMenuItem";
+            resources.ApplyResources(this.CrearUsuariosToolStripMenuItem, "CrearUsuariosToolStripMenuItem");
+            this.CrearUsuariosToolStripMenuItem.Click += new System.EventHandler(this.CrearUsuariosToolStripMenuItem_Click);
+            // 
+            // ConsultaUsuariosToolStripMenuItem
+            // 
+            this.ConsultaUsuariosToolStripMenuItem.Name = "ConsultaUsuariosToolStripMenuItem";
+            resources.ApplyResources(this.ConsultaUsuariosToolStripMenuItem, "ConsultaUsuariosToolStripMenuItem");
+            this.ConsultaUsuariosToolStripMenuItem.Click += new System.EventHandler(this.ConsultaUsuariosToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.NombretoolStripStatusLabel});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            // 
+            // NombretoolStripStatusLabel
+            // 
+            this.NombretoolStripStatusLabel.Name = "NombretoolStripStatusLabel";
+            resources.ApplyResources(this.NombretoolStripStatusLabel, "NombretoolStripStatusLabel");
             // 
             // VentanaPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MenuBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.MenuBar;
             this.Name = "VentanaPrincipal";
-            this.Text = "AgroComercial Barrera";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VentanaPrincipal_FormClosed);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,15 +208,24 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip MenuBar;
-        private System.Windows.Forms.ToolStripMenuItem registroToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crearClientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crearFactoriasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crearTiposDeArrozToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarProductoresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registroDePesadasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegistroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CrearClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CrearFactoriasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ConsultasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HerramientasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SalirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CrearTiposDeArrozToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ConsultarProductoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegistroDePesadasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CrearUsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ConsultaUsuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem desconectarToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel NombretoolStripStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem consultaFactoriasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultaTipoArrozToolStripMenuItem;
     }
 }
 

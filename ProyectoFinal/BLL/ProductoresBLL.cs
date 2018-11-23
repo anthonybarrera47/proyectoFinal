@@ -17,12 +17,13 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                if(db.productores.Add(productores)!=null)
+                if (db.productores.Add(productores) != null)
                 {
                     db.SaveChanges();
                     paso = true;
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -37,7 +38,8 @@ namespace ProyectoFinal.BLL
                 db.Entry(productores).State = System.Data.Entity.EntityState.Modified;
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -53,7 +55,8 @@ namespace ProyectoFinal.BLL
                 db.productores.Remove(productores);
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -66,20 +69,22 @@ namespace ProyectoFinal.BLL
             try
             {
                 productores = db.productores.Find(id);
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
             return productores;
         }
-        public static List<Productores> GetList(Expression<Func<Productores,bool>>expression)
+        public static List<Productores> GetList(Expression<Func<Productores, bool>> expression)
         {
             Contexto db = new Contexto();
             List<Productores> productores = new List<Productores>();
             try
             {
                 productores = db.productores.Where(expression).ToList();
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }

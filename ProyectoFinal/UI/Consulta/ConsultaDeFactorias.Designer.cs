@@ -1,6 +1,6 @@
 ﻿namespace ProyectoFinal.UI.Consulta
 {
-    partial class ConsultaProductores
+    partial class ConsultaDeFactorias
     {
         /// <summary>
         /// Required designer variable.
@@ -52,13 +52,14 @@
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
             "ID",
-            "Nombre"});
+            "Nombre",
+            "Direccion",
+            "Telefono"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(21, 41);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(121, 24);
             this.FiltrocomboBox.TabIndex = 0;
             this.FiltrocomboBox.SelectedIndexChanged += new System.EventHandler(this.FiltrocomboBox_SelectedIndexChanged);
-            this.FiltrocomboBox.SelectedValueChanged += new System.EventHandler(this.FiltrocomboBox_SelectedValueChanged);
             // 
             // label1
             // 
@@ -109,6 +110,7 @@
             this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
             this.ProductoresdataGridView.Name = "ProductoresdataGridView";
+            this.ProductoresdataGridView.ReadOnly = true;
             this.ProductoresdataGridView.RowTemplate.Height = 24;
             this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 503);
             this.ProductoresdataGridView.TabIndex = 8;
@@ -128,7 +130,6 @@
             this.HastadateTimePicker.Name = "HastadateTimePicker";
             this.HastadateTimePicker.Size = new System.Drawing.Size(129, 22);
             this.HastadateTimePicker.TabIndex = 11;
-            this.HastadateTimePicker.ValueChanged += new System.EventHandler(this.HastadateTimePicker_ValueChanged);
             // 
             // errorProvider
             // 
@@ -142,7 +143,6 @@
             this.ImprimirButton.Size = new System.Drawing.Size(103, 88);
             this.ImprimirButton.TabIndex = 12;
             this.ImprimirButton.UseVisualStyleBackColor = true;
-            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // BuscarButton
             // 
@@ -153,9 +153,9 @@
             this.BuscarButton.TabIndex = 10;
             this.BuscarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BuscarButton.UseVisualStyleBackColor = true;
-            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click_1);
             // 
-            // ConsultaProductores
+            // ConsultaDeFactorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,8 +173,8 @@
             this.Controls.Add(this.FiltrocomboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
-            this.Name = "ConsultaProductores";
-            this.Text = "Consulta De Productores";
+            this.Name = "ConsultaDeFactorias";
+            this.Text = "Consulta De Factorias | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
