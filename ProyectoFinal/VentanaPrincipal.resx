@@ -121,96 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="CrearClientesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 26</value>
-  </data>
-  <data name="CrearClientesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Crear Productores</value>
-  </data>
-  <data name="CrearFactoriasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 26</value>
-  </data>
-  <data name="CrearFactoriasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Crear Factorias</value>
-  </data>
-  <data name="CrearTiposDeArrozToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 26</value>
-  </data>
-  <data name="CrearTiposDeArrozToolStripMenuItem.Text" xml:space="preserve">
-    <value>Crear Tipos De Arroz</value>
-  </data>
-  <data name="RegistroDePesadasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 26</value>
-  </data>
-  <data name="RegistroDePesadasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Registro De Pesadas</value>
-  </data>
-  <data name="RegistroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 24</value>
-  </data>
-  <data name="RegistroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Registro</value>
-  </data>
-  <data name="ConsultarProductoresToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 26</value>
-  </data>
-  <data name="ConsultarProductoresToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consultar Productores</value>
-  </data>
-  <data name="consultaFactoriasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 26</value>
-  </data>
-  <data name="consultaFactoriasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consulta Factorias</value>
-  </data>
-  <data name="consultaTipoArrozToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 26</value>
-  </data>
-  <data name="consultaTipoArrozToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consulta TipoArroz</value>
-  </data>
-  <data name="ConsultasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 24</value>
-  </data>
-  <data name="ConsultasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consultas</value>
-  </data>
-  <data name="desconectarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 26</value>
-  </data>
-  <data name="desconectarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Desconectar</value>
-  </data>
-  <data name="SalirToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 26</value>
-  </data>
-  <data name="SalirToolStripMenuItem.Text" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="HerramientasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 24</value>
-  </data>
-  <data name="HerramientasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Herramientas</value>
-  </data>
-  <data name="CrearUsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 26</value>
-  </data>
-  <data name="CrearUsuariosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Crear Usuarios</value>
-  </data>
-  <data name="ConsultaUsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 26</value>
-  </data>
-  <data name="ConsultaUsuariosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consulta Usuarios</value>
-  </data>
-  <data name="UsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 24</value>
-  </data>
-  <data name="UsuariosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Usuarios</value>
-  </data>
   <data name="MenuBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -236,21 +146,99 @@
   <data name="&gt;&gt;MenuBar.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="RegistroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 24</value>
+  </data>
+  <data name="RegistroToolStripMenuItem.Text" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="CrearClientesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 26</value>
+  </data>
+  <data name="CrearClientesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crear Productores</value>
+  </data>
+  <data name="CrearFactoriasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 26</value>
+  </data>
+  <data name="CrearFactoriasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crear Factorias</value>
+  </data>
+  <data name="CrearTiposDeArrozToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 26</value>
+  </data>
+  <data name="CrearTiposDeArrozToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crear Tipos De Arroz</value>
+  </data>
+  <data name="RegistroDePesadasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 26</value>
+  </data>
+  <data name="RegistroDePesadasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Registro De Pesadas</value>
+  </data>
+  <data name="ConsultasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 24</value>
+  </data>
+  <data name="ConsultasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consultas</value>
+  </data>
+  <data name="ConsultarProductoresToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 26</value>
+  </data>
+  <data name="ConsultarProductoresToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consultar Productores</value>
+  </data>
+  <data name="consultaFactoriasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 26</value>
+  </data>
+  <data name="consultaFactoriasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consulta Factorias</value>
+  </data>
+  <data name="consultaTipoArrozToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 26</value>
+  </data>
+  <data name="consultaTipoArrozToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consulta TipoArroz</value>
+  </data>
+  <data name="HerramientasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 24</value>
+  </data>
+  <data name="HerramientasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Herramientas</value>
+  </data>
+  <data name="desconectarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 26</value>
+  </data>
+  <data name="desconectarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="SalirToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 26</value>
+  </data>
+  <data name="SalirToolStripMenuItem.Text" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="UsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 24</value>
+  </data>
+  <data name="UsuariosToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="CrearUsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 26</value>
+  </data>
+  <data name="CrearUsuariosToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crear Usuarios</value>
+  </data>
+  <data name="ConsultaUsuariosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 26</value>
+  </data>
+  <data name="ConsultaUsuariosToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consulta Usuarios</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>135, 17</value>
   </metadata>
-  <data name="toolStripStatusLabel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt, style=Bold</value>
-  </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>Usuario: </value>
-  </data>
-  <data name="NombretoolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 23</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 422</value>
   </data>
@@ -274,6 +262,18 @@
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="toolStripStatusLabel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 10.2pt, style=Bold</value>
+  </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>Usuario: </value>
+  </data>
+  <data name="NombretoolStripStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 23</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

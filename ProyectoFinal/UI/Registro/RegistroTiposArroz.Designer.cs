@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.DescripcionTextBox = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.QuintalestextBox = new System.Windows.Forms.TextBox();
+            this.KilostextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TipoArrozIdcomboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -103,14 +103,14 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // QuintalestextBox
+            // KilostextBox
             // 
-            this.QuintalestextBox.Enabled = false;
-            this.QuintalestextBox.Location = new System.Drawing.Point(103, 83);
-            this.QuintalestextBox.Name = "QuintalestextBox";
-            this.QuintalestextBox.ReadOnly = true;
-            this.QuintalestextBox.Size = new System.Drawing.Size(153, 22);
-            this.QuintalestextBox.TabIndex = 19;
+            this.KilostextBox.Enabled = false;
+            this.KilostextBox.Location = new System.Drawing.Point(103, 83);
+            this.KilostextBox.Name = "KilostextBox";
+            this.KilostextBox.ReadOnly = true;
+            this.KilostextBox.Size = new System.Drawing.Size(153, 22);
+            this.KilostextBox.TabIndex = 19;
             // 
             // label3
             // 
@@ -118,9 +118,9 @@
             this.label3.Location = new System.Drawing.Point(13, 87);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.Size = new System.Drawing.Size(38, 17);
             this.label3.TabIndex = 18;
-            this.label3.Text = "Quintales";
+            this.label3.Text = "Kilos";
             // 
             // TipoArrozIdcomboBox
             // 
@@ -138,7 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(289, 184);
             this.Controls.Add(this.TipoArrozIdcomboBox);
-            this.Controls.Add(this.QuintalestextBox);
+            this.Controls.Add(this.KilostextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DescripcionTextBox);
             this.Controls.Add(this.label2);
@@ -165,7 +165,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox DescripcionTextBox;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.TextBox QuintalestextBox;
+        private System.Windows.Forms.TextBox KilostextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox TipoArrozIdcomboBox;
     }

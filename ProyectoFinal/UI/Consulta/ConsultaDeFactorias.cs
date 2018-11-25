@@ -59,7 +59,7 @@ namespace ProyectoFinal.UI.Consulta
                         break;
                 }
                 //filtro = (c => c.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && c.FechaNacimiento.Date <= HastadateTimePicker.Value.Date);
-            }
+            } 
             ProductoresdataGridView.DataSource = null;
             ProductoresdataGridView.DataSource = FactoriaBLL.GetList(filtro);
         }
@@ -130,13 +130,13 @@ namespace ProyectoFinal.UI.Consulta
 
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
-        private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)
+        /*private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker.Value.Date)
                 errorProvider.SetError(HastadateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
-        }
+        }*/
 
         private void ImprimirButton_Click(object sender, EventArgs e)
         {

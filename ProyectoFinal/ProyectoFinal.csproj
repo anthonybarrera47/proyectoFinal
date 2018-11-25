@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -136,6 +151,17 @@
     <Compile Include="UI\Registro\RegistroTiposArroz.Designer.cs">
       <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\ReporteDeFactoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeFactoria.Designer.cs">
+      <DependentUpon>ReporteDeFactoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeFactoria1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDeFactoria.rpt</DependentUpon>
+    </Compile>
     <Compile Include="UI\Reportes\ReporteDeProductores.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +173,17 @@
     </Compile>
     <Compile Include="UI\Reportes\ReporteDeProductor.Designer.cs">
       <DependentUpon>ReporteDeProductor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeTiposArroz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeTiposArroz.Designer.cs">
+      <DependentUpon>ReporteDeTiposArroz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDeTiposArroz1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDeTiposArroz.rpt</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
@@ -196,12 +233,20 @@
     <EmbeddedResource Include="UI\Registro\RegistroTiposArroz.resx">
       <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDeFactoria.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteDeFactoria1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\ReporteDeProductores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteDeProductores.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\ReporteDeProductor.resx">
       <DependentUpon>ReporteDeProductor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDeTiposArroz.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteDeTiposArroz1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.aa.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
@@ -256,6 +301,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_006-printer_3925426.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

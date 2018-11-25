@@ -15,7 +15,7 @@ namespace ProyectoFinal
 
         public void Comprobar()
         {
-            UsuariosToolStripMenuItem.Enabled = tipousuario.Equals(Constantes.admi);
+            UsuariosToolStripMenuItem.Visible = tipousuario.Equals(Constantes.admi);
             NombretoolStripStatusLabel.Text =PesadasBLL.GetUsuario().Nombre;
         }
         public VentanaPrincipal()

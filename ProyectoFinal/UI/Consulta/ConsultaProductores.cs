@@ -22,14 +22,14 @@ namespace ProyectoFinal.UI.Consulta
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
         }
-        
+
         private void Seleccion()
         {
             errorProvider.Clear();
             //var lista = new List<Productores>();
-            if (CriteriotextBox.Text.Trim().Length >=0)
+            if (CriteriotextBox.Text.Trim().Length >= 0)
             {
-                switch(FiltrocomboBox.SelectedIndex)
+                switch (FiltrocomboBox.SelectedIndex)
                 {
                     case 0: //Todo
                         //lista = ProductoresBLL.GetList(x => true);
@@ -78,7 +78,7 @@ namespace ProyectoFinal.UI.Consulta
             if ((int)e.KeyChar == (int)Keys.Enter)
                 Seleccion();
 
-            if(FiltrocomboBox.SelectedIndex == 1)
+            if (FiltrocomboBox.SelectedIndex == 1)
             {
                 //Para obligar a que sólo se introduzcan números
                 if (Char.IsDigit(e.KeyChar))
@@ -97,7 +97,7 @@ namespace ProyectoFinal.UI.Consulta
                 }
                 return;
             }
-            if(FiltrocomboBox.SelectedIndex == 2)
+            if (FiltrocomboBox.SelectedIndex == 2)
             {
                 //En caso que fuesemos a buscar por Nombres entonces si podremos Digitar Letras
                 if (Char.IsLetter(e.KeyChar))
@@ -117,7 +117,7 @@ namespace ProyectoFinal.UI.Consulta
                     e.Handled = true;
                 }
             }
-           
+
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
         private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)

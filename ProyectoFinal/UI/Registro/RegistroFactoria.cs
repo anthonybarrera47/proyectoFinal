@@ -39,6 +39,7 @@ namespace ProyectoFinal.UI.Registro
             NombreTextBox.Text = string.Empty;
             DireccionTextBox.Text = string.Empty;
             TelefonoTextBox.Text = string.Empty;
+            FechadateTimePicker.Value = DateTime.Now;
             LlenaComboBox();
         }
 
@@ -53,7 +54,7 @@ namespace ProyectoFinal.UI.Registro
             factoria.Nombre = NombreTextBox.Text;
             factoria.Direccion = DireccionTextBox.Text;
             factoria.Telefono = TelefonoTextBox.Text;
-
+            factoria.Fecha = FechadateTimePicker.Value;
 
             return factoria;
         }
@@ -179,6 +180,7 @@ namespace ProyectoFinal.UI.Registro
             NombreTextBox.Text = factoria.Nombre;
             DireccionTextBox.Text = factoria.Direccion;
             TelefonoTextBox.Text = factoria.Telefono;
+            FechadateTimePicker.Value = factoria.Fecha;
         }
 
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -186,5 +188,6 @@ namespace ProyectoFinal.UI.Registro
             Constantes.ValidarNombreTextBox(sender, e);
         }
 
+       
     }
 }

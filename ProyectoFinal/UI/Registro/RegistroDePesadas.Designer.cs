@@ -37,36 +37,36 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PrecioFaneganumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.FaneganumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.TipoArroztextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.DetalleIdComboBox = new System.Windows.Forms.ComboBox();
+            this.TipoArrozIdComboBox = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.AgregarButton = new System.Windows.Forms.Button();
-            this.TotalAPagarTextBox = new System.Windows.Forms.TextBox();
             this.EliminarDetalleButton = new System.Windows.Forms.Button();
             this.KilosPesadosnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.TotalSacosTextBox = new System.Windows.Forms.TextBox();
             this.TotalKGTextBox = new System.Windows.Forms.TextBox();
             this.DetalledataGridView = new System.Windows.Forms.DataGridView();
             this.CantidadSaconumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.TotalAPagarTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.FechaRegistrodateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.UsuarioTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.ProductorIdcomboBox = new System.Windows.Forms.ComboBox();
-            this.TipoArrozIdComboBox = new System.Windows.Forms.ComboBox();
             this.FactoriaIdComboBox = new System.Windows.Forms.ComboBox();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
             this.ProductorNombretextBox = new System.Windows.Forms.TextBox();
-            this.TipoArroztextBox = new System.Windows.Forms.TextBox();
             this.FactoriatextBox = new System.Windows.Forms.TextBox();
             this.BalancetextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
@@ -81,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 25);
+            this.label1.Location = new System.Drawing.Point(19, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 17);
             this.label1.TabIndex = 0;
@@ -90,7 +90,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 55);
+            this.label2.Location = new System.Drawing.Point(19, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 17);
             this.label2.TabIndex = 1;
@@ -99,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 85);
+            this.label3.Location = new System.Drawing.Point(477, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 2;
@@ -108,7 +108,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 111);
+            this.label4.Location = new System.Drawing.Point(19, 103);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 17);
             this.label4.TabIndex = 3;
@@ -116,10 +116,11 @@
             // 
             // PesadaIdcomboBox
             // 
+            this.PesadaIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PesadaIdcomboBox.FormattingEnabled = true;
             this.PesadaIdcomboBox.Items.AddRange(new object[] {
             ""});
-            this.PesadaIdcomboBox.Location = new System.Drawing.Point(96, 18);
+            this.PesadaIdcomboBox.Location = new System.Drawing.Point(96, 38);
             this.PesadaIdcomboBox.Name = "PesadaIdcomboBox";
             this.PesadaIdcomboBox.Size = new System.Drawing.Size(121, 24);
             this.PesadaIdcomboBox.TabIndex = 1;
@@ -129,33 +130,34 @@
             // 
             this.groupBox1.Controls.Add(this.PrecioFaneganumericUpDown);
             this.groupBox1.Controls.Add(this.FaneganumericUpDown);
+            this.groupBox1.Controls.Add(this.TipoArroztextBox);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.DetalleIdComboBox);
+            this.groupBox1.Controls.Add(this.TipoArrozIdComboBox);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.AgregarButton);
-            this.groupBox1.Controls.Add(this.TotalAPagarTextBox);
             this.groupBox1.Controls.Add(this.EliminarDetalleButton);
             this.groupBox1.Controls.Add(this.KilosPesadosnumericUpDown);
             this.groupBox1.Controls.Add(this.TotalSacosTextBox);
             this.groupBox1.Controls.Add(this.TotalKGTextBox);
             this.groupBox1.Controls.Add(this.DetalledataGridView);
             this.groupBox1.Controls.Add(this.CantidadSaconumericUpDown);
-            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(22, 142);
+            this.groupBox1.Location = new System.Drawing.Point(6, 131);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(604, 456);
+            this.groupBox1.Size = new System.Drawing.Size(686, 513);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesadas";
             // 
             // PrecioFaneganumericUpDown
             // 
-            this.PrecioFaneganumericUpDown.Location = new System.Drawing.Point(331, 54);
+            this.PrecioFaneganumericUpDown.Location = new System.Drawing.Point(330, 58);
             this.PrecioFaneganumericUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -167,7 +169,7 @@
             // 
             // FaneganumericUpDown
             // 
-            this.FaneganumericUpDown.Location = new System.Drawing.Point(156, 54);
+            this.FaneganumericUpDown.Location = new System.Drawing.Point(155, 58);
             this.FaneganumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -177,10 +179,19 @@
             this.FaneganumericUpDown.Size = new System.Drawing.Size(66, 22);
             this.FaneganumericUpDown.TabIndex = 7;
             // 
+            // TipoArroztextBox
+            // 
+            this.TipoArroztextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TipoArroztextBox.Enabled = false;
+            this.TipoArroztextBox.Location = new System.Drawing.Point(480, 58);
+            this.TipoArroztextBox.Name = "TipoArroztextBox";
+            this.TipoArroztextBox.Size = new System.Drawing.Size(121, 22);
+            this.TipoArroztextBox.TabIndex = 41;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(225, 54);
+            this.label12.Location = new System.Drawing.Point(224, 58);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 17);
             this.label12.TabIndex = 53;
@@ -189,7 +200,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 54);
+            this.label9.Location = new System.Drawing.Point(20, 58);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(58, 17);
             this.label9.TabIndex = 52;
@@ -197,18 +208,29 @@
             // 
             // DetalleIdComboBox
             // 
+            this.DetalleIdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DetalleIdComboBox.Enabled = false;
             this.DetalleIdComboBox.FormattingEnabled = true;
-            this.DetalleIdComboBox.Location = new System.Drawing.Point(535, 54);
+            this.DetalleIdComboBox.Location = new System.Drawing.Point(405, 55);
             this.DetalleIdComboBox.Name = "DetalleIdComboBox";
             this.DetalleIdComboBox.Size = new System.Drawing.Size(63, 24);
             this.DetalleIdComboBox.TabIndex = 41;
             this.DetalleIdComboBox.SelectedIndexChanged += new System.EventHandler(this.DetalleIdComboBox_SelectedIndexChanged);
             // 
+            // TipoArrozIdComboBox
+            // 
+            this.TipoArrozIdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TipoArrozIdComboBox.FormattingEnabled = true;
+            this.TipoArrozIdComboBox.Location = new System.Drawing.Point(480, 32);
+            this.TipoArrozIdComboBox.Name = "TipoArrozIdComboBox";
+            this.TipoArrozIdComboBox.Size = new System.Drawing.Size(121, 24);
+            this.TipoArrozIdComboBox.TabIndex = 3;
+            this.TipoArrozIdComboBox.SelectedValueChanged += new System.EventHandler(this.TipoArrozIdComboBox_SelectedValueChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(529, 37);
+            this.label14.Location = new System.Drawing.Point(402, 31);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 17);
             this.label14.TabIndex = 40;
@@ -217,7 +239,7 @@
             // AgregarButton
             // 
             this.AgregarButton.Image = global::ProyectoFinal.Properties.Resources.iconfinder_sign_add_299068;
-            this.AgregarButton.Location = new System.Drawing.Point(435, 28);
+            this.AgregarButton.Location = new System.Drawing.Point(627, 44);
             this.AgregarButton.Name = "AgregarButton";
             this.AgregarButton.Size = new System.Drawing.Size(37, 35);
             this.AgregarButton.TabIndex = 45;
@@ -225,17 +247,9 @@
             this.AgregarButton.UseVisualStyleBackColor = true;
             this.AgregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
-            // TotalAPagarTextBox
-            // 
-            this.TotalAPagarTextBox.Enabled = false;
-            this.TotalAPagarTextBox.Location = new System.Drawing.Point(478, 420);
-            this.TotalAPagarTextBox.Name = "TotalAPagarTextBox";
-            this.TotalAPagarTextBox.Size = new System.Drawing.Size(100, 22);
-            this.TotalAPagarTextBox.TabIndex = 11;
-            // 
             // EliminarDetalleButton
             // 
-            this.EliminarDetalleButton.Location = new System.Drawing.Point(16, 418);
+            this.EliminarDetalleButton.Location = new System.Drawing.Point(16, 481);
             this.EliminarDetalleButton.Name = "EliminarDetalleButton";
             this.EliminarDetalleButton.Size = new System.Drawing.Size(121, 24);
             this.EliminarDetalleButton.TabIndex = 12;
@@ -245,7 +259,7 @@
             // 
             // KilosPesadosnumericUpDown
             // 
-            this.KilosPesadosnumericUpDown.Location = new System.Drawing.Point(331, 28);
+            this.KilosPesadosnumericUpDown.Location = new System.Drawing.Point(330, 32);
             this.KilosPesadosnumericUpDown.Maximum = new decimal(new int[] {
             -1486618625,
             232830643,
@@ -258,7 +272,7 @@
             // TotalSacosTextBox
             // 
             this.TotalSacosTextBox.Enabled = false;
-            this.TotalSacosTextBox.Location = new System.Drawing.Point(478, 389);
+            this.TotalSacosTextBox.Location = new System.Drawing.Point(564, 482);
             this.TotalSacosTextBox.Name = "TotalSacosTextBox";
             this.TotalSacosTextBox.Size = new System.Drawing.Size(100, 22);
             this.TotalSacosTextBox.TabIndex = 10;
@@ -266,7 +280,7 @@
             // TotalKGTextBox
             // 
             this.TotalKGTextBox.Enabled = false;
-            this.TotalKGTextBox.Location = new System.Drawing.Point(261, 390);
+            this.TotalKGTextBox.Location = new System.Drawing.Point(347, 482);
             this.TotalKGTextBox.Name = "TotalKGTextBox";
             this.TotalKGTextBox.Size = new System.Drawing.Size(100, 22);
             this.TotalKGTextBox.TabIndex = 9;
@@ -278,30 +292,21 @@
             this.DetalledataGridView.Name = "DetalledataGridView";
             this.DetalledataGridView.ReadOnly = true;
             this.DetalledataGridView.RowTemplate.Height = 24;
-            this.DetalledataGridView.Size = new System.Drawing.Size(562, 301);
+            this.DetalledataGridView.Size = new System.Drawing.Size(648, 385);
             this.DetalledataGridView.TabIndex = 36;
             this.DetalledataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalledataGridView_CellClick);
             // 
             // CantidadSaconumericUpDown
             // 
-            this.CantidadSaconumericUpDown.Location = new System.Drawing.Point(156, 28);
+            this.CantidadSaconumericUpDown.Location = new System.Drawing.Point(155, 32);
             this.CantidadSaconumericUpDown.Name = "CantidadSaconumericUpDown";
             this.CantidadSaconumericUpDown.Size = new System.Drawing.Size(66, 22);
             this.CantidadSaconumericUpDown.TabIndex = 5;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(377, 423);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 17);
-            this.label11.TabIndex = 34;
-            this.label11.Text = "Total A Pagar";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(367, 393);
+            this.label10.Location = new System.Drawing.Point(453, 485);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(105, 17);
             this.label10.TabIndex = 33;
@@ -310,7 +315,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(116, 393);
+            this.label7.Location = new System.Drawing.Point(202, 485);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 17);
             this.label7.TabIndex = 30;
@@ -319,7 +324,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(225, 30);
+            this.label6.Location = new System.Drawing.Point(224, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 17);
             this.label6.TabIndex = 29;
@@ -328,16 +333,33 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 28);
+            this.label5.Location = new System.Drawing.Point(20, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 17);
             this.label5.TabIndex = 28;
             this.label5.Text = "Cantidad De Sacos";
             // 
+            // TotalAPagarTextBox
+            // 
+            this.TotalAPagarTextBox.Enabled = false;
+            this.TotalAPagarTextBox.Location = new System.Drawing.Point(592, 650);
+            this.TotalAPagarTextBox.Name = "TotalAPagarTextBox";
+            this.TotalAPagarTextBox.Size = new System.Drawing.Size(100, 22);
+            this.TotalAPagarTextBox.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(491, 653);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(95, 17);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "Total A Pagar";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(359, 19);
+            this.label8.Location = new System.Drawing.Point(429, 15);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(124, 17);
             this.label8.TabIndex = 33;
@@ -348,7 +370,7 @@
             this.FechaRegistrodateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechaRegistrodateTimePicker.Enabled = false;
             this.FechaRegistrodateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaRegistrodateTimePicker.Location = new System.Drawing.Point(489, 16);
+            this.FechaRegistrodateTimePicker.Location = new System.Drawing.Point(559, 12);
             this.FechaRegistrodateTimePicker.Name = "FechaRegistrodateTimePicker";
             this.FechaRegistrodateTimePicker.Size = new System.Drawing.Size(111, 22);
             this.FechaRegistrodateTimePicker.TabIndex = 34;
@@ -361,7 +383,7 @@
             // 
             this.UsuarioTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.UsuarioTextBox.Enabled = false;
-            this.UsuarioTextBox.Location = new System.Drawing.Point(526, 627);
+            this.UsuarioTextBox.Location = new System.Drawing.Point(592, 678);
             this.UsuarioTextBox.Name = "UsuarioTextBox";
             this.UsuarioTextBox.Size = new System.Drawing.Size(100, 22);
             this.UsuarioTextBox.TabIndex = 35;
@@ -369,7 +391,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(436, 630);
+            this.label13.Location = new System.Drawing.Point(502, 681);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 17);
             this.label13.TabIndex = 36;
@@ -377,26 +399,19 @@
             // 
             // ProductorIdcomboBox
             // 
+            this.ProductorIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductorIdcomboBox.FormattingEnabled = true;
-            this.ProductorIdcomboBox.Location = new System.Drawing.Point(96, 48);
+            this.ProductorIdcomboBox.Location = new System.Drawing.Point(96, 68);
             this.ProductorIdcomboBox.Name = "ProductorIdcomboBox";
             this.ProductorIdcomboBox.Size = new System.Drawing.Size(121, 24);
             this.ProductorIdcomboBox.TabIndex = 2;
             this.ProductorIdcomboBox.SelectedValueChanged += new System.EventHandler(this.ProductorIdcomboBox_SelectedValueChanged);
             // 
-            // TipoArrozIdComboBox
-            // 
-            this.TipoArrozIdComboBox.FormattingEnabled = true;
-            this.TipoArrozIdComboBox.Location = new System.Drawing.Point(96, 78);
-            this.TipoArrozIdComboBox.Name = "TipoArrozIdComboBox";
-            this.TipoArrozIdComboBox.Size = new System.Drawing.Size(121, 24);
-            this.TipoArrozIdComboBox.TabIndex = 3;
-            this.TipoArrozIdComboBox.SelectedValueChanged += new System.EventHandler(this.TipoArrozIdComboBox_SelectedValueChanged);
-            // 
             // FactoriaIdComboBox
             // 
+            this.FactoriaIdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FactoriaIdComboBox.FormattingEnabled = true;
-            this.FactoriaIdComboBox.Location = new System.Drawing.Point(96, 108);
+            this.FactoriaIdComboBox.Location = new System.Drawing.Point(96, 100);
             this.FactoriaIdComboBox.Name = "FactoriaIdComboBox";
             this.FactoriaIdComboBox.Size = new System.Drawing.Size(121, 24);
             this.FactoriaIdComboBox.TabIndex = 4;
@@ -405,7 +420,7 @@
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(225, 604);
+            this.EliminarButton.Location = new System.Drawing.Point(226, 650);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 15;
@@ -415,7 +430,7 @@
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(134, 604);
+            this.GuardarButton.Location = new System.Drawing.Point(135, 650);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
             this.GuardarButton.TabIndex = 14;
@@ -425,7 +440,7 @@
             // NuevoButton
             // 
             this.NuevoButton.Image = global::ProyectoFinal.Properties.Resources.if_manilla_folder_new_23456;
-            this.NuevoButton.Location = new System.Drawing.Point(36, 604);
+            this.NuevoButton.Location = new System.Drawing.Point(37, 650);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(52, 45);
             this.NuevoButton.TabIndex = 13;
@@ -436,25 +451,16 @@
             // 
             this.ProductorNombretextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ProductorNombretextBox.Enabled = false;
-            this.ProductorNombretextBox.Location = new System.Drawing.Point(225, 48);
+            this.ProductorNombretextBox.Location = new System.Drawing.Point(225, 68);
             this.ProductorNombretextBox.Name = "ProductorNombretextBox";
             this.ProductorNombretextBox.Size = new System.Drawing.Size(121, 22);
             this.ProductorNombretextBox.TabIndex = 40;
-            // 
-            // TipoArroztextBox
-            // 
-            this.TipoArroztextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.TipoArroztextBox.Enabled = false;
-            this.TipoArroztextBox.Location = new System.Drawing.Point(225, 78);
-            this.TipoArroztextBox.Name = "TipoArroztextBox";
-            this.TipoArroztextBox.Size = new System.Drawing.Size(121, 22);
-            this.TipoArroztextBox.TabIndex = 41;
             // 
             // FactoriatextBox
             // 
             this.FactoriatextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.FactoriatextBox.Enabled = false;
-            this.FactoriatextBox.Location = new System.Drawing.Point(225, 108);
+            this.FactoriatextBox.Location = new System.Drawing.Point(225, 100);
             this.FactoriatextBox.Name = "FactoriatextBox";
             this.FactoriatextBox.Size = new System.Drawing.Size(121, 22);
             this.FactoriatextBox.TabIndex = 42;
@@ -462,7 +468,7 @@
             // BalancetextBox
             // 
             this.BalancetextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.BalancetextBox.Location = new System.Drawing.Point(352, 48);
+            this.BalancetextBox.Location = new System.Drawing.Point(353, 68);
             this.BalancetextBox.Name = "BalancetextBox";
             this.BalancetextBox.Size = new System.Drawing.Size(100, 22);
             this.BalancetextBox.TabIndex = 43;
@@ -471,25 +477,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 663);
+            this.ClientSize = new System.Drawing.Size(704, 707);
             this.Controls.Add(this.BalancetextBox);
             this.Controls.Add(this.FactoriatextBox);
-            this.Controls.Add(this.TipoArroztextBox);
             this.Controls.Add(this.ProductorNombretextBox);
             this.Controls.Add(this.FactoriaIdComboBox);
-            this.Controls.Add(this.TipoArrozIdComboBox);
             this.Controls.Add(this.ProductorIdcomboBox);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.UsuarioTextBox);
             this.Controls.Add(this.FechaRegistrodateTimePicker);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.TotalAPagarTextBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.EliminarButton);
             this.Controls.Add(this.GuardarButton);
             this.Controls.Add(this.NuevoButton);
             this.Controls.Add(this.PesadaIdcomboBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

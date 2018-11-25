@@ -34,7 +34,7 @@ namespace ProyectoFinal.UI.Registro
             errorProvider.Clear();
             TipoArrozIdcomboBox.Items.Clear();
             DescripcionTextBox.Text = string.Empty;
-            QuintalestextBox.Text = "0";
+            KilostextBox.Text = "0";
             LlenarComboBox();
         }
         private TipoArroz LlenaClase()
@@ -43,9 +43,9 @@ namespace ProyectoFinal.UI.Registro
             if (TipoArrozIdcomboBox.Text.Equals(string.Empty))
                 tiposArroz.TipoArrozId = 0;
             else
-                tiposArroz.TipoArrozId = Convert.ToInt32(QuintalestextBox.Text);
+                tiposArroz.TipoArrozId = Convert.ToInt32(KilostextBox.Text);
             tiposArroz.Descripcion = DescripcionTextBox.Text;
-            tiposArroz.Kilos = Convert.ToDecimal(QuintalestextBox.Text);
+            tiposArroz.Kilos = Convert.ToDecimal(KilostextBox.Text);
             return tiposArroz;
         }
         /*private void LlenaCampo(TiposArroz tiposArroz)
@@ -136,14 +136,13 @@ namespace ProyectoFinal.UI.Registro
             }
            
         }
-
         private void TipoArrozIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
             errorProvider.Clear();
             TipoArroz tiposArroz = repositorio.Buscar(Convert.ToInt32(TipoArrozIdcomboBox.Text));
             DescripcionTextBox.Text = tiposArroz.Descripcion;
-            QuintalestextBox.Text = Convert.ToString(tiposArroz.Kilos);      
+            KilostextBox.Text = Convert.ToString(tiposArroz.Kilos);      
         }
 
 

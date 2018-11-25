@@ -190,7 +190,6 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MenuBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.MenuBar;
             this.Name = "VentanaPrincipal";

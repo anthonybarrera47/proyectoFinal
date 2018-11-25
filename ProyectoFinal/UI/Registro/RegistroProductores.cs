@@ -19,32 +19,43 @@ namespace ProyectoFinal.UI.Registro
         public RegistroProductores()
         {
             InitializeComponent();
+            LlenaComboBox();
+        }
+        private void LlenaComboBox()
+        {
+            ProductorIdcomboBox.Items.Clear();
+            foreach (var item in ProductoresBLL.GetList(x => true))
+            {
+                ProductorIdcomboBox.Items.Add(item.ProductorId);
+            }
         }
         private void Limpiar()
         {
             errorProvider.Clear();
-            ProductoresIdnumericUpDown.Value = 0;
+            ProductorIdcomboBox.Text = string.Empty;
             NombreTextBox.Text = string.Empty;
             TelefonomaskedTextBox.Text = string.Empty;
             CedulaMasketTextBox.Text = string.Empty;
             FechaNacimientodateTimePicker.Value = DateTime.Now;
+            LlenaComboBox();
         }
         private Productores LlenaClase()
         {
-            Productores productores = new Productores()
-            {
-                ProductorId = Convert.ToInt32(ProductoresIdnumericUpDown.Value),
-                Nombre = NombreTextBox.Text,
-                Telefono = TelefonomaskedTextBox.Text,
-                Cedula = CedulaMasketTextBox.Text,
-                FechaNacimiento = FechaNacimientodateTimePicker.Value
-            };
+            Productores productores = new Productores();
+            if (ProductorIdcomboBox.Text.Equals(string.Empty))
+                productores.ProductorId = 0;
+            else
+                productores.ProductorId = Convert.ToInt32(ProductorIdcomboBox.Text);
+            productores.Nombre = NombreTextBox.Text;
+            productores.Telefono = TelefonomaskedTextBox.Text;
+            productores.Cedula = CedulaMasketTextBox.Text;
+            productores.FechaNacimiento = FechaNacimientodateTimePicker.Value;
             return productores;
         }
         private void LlenaCampo(Productores productores)
         {
-            ProductoresIdnumericUpDown.Value = productores.ProductorId;
-            NombreTextBox.Text =  productores.Nombre;
+            ProductorIdcomboBox.Text = Convert.ToString(productores.ProductorId);
+            NombreTextBox.Text = productores.Nombre;
             TelefonomaskedTextBox.Text = productores.Telefono;
             CedulaMasketTextBox.Text = productores.Cedula;
             FechaNacimientodateTimePicker.Value = productores.FechaNacimiento;
@@ -53,17 +64,17 @@ namespace ProyectoFinal.UI.Registro
         {
             bool paso = true;
             Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
-            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) && nombre.IsMatch(NombreTextBox.Text)== false)
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) && nombre.IsMatch(NombreTextBox.Text) == false)
             {
                 errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio , Ni Debe Contener caracteres!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text.Replace("-","")))
+            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text.Replace("-", "")))
             {
                 errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-","")))
+            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-", "")))
             {
                 errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
@@ -72,7 +83,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private bool ExisteEnLaBaseDeDatos()
         {
-            Productores productores = ProductoresBLL.Buscar((int)ProductoresIdnumericUpDown.Value);
+            Productores productores = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text));
             return (productores != null);
         }
         private void NuevoButton_Click(object sender, EventArgs e)
@@ -88,7 +99,7 @@ namespace ProyectoFinal.UI.Registro
                 return;
 
             productores = LlenaClase();
-            if (ProductoresIdnumericUpDown.Value == 0)
+            if (ProductorIdcomboBox.Text.Equals(string.Empty))
                 paso = ProductoresBLL.Guardar(productores);
             else
             {
@@ -117,29 +128,33 @@ namespace ProyectoFinal.UI.Registro
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductoresIdnumericUpDown.Text, out int id);
+            int.TryParse(ProductorIdcomboBox.Text, out int id);
 
             if (!ExisteEnLaBaseDeDatos())
             {
-                errorProvider.SetError(ProductoresIdnumericUpDown, "No Puede Borrar Un Productor Inexistente");
+                errorProvider.SetError(ProductorIdcomboBox, "No Puede Borrar Un Productor Inexistente");
                 return;
             }
-            if(ProductoresBLL.Eliminar(id))
+            if (ProductoresBLL.Eliminar(id))
             {
                 Limpiar();
                 MessageBox.Show("Productor Eliminado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
+        private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Constantes.ValidarNombreTextBox(sender, e);
+        }
 
-        private void BuscarButton_Click(object sender, EventArgs e)
+        private void ProductorIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductoresIdnumericUpDown.Text, out int id);
+            int.TryParse(ProductorIdcomboBox.Text, out int id);
             Productores productores = new Productores();
 
             productores = ProductoresBLL.Buscar(id);
-            if(productores!=null)
+            if (productores != null)
             {
                 errorProvider.Clear();
                 LlenaCampo(productores);
@@ -147,11 +162,7 @@ namespace ProyectoFinal.UI.Registro
             }
             else
                 MessageBox.Show("Productor no Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Constantes.ValidarNombreTextBox(sender, e);
+            
         }
     }
 }

@@ -82,9 +82,9 @@ namespace ProyectoFinal.BLL
             }
             return paso;
         }
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _db.Dispose();
+            this._db.Dispose();
         }
     }
 }

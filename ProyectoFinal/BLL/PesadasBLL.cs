@@ -55,8 +55,11 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
+                
                 var pesadaDetalle = Buscar(pesadas.PesadasId);
-                foreach(var item in pesadas.PesadasDetalles)
+                db.Entry(pesadas).State = EntityState.Modified;
+                ArreglarDEtalle(pesadaDetalle);
+                foreach (var item in pesadas.PesadasDetalles)
                 {
                     if (item.Id == 0)
                         GuardarDetalle(item);
@@ -75,6 +78,7 @@ namespace ProyectoFinal.BLL
                     if (db.SaveChanges() > 0)
                         paso = true;
                 }
+                EnviarKilaje(Buscar(pesadas.PesadasId).PesadasDetalles);
             }catch(Exception)
             { throw; }
             finally
@@ -169,7 +173,11 @@ namespace ProyectoFinal.BLL
             foreach(var item in list)
             {
                 if (item.Id == detalle.Id)
+                {
                     item.Kilos = detalle.Kilos;
+                    item.CantidadDeSacos = detalle.CantidadDeSacos;
+                }
+                    
             }
             return list;
         }

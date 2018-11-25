@@ -33,19 +33,17 @@
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
-            this.BuscarButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.ProductoresIdnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.NombreTextBox = new System.Windows.Forms.TextBox();
             this.CedulaMasketTextBox = new System.Windows.Forms.MaskedTextBox();
             this.TelefonomaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.FechaNacimientodateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ProductorIdcomboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductoresIdnumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider
@@ -55,48 +53,37 @@
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(206, 193);
+            this.EliminarButton.Location = new System.Drawing.Point(206, 178);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
-            this.EliminarButton.TabIndex = 13;
+            this.EliminarButton.TabIndex = 7;
             this.EliminarButton.UseVisualStyleBackColor = true;
             this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(115, 193);
+            this.GuardarButton.Location = new System.Drawing.Point(115, 178);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
-            this.GuardarButton.TabIndex = 12;
+            this.GuardarButton.TabIndex = 6;
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // NuevoButton
             // 
             this.NuevoButton.Image = global::ProyectoFinal.Properties.Resources.if_manilla_folder_new_23456;
-            this.NuevoButton.Location = new System.Drawing.Point(17, 193);
+            this.NuevoButton.Location = new System.Drawing.Point(17, 178);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(52, 45);
-            this.NuevoButton.TabIndex = 11;
+            this.NuevoButton.TabIndex = 5;
             this.NuevoButton.UseVisualStyleBackColor = true;
             this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
-            // 
-            // BuscarButton
-            // 
-            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.if_search_1730951;
-            this.BuscarButton.Location = new System.Drawing.Point(221, 12);
-            this.BuscarButton.Name = "BuscarButton";
-            this.BuscarButton.Size = new System.Drawing.Size(52, 45);
-            this.BuscarButton.TabIndex = 10;
-            this.BuscarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BuscarButton.UseVisualStyleBackColor = true;
-            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 39);
+            this.label1.Location = new System.Drawing.Point(23, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 17);
             this.label1.TabIndex = 14;
@@ -105,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 70);
+            this.label2.Location = new System.Drawing.Point(23, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 15;
@@ -114,7 +101,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 101);
+            this.label3.Location = new System.Drawing.Point(23, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 17);
             this.label3.TabIndex = 16;
@@ -123,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 132);
+            this.label4.Location = new System.Drawing.Point(23, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 17);
             this.label4.TabIndex = 17;
@@ -132,67 +119,65 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 163);
+            this.label6.Location = new System.Drawing.Point(23, 156);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(143, 17);
             this.label6.TabIndex = 19;
             this.label6.Text = "Fecha De Nacimiento";
             // 
-            // ProductoresIdnumericUpDown
-            // 
-            this.ProductoresIdnumericUpDown.Location = new System.Drawing.Point(92, 35);
-            this.ProductoresIdnumericUpDown.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.ProductoresIdnumericUpDown.Name = "ProductoresIdnumericUpDown";
-            this.ProductoresIdnumericUpDown.Size = new System.Drawing.Size(120, 22);
-            this.ProductoresIdnumericUpDown.TabIndex = 20;
-            // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(92, 67);
+            this.NombreTextBox.Location = new System.Drawing.Point(88, 63);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(191, 22);
-            this.NombreTextBox.TabIndex = 21;
+            this.NombreTextBox.TabIndex = 1;
             this.NombreTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombreTextBox_KeyPress);
             // 
             // CedulaMasketTextBox
             // 
-            this.CedulaMasketTextBox.Location = new System.Drawing.Point(92, 101);
+            this.CedulaMasketTextBox.Location = new System.Drawing.Point(88, 92);
             this.CedulaMasketTextBox.Mask = "000-0000000-0";
             this.CedulaMasketTextBox.Name = "CedulaMasketTextBox";
             this.CedulaMasketTextBox.Size = new System.Drawing.Size(191, 22);
-            this.CedulaMasketTextBox.TabIndex = 22;
+            this.CedulaMasketTextBox.TabIndex = 2;
             // 
             // TelefonomaskedTextBox
             // 
-            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(92, 130);
+            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(88, 121);
             this.TelefonomaskedTextBox.Mask = "000-000-0000";
             this.TelefonomaskedTextBox.Name = "TelefonomaskedTextBox";
             this.TelefonomaskedTextBox.Size = new System.Drawing.Size(191, 22);
-            this.TelefonomaskedTextBox.TabIndex = 23;
+            this.TelefonomaskedTextBox.TabIndex = 3;
             // 
             // FechaNacimientodateTimePicker
             // 
             this.FechaNacimientodateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechaNacimientodateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(177, 158);
+            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(173, 150);
             this.FechaNacimientodateTimePicker.Name = "FechaNacimientodateTimePicker";
             this.FechaNacimientodateTimePicker.Size = new System.Drawing.Size(106, 22);
-            this.FechaNacimientodateTimePicker.TabIndex = 25;
+            this.FechaNacimientodateTimePicker.TabIndex = 4;
+            // 
+            // ProductorIdcomboBox
+            // 
+            this.ProductorIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductorIdcomboBox.FormattingEnabled = true;
+            this.ProductorIdcomboBox.Location = new System.Drawing.Point(88, 32);
+            this.ProductorIdcomboBox.Name = "ProductorIdcomboBox";
+            this.ProductorIdcomboBox.Size = new System.Drawing.Size(191, 24);
+            this.ProductorIdcomboBox.TabIndex = 0;
+            this.ProductorIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.ProductorIdcomboBox_SelectedIndexChanged);
             // 
             // RegistroProductores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 250);
+            this.ClientSize = new System.Drawing.Size(311, 250);
+            this.Controls.Add(this.ProductorIdcomboBox);
             this.Controls.Add(this.FechaNacimientodateTimePicker);
             this.Controls.Add(this.TelefonomaskedTextBox);
             this.Controls.Add(this.CedulaMasketTextBox);
             this.Controls.Add(this.NombreTextBox);
-            this.Controls.Add(this.ProductoresIdnumericUpDown);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -201,13 +186,11 @@
             this.Controls.Add(this.EliminarButton);
             this.Controls.Add(this.GuardarButton);
             this.Controls.Add(this.NuevoButton);
-            this.Controls.Add(this.BuscarButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "RegistroProductores";
-            this.Text = "RegistroProductores";
+            this.Text = "Registro De Productores | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductoresIdnumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,16 +202,15 @@
         private System.Windows.Forms.Button EliminarButton;
         private System.Windows.Forms.Button GuardarButton;
         private System.Windows.Forms.Button NuevoButton;
-        private System.Windows.Forms.Button BuscarButton;
         private System.Windows.Forms.MaskedTextBox TelefonomaskedTextBox;
         private System.Windows.Forms.MaskedTextBox CedulaMasketTextBox;
         private System.Windows.Forms.TextBox NombreTextBox;
-        private System.Windows.Forms.NumericUpDown ProductoresIdnumericUpDown;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker FechaNacimientodateTimePicker;
+        private System.Windows.Forms.ComboBox ProductorIdcomboBox;
     }
 }
