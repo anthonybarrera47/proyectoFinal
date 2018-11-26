@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProyectoFinal.UI.Reportes {
+namespace ProyectoFinal.UI.Reportes.ReporteDeUsuarios {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace ProyectoFinal.UI.Reportes {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class ReporteDeProductores : ReportClass {
+    public class ReporteUsuario : ReportClass {
         
-        public ReporteDeProductores() {
+        public ReporteUsuario() {
         }
         
         public override string ResourceName {
             get {
-                return "ReporteDeProductores.rpt";
+                return "ReporteUsuario.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ProyectoFinal.UI.Reportes {
         
         public override string FullResourceName {
             get {
-                return "ProyectoFinal.UI.Reportes.ReporteDeProductores.rpt";
+                return "ProyectoFinal.UI.Reportes.ReporteDeUsuarios.ReporteUsuario.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace ProyectoFinal.UI.Reportes {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedReporteDeProductores : Component, ICachedReport {
+    public class CachedReporteUsuario : Component, ICachedReport {
         
-        public CachedReporteDeProductores() {
+        public CachedReporteUsuario() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace ProyectoFinal.UI.Reportes {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            ReporteDeProductores rpt = new ReporteDeProductores();
+            ReporteUsuario rpt = new ReporteUsuario();
             rpt.Site = this.Site;
             return rpt;
         }

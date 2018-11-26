@@ -16,12 +16,15 @@ namespace ProyectoFinal.UI.Registro
         public int FilaSeleccionada { get; set; }
         Pesadas pesadas = new Pesadas();
         List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();
+        Pesadas pesadaImprimir;
+     
         public RegistroDePesadas()
         {
             InitializeComponent();
             UsuarioTextBox.Text = PesadasBLL.GetUsuario().Nombre;
             LlenaComboBox();
             Limpiar();
+            
         }
         private void LlenaComboBox()
         {
@@ -30,6 +33,7 @@ namespace ProyectoFinal.UI.Registro
             TipoArrozIdComboBox.Items.Clear();
             FactoriaIdComboBox.Items.Clear();
 
+           
             foreach (var item in PesadasBLL.GetList(x => true))
                 PesadaIdcomboBox.Items.Add(item.PesadasId);
             foreach (var item in ProductoresBLL.GetList(x => true))
@@ -67,6 +71,7 @@ namespace ProyectoFinal.UI.Registro
             DetalledataGridView.DataSource = null;
             LlenaComboBox();
             LlenarComboBoxDetalle();
+            ImprimirButton.Visible = false;
             CargarGrid();
         }
         private Pesadas LlenaClase()
@@ -115,6 +120,7 @@ namespace ProyectoFinal.UI.Registro
         }
         public bool ValidarDetalle()
         {
+            errorProvider.Clear();
             bool paso = true;
             if (CantidadSaconumericUpDown.Value <= 0)
             {
@@ -145,7 +151,7 @@ namespace ProyectoFinal.UI.Registro
                 errorProvider.SetError(TipoArrozIdComboBox, "Debe Elegir un tipo de arroz");
                 paso = false;
             }
-            errorProvider.Clear();
+            
             return paso;
         }
         private void NuevoButton_Click(object sender, EventArgs e)
@@ -169,7 +175,7 @@ namespace ProyectoFinal.UI.Registro
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultado == DialogResult.Yes)
                     {
-                        ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesad,pesad.PesadasDetalles);
+                        ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesad,pesad.PesadasDetalles, PesadasBLL.GetUsuario().Nombre);
                         reporte.Show();
                     }
                     Limpiar();
@@ -202,7 +208,7 @@ namespace ProyectoFinal.UI.Registro
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (resultad == DialogResult.Yes)
                         {
-                            ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesad, pesad.PesadasDetalles);
+                            ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesad, pesad.PesadasDetalles,PesadasBLL.GetUsuario().Nombre);
                             reporte.Show();
 
                         }
@@ -250,7 +256,6 @@ namespace ProyectoFinal.UI.Registro
             EliminarDetalleButton.Enabled = true;
             KilosPesadosnumericUpDown.Value = 0;
             CantidadSaconumericUpDown.Value = 0;
-
         }
         private void LlenarComboBoxDetalle()
         {
@@ -305,6 +310,8 @@ namespace ProyectoFinal.UI.Registro
 
         private void PesadaIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pesadaImprimir = new Pesadas();
+            //pesadasDetalleImprimir = new List<PesadasDetalle>();
             errorProvider.Clear();
             int PesadaId = Convert.ToInt32(PesadaIdcomboBox.Text);
             pesadas = PesadasBLL.Buscar(PesadaId);
@@ -324,8 +331,10 @@ namespace ProyectoFinal.UI.Registro
             EliminarButton.Enabled = true;
             LlenarComboBoxDetalle();
             DetalledataGridView.DataSource = pesadas.PesadasDetalles;
-
+            ImprimirButton.Visible = true;
             pesadasDetalles = new List<PesadasDetalle>();
+            pesadaImprimir = pesadas;
+            
         }
 
         private void Calculos()
@@ -342,14 +351,6 @@ namespace ProyectoFinal.UI.Registro
             totalApagar = Math.Round((TotalKilogramos - (totalSacos)) / Fanega, 2) * PrecioNega;
             TotalAPagarTextBox.Text = Convert.ToString(Math.Round(totalApagar, 2));
         }
-
-        private void ProductorIdcomboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ProductorNombretextBox.Text = BalancetextBox.Text = string.Empty;
-            Productores productor = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text));
-            ProductorNombretextBox.Text = productor.Nombre;
-        }
-
         private void TipoArrozIdComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             TipoArroztextBox.Text = string.Empty;
@@ -378,6 +379,7 @@ namespace ProyectoFinal.UI.Registro
         {
             var resultado = MessageBox.Show("¿Desea Eliminar?", "AgroSoft",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //Pesadas pesada =
             if (resultado.Equals(DialogResult.Yes))
             {
                 PesadasBLL.ArreglarDetalle(PesadasBLL.Buscar(Convert.ToInt32(PesadaIdcomboBox.Text)));
@@ -394,11 +396,38 @@ namespace ProyectoFinal.UI.Registro
                                             MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void FactoriaIdComboBox_SelectedValueChanged(object sender, EventArgs e)
+
+        private void ProductorIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProductorNombretextBox.Text = string.Empty;
+            ProductorNombretextBox.Text = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text)).Nombre;
+
+        }
+
+        private void Productorbutton_Click(object sender, EventArgs e)
+        {
+            RegistroProductores registro = new RegistroProductores();
+            registro.ShowDialog();
+        }
+
+        private void FactoriaButton_Click(object sender, EventArgs e)
+        {
+            RegistroFactoria registro = new RegistroFactoria();
+            registro.ShowDialog();
+        }
+
+        private void ImprimirButton_Click(object sender, EventArgs e)
+        {
+            ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesadaImprimir, pesadaImprimir.PesadasDetalles, PesadasBLL.GetUsuario().Nombre);
+            reporte.Show();
+        }
+
+        private void FactoriaIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             FactoriatextBox.Text = string.Empty;
             FactoriatextBox.Text = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdComboBox.Text)).Nombre;
         }
 
+        
     }
 }

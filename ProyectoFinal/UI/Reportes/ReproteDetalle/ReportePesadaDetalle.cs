@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProyectoFinal.UI.Reportes {
+namespace ProyectoFinal.UI.Reportes.ReproteDetalle {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace ProyectoFinal.UI.Reportes {
         
         public override string FullResourceName {
             get {
-                return "ProyectoFinal.UI.Reportes.ReportePesadaDetalle.rpt";
+                return "ProyectoFinal.UI.Reportes.ReproteDetalle.ReportePesadaDetalle.rpt";
             }
             set {
                 // Do nothing
@@ -165,6 +165,14 @@ namespace ProyectoFinal.UI.Reportes {
         public CrystalDecisions.Shared.IParameterField Parameter_TotalAPagar {
             get {
                 return this.DataDefinition.ParameterFields[9];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Usuario {
+            get {
+                return this.DataDefinition.ParameterFields[10];
             }
         }
     }

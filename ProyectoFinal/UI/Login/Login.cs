@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +26,6 @@ namespace ProyectoFinal.UI.Login
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
-           
             RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
             if (!Validar())
                 return;
@@ -36,29 +36,44 @@ namespace ProyectoFinal.UI.Login
             filtro = x => x.UserName.Equals(username);
             usuario = repositorio.GetList(filtro);
             Usuario tiposUsuario = new Usuario();
-            if (usuario.Exists(x => x.UserName.Equals(username)))
+            if(usuario.Count > 0)
             {
-                if (usuario.Exists(x => x.Password.Equals(password)))
+                if (usuario.Exists(x => x.UserName.Equals(username)))
                 {
-                    foreach (var item in repositorio.GetList(x => x.UserName.Equals(username)))
+                    if (usuario.Exists(x => x.Password.Equals(password)))
                     {
-                        PesadasBLL.UsuarioParaLogin(item.Nombre, item.UsuarioId);
-                        tiposUsuario = repositorio.Buscar(item.UsuarioId);
+                        foreach (var item in repositorio.GetList(x => x.UserName.Equals(username)))
+                        {
+                            PesadasBLL.UsuarioParaLogin(item.Nombre, item.UsuarioId);
+                            tiposUsuario = repositorio.Buscar(item.UsuarioId);
+                        }
+                        if (tiposUsuario.Tipo.Equals(Constantes.admi))
+                            tipoUsuario = Constantes.admi;
+                        else if (tiposUsuario.Tipo.Equals(Constantes.user))
+                            tipoUsuario = Constantes.user;
+                        this.Close();
+                        Thread hilo = new Thread(AbrirMainForms);
+                        hilo.Start();
                     }
-                    if (tiposUsuario.Tipo.Equals(Constantes.admi))
-                        tipoUsuario = Constantes.admi;
-                    else if (tiposUsuario.Tipo.Equals(Constantes.user))
-                        tipoUsuario = Constantes.user;
-                    this.Close();
-                    Thread hilo = new Thread(AbrirMainForms);
-                    hilo.Start();
+                    else
+                        MessageBox.Show("Contraseña Incorrecto!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    MessageBox.Show("Contraseña Incorrecto!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Usuario " + username + " Por Favor Consulte un Administrador", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("Usuario " + username + " Por Favor Consulte un Administrador", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            {
+                repositorio.Guardar(new Usuario()
+                {
+                    Nombre = "Admin",
+                    UserName = "root",
+                    Password = "1234",
+                    Tipo = "A",
+                    FechaRegistro = DateTime.Now
+                });
+                MessageBox.Show("Al parecer es tu primera vez ejecutando el programa," +
+                    "El Username es *Root* y el Password *1234*","AgroSoft",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
             /*
              var username = UserTextBox.Text;
              var password = PassWordTextBox.Text;
@@ -109,8 +124,26 @@ namespace ProyectoFinal.UI.Login
         {
             UserTextBox.Text = string.Empty;
             PassWordTextBox.Text = string.Empty;
+        }   
+        public static string SHA1(string password)
+        {
+            using (SHA1Managed SHa1 = new SHA1Managed())
+            {
+                var hash = SHa1.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach(byte item in hash)
+                {
+                    sb.Append(item.ToString("X2"));
+                }
+                return sb.ToString();
+            }
         }
 
-
+        private void PassWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                LoginButton_Click(sender, e);
+        }
     }
 }

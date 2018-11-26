@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistroDePesadas));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,7 +69,9 @@
             this.NuevoButton = new System.Windows.Forms.Button();
             this.ProductorNombretextBox = new System.Windows.Forms.TextBox();
             this.FactoriatextBox = new System.Windows.Forms.TextBox();
-            this.BalancetextBox = new System.Windows.Forms.TextBox();
+            this.Productorbutton = new System.Windows.Forms.Button();
+            this.FactoriaButton = new System.Windows.Forms.Button();
+            this.ImprimirButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioFaneganumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FaneganumericUpDown)).BeginInit();
@@ -150,7 +153,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(6, 131);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(686, 513);
+            this.groupBox1.Size = new System.Drawing.Size(870, 618);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesadas";
@@ -249,7 +252,7 @@
             // 
             // EliminarDetalleButton
             // 
-            this.EliminarDetalleButton.Location = new System.Drawing.Point(16, 481);
+            this.EliminarDetalleButton.Location = new System.Drawing.Point(16, 588);
             this.EliminarDetalleButton.Name = "EliminarDetalleButton";
             this.EliminarDetalleButton.Size = new System.Drawing.Size(121, 24);
             this.EliminarDetalleButton.TabIndex = 12;
@@ -272,7 +275,7 @@
             // TotalSacosTextBox
             // 
             this.TotalSacosTextBox.Enabled = false;
-            this.TotalSacosTextBox.Location = new System.Drawing.Point(564, 482);
+            this.TotalSacosTextBox.Location = new System.Drawing.Point(564, 589);
             this.TotalSacosTextBox.Name = "TotalSacosTextBox";
             this.TotalSacosTextBox.Size = new System.Drawing.Size(100, 22);
             this.TotalSacosTextBox.TabIndex = 10;
@@ -280,7 +283,7 @@
             // TotalKGTextBox
             // 
             this.TotalKGTextBox.Enabled = false;
-            this.TotalKGTextBox.Location = new System.Drawing.Point(347, 482);
+            this.TotalKGTextBox.Location = new System.Drawing.Point(347, 589);
             this.TotalKGTextBox.Name = "TotalKGTextBox";
             this.TotalKGTextBox.Size = new System.Drawing.Size(100, 22);
             this.TotalKGTextBox.TabIndex = 9;
@@ -292,7 +295,7 @@
             this.DetalledataGridView.Name = "DetalledataGridView";
             this.DetalledataGridView.ReadOnly = true;
             this.DetalledataGridView.RowTemplate.Height = 24;
-            this.DetalledataGridView.Size = new System.Drawing.Size(648, 385);
+            this.DetalledataGridView.Size = new System.Drawing.Size(848, 500);
             this.DetalledataGridView.TabIndex = 36;
             this.DetalledataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalledataGridView_CellClick);
             // 
@@ -306,7 +309,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(453, 485);
+            this.label10.Location = new System.Drawing.Point(453, 592);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(105, 17);
             this.label10.TabIndex = 33;
@@ -315,7 +318,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(202, 485);
+            this.label7.Location = new System.Drawing.Point(202, 592);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 17);
             this.label7.TabIndex = 30;
@@ -342,7 +345,7 @@
             // TotalAPagarTextBox
             // 
             this.TotalAPagarTextBox.Enabled = false;
-            this.TotalAPagarTextBox.Location = new System.Drawing.Point(592, 650);
+            this.TotalAPagarTextBox.Location = new System.Drawing.Point(591, 755);
             this.TotalAPagarTextBox.Name = "TotalAPagarTextBox";
             this.TotalAPagarTextBox.Size = new System.Drawing.Size(100, 22);
             this.TotalAPagarTextBox.TabIndex = 11;
@@ -350,7 +353,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(491, 653);
+            this.label11.Location = new System.Drawing.Point(490, 758);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(95, 17);
             this.label11.TabIndex = 34;
@@ -383,7 +386,7 @@
             // 
             this.UsuarioTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.UsuarioTextBox.Enabled = false;
-            this.UsuarioTextBox.Location = new System.Drawing.Point(592, 678);
+            this.UsuarioTextBox.Location = new System.Drawing.Point(591, 783);
             this.UsuarioTextBox.Name = "UsuarioTextBox";
             this.UsuarioTextBox.Size = new System.Drawing.Size(100, 22);
             this.UsuarioTextBox.TabIndex = 35;
@@ -391,7 +394,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(502, 681);
+            this.label13.Location = new System.Drawing.Point(501, 786);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(84, 17);
             this.label13.TabIndex = 36;
@@ -405,7 +408,7 @@
             this.ProductorIdcomboBox.Name = "ProductorIdcomboBox";
             this.ProductorIdcomboBox.Size = new System.Drawing.Size(121, 24);
             this.ProductorIdcomboBox.TabIndex = 2;
-            this.ProductorIdcomboBox.SelectedValueChanged += new System.EventHandler(this.ProductorIdcomboBox_SelectedValueChanged);
+            this.ProductorIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.ProductorIdcomboBox_SelectedIndexChanged);
             // 
             // FactoriaIdComboBox
             // 
@@ -415,12 +418,12 @@
             this.FactoriaIdComboBox.Name = "FactoriaIdComboBox";
             this.FactoriaIdComboBox.Size = new System.Drawing.Size(121, 24);
             this.FactoriaIdComboBox.TabIndex = 4;
-            this.FactoriaIdComboBox.SelectedValueChanged += new System.EventHandler(this.FactoriaIdComboBox_SelectedValueChanged);
+            this.FactoriaIdComboBox.SelectedIndexChanged += new System.EventHandler(this.FactoriaIdComboBox_SelectedIndexChanged);
             // 
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(226, 650);
+            this.EliminarButton.Location = new System.Drawing.Point(225, 755);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 15;
@@ -430,7 +433,7 @@
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(135, 650);
+            this.GuardarButton.Location = new System.Drawing.Point(134, 755);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
             this.GuardarButton.TabIndex = 14;
@@ -440,7 +443,7 @@
             // NuevoButton
             // 
             this.NuevoButton.Image = global::ProyectoFinal.Properties.Resources.if_manilla_folder_new_23456;
-            this.NuevoButton.Location = new System.Drawing.Point(37, 650);
+            this.NuevoButton.Location = new System.Drawing.Point(36, 755);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(52, 45);
             this.NuevoButton.TabIndex = 13;
@@ -465,20 +468,46 @@
             this.FactoriatextBox.Size = new System.Drawing.Size(121, 22);
             this.FactoriatextBox.TabIndex = 42;
             // 
-            // BalancetextBox
+            // Productorbutton
             // 
-            this.BalancetextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.BalancetextBox.Location = new System.Drawing.Point(353, 68);
-            this.BalancetextBox.Name = "BalancetextBox";
-            this.BalancetextBox.Size = new System.Drawing.Size(100, 22);
-            this.BalancetextBox.TabIndex = 43;
+            this.Productorbutton.Image = global::ProyectoFinal.Properties.Resources.iconfinder_sign_add_299068;
+            this.Productorbutton.Location = new System.Drawing.Point(352, 57);
+            this.Productorbutton.Name = "Productorbutton";
+            this.Productorbutton.Size = new System.Drawing.Size(37, 35);
+            this.Productorbutton.TabIndex = 54;
+            this.Productorbutton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Productorbutton.UseVisualStyleBackColor = true;
+            this.Productorbutton.Click += new System.EventHandler(this.Productorbutton_Click);
+            // 
+            // FactoriaButton
+            // 
+            this.FactoriaButton.Image = global::ProyectoFinal.Properties.Resources.iconfinder_sign_add_299068;
+            this.FactoriaButton.Location = new System.Drawing.Point(352, 89);
+            this.FactoriaButton.Name = "FactoriaButton";
+            this.FactoriaButton.Size = new System.Drawing.Size(37, 35);
+            this.FactoriaButton.TabIndex = 55;
+            this.FactoriaButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.FactoriaButton.UseVisualStyleBackColor = true;
+            this.FactoriaButton.Click += new System.EventHandler(this.FactoriaButton_Click);
+            // 
+            // ImprimirButton
+            // 
+            this.ImprimirButton.Image = global::ProyectoFinal.Properties.Resources.iconfinder_006_printer_3925426;
+            this.ImprimirButton.Location = new System.Drawing.Point(767, 45);
+            this.ImprimirButton.Name = "ImprimirButton";
+            this.ImprimirButton.Size = new System.Drawing.Size(103, 88);
+            this.ImprimirButton.TabIndex = 54;
+            this.ImprimirButton.UseVisualStyleBackColor = true;
+            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // RegistroDePesadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 707);
-            this.Controls.Add(this.BalancetextBox);
+            this.ClientSize = new System.Drawing.Size(888, 826);
+            this.Controls.Add(this.ImprimirButton);
+            this.Controls.Add(this.FactoriaButton);
+            this.Controls.Add(this.Productorbutton);
             this.Controls.Add(this.FactoriatextBox);
             this.Controls.Add(this.ProductorNombretextBox);
             this.Controls.Add(this.FactoriaIdComboBox);
@@ -498,6 +527,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "RegistroDePesadas";
             this.Text = "RegistroDePesadas";
@@ -555,6 +585,8 @@
         private System.Windows.Forms.TextBox FactoriatextBox;
         private System.Windows.Forms.TextBox TipoArroztextBox;
         private System.Windows.Forms.TextBox ProductorNombretextBox;
-        private System.Windows.Forms.TextBox BalancetextBox;
+        private System.Windows.Forms.Button FactoriaButton;
+        private System.Windows.Forms.Button Productorbutton;
+        private System.Windows.Forms.Button ImprimirButton;
     }
 }

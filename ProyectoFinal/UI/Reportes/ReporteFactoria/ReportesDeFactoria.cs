@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Reportes.ReporteFactoria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

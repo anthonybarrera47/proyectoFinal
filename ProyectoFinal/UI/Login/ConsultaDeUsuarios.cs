@@ -1,5 +1,7 @@
 ﻿using ProyectoFinal.BLL;
+using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Reportes.ReporteDeUsuarios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,12 +21,16 @@ namespace ProyectoFinal.UI.Login
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
+            DesdedateTimePicker.Enabled = false;
+            HastadateTimePicker.Enabled = false;
         }
+        List<Usuario> ListaUsuarios;
         Expression<Func<Usuario, bool>> filtro = x => true;
         private void Seleccion()
         {
             errorProvider.Clear();
             RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
+            ListaUsuarios = new List<Usuario>();
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
@@ -56,12 +62,18 @@ namespace ProyectoFinal.UI.Login
                 }
                 //filtro =(c => c.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && c.FechaRegistro.Date <= HastadateTimePicker.Value.Date);
             }
-            var lista = new List<Usuario>();
-            lista = repositorio.GetList(filtro);
-            lista = lista.Where(c => c.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && c.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
-            ProductoresdataGridView.DataSource = null;
-            ProductoresdataGridView.DataSource = lista;
-                
+            if (FiltracheckBox.Checked == true)
+            {
+                ListaUsuarios = repositorio.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
+                UsuariosdataGridView.DataSource = null;
+                UsuariosdataGridView.DataSource = ListaUsuarios;
+            }
+            else
+            {
+                ListaUsuarios = repositorio.GetList(filtro);
+                UsuariosdataGridView.DataSource = null;
+                UsuariosdataGridView.DataSource = ListaUsuarios;
+            }    
         }
 
         private bool Validar()
@@ -90,42 +102,14 @@ namespace ProyectoFinal.UI.Login
             if (FiltrocomboBox.SelectedIndex == 1)
             {
                 //Para obligar a que sólo se introduzcan números
-                if (Char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else
-                  if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    //el resto de teclas pulsadas se desactivan
-                    e.Handled = true;
-                }
+                Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
                 return;
             }
             if (FiltrocomboBox.SelectedIndex == 2)
             {
                 //En caso que fuesemos a buscar por Nombres entonces si podremos Digitar Letras
-                if (Char.IsLetter(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else if (Char.IsControl(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else if (Char.IsSeparator(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
+                Constantes.ValidarNombreTextBox(sender, e);
             }
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
@@ -137,10 +121,10 @@ namespace ProyectoFinal.UI.Login
                 errorProvider.Clear();
         }
 
-        private void ImprimirButton_Click(object sender, EventArgs e)
+        private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
-            /* ReporteDeProductor reporte = new ReporteDeProductor(ProductoresBLL.GetList(filtro));
-             reporte.Show();*/
+            ReporteDeUsuario reporte = new ReporteDeUsuario(ListaUsuarios);
+            reporte.Show();
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -150,6 +134,41 @@ namespace ProyectoFinal.UI.Login
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
+        }
+
+        private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FiltracheckBox.Checked == true)
+            {
+                DesdedateTimePicker.Enabled = true;
+                HastadateTimePicker.Enabled = true;
+            }
+            else
+            {
+                DesdedateTimePicker.Enabled = false;
+                HastadateTimePicker.Enabled = false;
+            }
+        }
+
+        private void DesdedateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            ValidarFecha();
+        }
+
+        private void HastadateTimePicker_ValueChanged_1(object sender, EventArgs e)
+        {
+            ValidarFecha();
+        }
+        private void ValidarFecha()
+        {
+            if (DesdedateTimePicker.Value.Date > HastadateTimePicker.Value.Date)
+                errorProvider.SetError(HastadateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+            else
+                errorProvider.Clear();
+            if (HastadateTimePicker.Value.Date < DesdedateTimePicker.Value.Date)
+                errorProvider.SetError(DesdedateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+            else
+                errorProvider.Clear();
         }
     }
 }

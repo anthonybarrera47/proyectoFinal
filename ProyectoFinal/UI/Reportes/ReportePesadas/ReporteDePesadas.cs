@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Reportes.ReportePesadas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,18 @@ namespace ProyectoFinal.UI.Reportes
     public partial class ReporteDePesadas : Form
     {
         List<Pesadas> data = new List<Pesadas>();
+
+        public ReporteDePesadas()
+        {
+        }
+
         public ReporteDePesadas(List<Pesadas> lista)
         {
             InitializeComponent();
             data = lista;
         }
-        private void crystalReportViewer1_Load(object sender, EventArgs e)
+
+        private void PesadascrystalReportViewer_Load(object sender, EventArgs e)
         {
             ReporteDePesada reporteDePesada = new ReporteDePesada();
             reporteDePesada.SetDataSource(data);

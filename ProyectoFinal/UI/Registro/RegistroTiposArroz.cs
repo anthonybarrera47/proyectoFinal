@@ -122,6 +122,11 @@ namespace ProyectoFinal.UI.Registro
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(respuesta==DialogResult.Yes)
             {
+                if(KilostextBox.Text != Convert.ToString("0"))
+                {
+                    MessageBox.Show("Este Tipo de Arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 if (repositorio.Eliminar(Convert.ToInt32(TipoArrozIdcomboBox.Text)))
                 {
                     Limpiar();

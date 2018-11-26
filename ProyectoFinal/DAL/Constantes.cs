@@ -85,5 +85,15 @@ namespace ProyectoFinal.DAL
             else
                 e.Handled = true;
         }
+        public static bool ValidarEspaciosEnBlancos(String cadena)
+        {
+            bool paso = true;
+            for(int i=0;i<cadena.Length;i++)
+            {
+                if (cadena[i]==' ')
+                    paso = false;
+            }
+            return paso;
+        }
     }
 }

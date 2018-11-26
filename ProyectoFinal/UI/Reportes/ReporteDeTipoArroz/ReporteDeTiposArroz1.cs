@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProyectoFinal.UI.Reportes {
+namespace ProyectoFinal.UI.Reportes.ReporteDeTipoArroz {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace ProyectoFinal.UI.Reportes {
         
         public override string FullResourceName {
             get {
-                return "ProyectoFinal.UI.Reportes.ReporteDeTiposArroz.rpt";
+                return "ProyectoFinal.UI.Reportes.ReporteDeTipoArroz.ReporteDeTiposArroz.rpt";
             }
             set {
                 // Do nothing

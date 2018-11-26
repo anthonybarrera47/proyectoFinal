@@ -21,7 +21,7 @@ namespace ProyectoFinal
         public VentanaPrincipal()
         {
             InitializeComponent();
-            //Comprobar();
+            Comprobar();
         }
         private void CrearFactoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -37,7 +37,10 @@ namespace ProyectoFinal
         }
         private void SalirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            var result = MessageBox.Show("Esta a punto de cerrar la aplicacion, ¿Desea Cerrar?", "AgroSoft"
+                ,MessageBoxButtons.YesNo,MessageBoxIcon.Information);
+            if(result==DialogResult.Yes)
+                Application.Exit();
         }
         private void CrearTiposDeArrozToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -117,7 +120,7 @@ namespace ProyectoFinal
             consulta.Show();
         }
 
-        private void informacionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InformacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Este Es un proyecto creado por Anthony Manuel Barrera Hildago " +
                 "Estudiante de la carrera de Ingenieria En Sistema en la" +

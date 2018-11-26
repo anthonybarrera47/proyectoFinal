@@ -84,6 +84,11 @@ namespace ProyectoFinal.UI.Registro
                 ErrorProvider.SetError(TelefonoTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
+            if(!Constantes.ValidarEspaciosEnBlancos(TelefonoTextBox.Text))
+            {
+                ErrorProvider.SetError(TelefonoTextBox, "Este Campo No puede contener Espacios en blancos!!");
+                paso = false;
+            }
             return paso;
         }
         private bool ExisteEnLaBaseDeDatos()

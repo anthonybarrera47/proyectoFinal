@@ -63,28 +63,39 @@ namespace ProyectoFinal.UI.Registro
         private bool Validar()
         {
             bool paso = true;
-            Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
-            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) && nombre.IsMatch(NombreTextBox.Text) == false)
+            errorProvider.Clear();
+            //Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
+            if(NombreTextBox.Text[0].Equals(" "))
+            {
+                errorProvider.SetError(NombreTextBox, "El Primer Caracter es un espacio en Blanco");
+                paso = false;
+            }
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) )
             {
                 errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio , Ni Debe Contener caracteres!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text.Replace("-", "")))
+            if (String.IsNullOrWhiteSpace(TelefonomaskedTextBox.Text.Replace("-", "")) || TelefonomaskedTextBox.TextLength != 12)
             {
                 errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-", "")))
+            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-", "")) || CedulaMasketTextBox.TextLength !=13)
             {
                 errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
+            if(Constantes.ValidarEspaciosEnBlancos(TelefonomaskedTextBox.Text)==false)
+            {
+                errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Tener Espacios En Blancos!!");
+                paso = false;
+            }
+            if(Constantes.ValidarEspaciosEnBlancos(CedulaMasketTextBox.Text)==false)
+            {
+                errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Tener Espacios En Blancos!!");
+                paso = false;
+            }
             return paso;
-        }
-        private bool ExisteEnLaBaseDeDatos()
-        {
-            Productores productores = ProductoresBLL.Buscar(Convert.ToInt32(ProductorIdcomboBox.Text));
-            return (productores != null);
         }
         private void NuevoButton_Click(object sender, EventArgs e)
         {
@@ -103,11 +114,6 @@ namespace ProyectoFinal.UI.Registro
                 paso = ProductoresBLL.Guardar(productores);
             else
             {
-                if (!ExisteEnLaBaseDeDatos())
-                {
-                    MessageBox.Show("No Puedes Modificar un Productor Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 paso = ProductoresBLL.Modificar(productores);
                 if (paso)
                 {
@@ -129,10 +135,9 @@ namespace ProyectoFinal.UI.Registro
         {
             errorProvider.Clear();
             int.TryParse(ProductorIdcomboBox.Text, out int id);
-
-            if (!ExisteEnLaBaseDeDatos())
+            if(ProductorIdcomboBox.Text.Equals(string.Empty))
             {
-                errorProvider.SetError(ProductorIdcomboBox, "No Puede Borrar Un Productor Inexistente");
+                MessageBox.Show("Debes buscar un Productor Antes de eliminar", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (ProductoresBLL.Eliminar(id))

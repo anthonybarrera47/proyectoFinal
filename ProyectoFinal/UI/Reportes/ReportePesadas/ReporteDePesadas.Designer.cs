@@ -41,7 +41,7 @@
             this.PesadascrystalReportViewer.Name = "PesadascrystalReportViewer";
             this.PesadascrystalReportViewer.Size = new System.Drawing.Size(800, 450);
             this.PesadascrystalReportViewer.TabIndex = 0;
-            this.PesadascrystalReportViewer.Load += new System.EventHandler(this.crystalReportViewer1_Load);
+            this.PesadascrystalReportViewer.Load += new System.EventHandler(this.PesadascrystalReportViewer_Load);
             // 
             // ReporteDePesadas
             // 
@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.PesadascrystalReportViewer);
             this.Name = "ReporteDePesadas";
-            this.Text = "ReporteDePesadas";
+            this.Text = "Reporte De Pesadas | AgroSoft";
             this.ResumeLayout(false);
 
         }
