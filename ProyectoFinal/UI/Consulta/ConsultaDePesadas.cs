@@ -9,27 +9,28 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Consulta
 {
-    public partial class ConsultaDeFactorias : Form
+    public partial class ConsultaDePesadas : Form
     {
-        List<Factoria> ListaFactorias;
-        public ConsultaDeFactorias()
+        public ConsultaDePesadas()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker1.Enabled = false;
         }
-        Expression<Func<Factoria, bool>> filtro = x => true;
+        List<Pesadas> ListaPesadas;
+        Expression<Func<Pesadas, bool>> filtro = x => true;
         private void Seleccion()
         {
             errorProvider.Clear();
-            ListaFactorias = new List<Factoria>();
+            ListaPesadas = new List<Pesadas>();
+            int ID = Convert.ToInt32(CriteriotextBox.Text);
+            decimal decimales = Convert.ToDecimal(CriteriotextBox.Text);
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
@@ -41,38 +42,61 @@ namespace ProyectoFinal.UI.Consulta
                     case 1:
                         if (!Validar())
                             return;
-                        int id = Convert.ToInt32(CriteriotextBox.Text);
-                        //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
-                        filtro = x => x.FactoriaID == id;
+                        filtro = x => x.PesadasId == ID;
                         break;
                     case 2:
                         if (!Validar())
                             return;
-                        filtro = x => x.Nombre.Contains(CriteriotextBox.Text);
+                        filtro = x => x.ProductorId == ID;
                         break;
                     case 3://Direccion
                         if (!Validar())
                             return;
-                        filtro = x => x.Direccion.Contains(CriteriotextBox.Text);
+                        filtro = x => x.TipoArrozId == ID;
                         break;
                     case 4://Telefono
                         if (!Validar())
+                            return;    
+                        filtro = x => x.FactoriaId == ID;
+                        break;
+                    case 5:
+                        if (!Validar())
                             return;
-                        filtro = x => x.Telefono.Contains(CriteriotextBox.Text);
+                        filtro = x => x.UsuarioId == ID;
+                        break;
+                    case 6:
+                        if (!Validar())
+                            return;
+                        filtro = x => x.Fanega == decimales;
+                        break;
+                    case 7:
+                        if (!Validar())
+                            return;
+                        filtro = x => x.PrecioFanega == decimales;
+                        break;
+                    case 8:
+                        if (!Validar())
+                            return;
+                        filtro = x => x.TotalKiloGramos == decimales;
+                        break;
+                    case 9:
+                        if (!Validar())
+                            return;
+                        filtro = x => x.TotalSacos == decimales;
                         break;
                 }
             }
             if (FiltracheckBox.Checked == true)
             {
-                ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.Fecha.Date >= DesdedateTimePicker.Value.Date && x.Fecha.Date <= HastadateTimePicker1.Value.Date).ToList();
+                ListaPesadas = PesadasBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();
                 FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaFactorias;
+                FactoriasdataGridView.DataSource = ListaPesadas;
             }
             else
             {
-                ListaFactorias = FactoriaBLL.GetList(filtro);
+                ListaPesadas = PesadasBLL.GetList(filtro);
                 FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaFactorias;
+                FactoriasdataGridView.DataSource = ListaPesadas;
             }
         }
 
@@ -89,25 +113,26 @@ namespace ProyectoFinal.UI.Consulta
             return paso;
         }
 
-        private void BuscarButton_Click_1(object sender, EventArgs e)
+        private void BuscarButton_Click(object sender, EventArgs e)
         {
             Seleccion();
         }
 
-        private void CriteriotextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void CriteriotextBox_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
                 Seleccion();
 
-            if (FiltrocomboBox.SelectedIndex == 1)
+            if (FiltrocomboBox.SelectedIndex == 1 || FiltrocomboBox.SelectedIndex == 2 || FiltrocomboBox.SelectedIndex == 3 || FiltrocomboBox.SelectedIndex == 4 || FiltrocomboBox.SelectedIndex == 5)
             {
 
                 Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
             }
-            if (FiltrocomboBox.SelectedIndex == 4)
+            if (FiltrocomboBox.SelectedIndex == 6 || FiltrocomboBox.SelectedIndex == 7 || FiltrocomboBox.SelectedIndex == 8 ||FiltrocomboBox.SelectedIndex == 9)
             {
-                CriteriotextBox.MaxLength = 12;
+                Constantes.ValidarNumerosDecimales(sender, e, CriteriotextBox.Text);
+                CriteriotextBox.MaxLength = 20;
             }
 
         }
@@ -116,18 +141,18 @@ namespace ProyectoFinal.UI.Consulta
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker1.Value.Date)
                 errorProvider.SetError(HastadateTimePicker1, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
-            else 
+            else
                 errorProvider.Clear();
             if (HastadateTimePicker1.Value.Date < DesdedateTimePicker.Value.Date)
                 errorProvider.SetError(DesdedateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }
-       
 
-        private void ImprimirButton_Click_1(object sender, EventArgs e)
+
+        private void ImprimirButton_Click(object sender, EventArgs e)
         {
-            ReportesDeFactoria reporte = new ReportesDeFactoria(ListaFactorias);
+            ReporteDePesadas reporte = new ReporteDePesadas(ListaPesadas);
             reporte.Show();
         }
 
@@ -135,8 +160,17 @@ namespace ProyectoFinal.UI.Consulta
         {
             CriteriotextBox.Text = string.Empty;
         }
+        private void DesdedateTimePicker_ValueChanged_1(object sender, EventArgs e)
+        {
+            ValidarFecha();
+        }
 
-        private void FiltracheckBox_CheckedChanged_1(object sender, EventArgs e)
+        private void HastadateTimePicker1_ValueChanged_1(object sender, EventArgs e)
+        {
+            ValidarFecha();
+        }
+
+        private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (FiltracheckBox.Checked == true)
             {
@@ -148,16 +182,6 @@ namespace ProyectoFinal.UI.Consulta
                 DesdedateTimePicker.Enabled = false;
                 HastadateTimePicker1.Enabled = false;
             }
-        }
-
-        private void DesdedateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            ValidarFecha();
-        }
-
-        private void HastadateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            ValidarFecha();
         }
     }
 }

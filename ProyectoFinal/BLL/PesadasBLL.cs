@@ -58,7 +58,7 @@ namespace ProyectoFinal.BLL
                 
                 var pesadaDetalle = Buscar(pesadas.PesadasId);
                 db.Entry(pesadas).State = EntityState.Modified;
-                ArreglarDEtalle(pesadaDetalle);
+                ArreglarDetalle(pesadaDetalle);
                 foreach (var item in pesadas.PesadasDetalles)
                 {
                     if (item.Id == 0)
@@ -159,7 +159,7 @@ namespace ProyectoFinal.BLL
                 TipoArrozBLL.Modificar(kilaje);
             }
         }
-        public static void ArreglarDEtalle(Pesadas pesada)
+        public static void ArreglarDetalle(Pesadas pesada)
         {
             foreach(var item in pesada.PesadasDetalles)
             {

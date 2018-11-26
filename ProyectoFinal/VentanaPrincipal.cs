@@ -116,5 +116,12 @@ namespace ProyectoFinal
             };
             consulta.Show();
         }
+
+        private void informacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Este Es un proyecto creado por Anthony Manuel Barrera Hildago " +
+                "Estudiante de la carrera de Ingenieria En Sistema en la" +
+                " Universidad Catolica Nordestana", "INFORMACION DEL CREADOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

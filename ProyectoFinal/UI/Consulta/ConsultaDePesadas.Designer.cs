@@ -1,6 +1,6 @@
 ﻿namespace ProyectoFinal.UI.Consulta
 {
-    partial class ConsultaDeFactorias
+    partial class ConsultaDePesadas
     {
         /// <summary>
         /// Required designer variable.
@@ -52,15 +52,19 @@
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
-            "ID",
-            "Nombre",
-            "Direccion",
-            "Telefono"});
+            "PesadaID",
+            "ProductorID",
+            "TipoArrozID",
+            "FactoriaID",
+            "UsuarioID",
+            "Fanega",
+            "PrecioFanega",
+            "TotalKilogramos",
+            "TotalSacos"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(15, 43);
             this.FiltrocomboBox.Name = "FiltrocomboBox";
             this.FiltrocomboBox.Size = new System.Drawing.Size(121, 24);
             this.FiltrocomboBox.TabIndex = 0;
-            this.FiltrocomboBox.SelectedIndexChanged += new System.EventHandler(this.FiltrocomboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -98,7 +102,7 @@
             this.CriteriotextBox.Name = "CriteriotextBox";
             this.CriteriotextBox.Size = new System.Drawing.Size(378, 22);
             this.CriteriotextBox.TabIndex = 9;
-            this.CriteriotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CriteriotextBox_KeyPress);
+            this.CriteriotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CriteriotextBox_KeyPress_1);
             // 
             // errorProvider
             // 
@@ -112,7 +116,7 @@
             this.ImprimirButton.Size = new System.Drawing.Size(103, 88);
             this.ImprimirButton.TabIndex = 12;
             this.ImprimirButton.UseVisualStyleBackColor = true;
-            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click_1);
+            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // BuscarButton
             // 
@@ -123,7 +127,7 @@
             this.BuscarButton.TabIndex = 10;
             this.BuscarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BuscarButton.UseVisualStyleBackColor = true;
-            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click_1);
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // FiltracheckBox
             // 
@@ -135,7 +139,7 @@
             this.FiltracheckBox.TabIndex = 23;
             this.FiltracheckBox.Text = "Filtrar Por Fechas";
             this.FiltracheckBox.UseVisualStyleBackColor = true;
-            this.FiltracheckBox.CheckedChanged += new System.EventHandler(this.FiltracheckBox_CheckedChanged_1);
+            this.FiltracheckBox.CheckedChanged += new System.EventHandler(this.FiltracheckBox_CheckedChanged);
             // 
             // HastadateTimePicker1
             // 
@@ -144,7 +148,7 @@
             this.HastadateTimePicker1.Name = "HastadateTimePicker1";
             this.HastadateTimePicker1.Size = new System.Drawing.Size(122, 22);
             this.HastadateTimePicker1.TabIndex = 22;
-            this.HastadateTimePicker1.ValueChanged += new System.EventHandler(this.HastadateTimePicker1_ValueChanged);
+            this.HastadateTimePicker1.ValueChanged += new System.EventHandler(this.HastadateTimePicker1_ValueChanged_1);
             // 
             // DesdedateTimePicker
             // 
@@ -153,7 +157,7 @@
             this.DesdedateTimePicker.Name = "DesdedateTimePicker";
             this.DesdedateTimePicker.Size = new System.Drawing.Size(112, 22);
             this.DesdedateTimePicker.TabIndex = 21;
-            this.DesdedateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
+            this.DesdedateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged_1);
             // 
             // label5
             // 
@@ -175,7 +179,7 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Desde";
             // 
-            // ConsultaDeFactorias
+            // ConsultaDePesadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,8 +198,8 @@
             this.Controls.Add(this.FiltrocomboBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
-            this.Name = "ConsultaDeFactorias";
-            this.Text = "Consulta De Factorias | AgroSoft";
+            this.Name = "ConsultaDePesadas";
+            this.Text = "Consulta De Pesadas | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.FactoriasdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

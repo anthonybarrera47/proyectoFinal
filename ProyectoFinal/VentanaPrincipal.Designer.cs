@@ -48,6 +48,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.NombretoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,8 @@
             this.RegistroToolStripMenuItem,
             this.ConsultasToolStripMenuItem,
             this.HerramientasToolStripMenuItem,
-            this.UsuariosToolStripMenuItem});
+            this.UsuariosToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
             resources.ApplyResources(this.MenuBar, "MenuBar");
             this.MenuBar.Name = "MenuBar";
             // 
@@ -183,6 +186,19 @@
             this.NombretoolStripStatusLabel.Name = "NombretoolStripStatusLabel";
             resources.ApplyResources(this.NombretoolStripStatusLabel, "NombretoolStripStatusLabel");
             // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.informacionToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            resources.ApplyResources(this.ayudaToolStripMenuItem, "ayudaToolStripMenuItem");
+            // 
+            // informacionToolStripMenuItem
+            // 
+            this.informacionToolStripMenuItem.Name = "informacionToolStripMenuItem";
+            resources.ApplyResources(this.informacionToolStripMenuItem, "informacionToolStripMenuItem");
+            this.informacionToolStripMenuItem.Click += new System.EventHandler(this.informacionToolStripMenuItem_Click);
+            // 
             // VentanaPrincipal
             // 
             resources.ApplyResources(this, "$this");
@@ -225,6 +241,8 @@
         private System.Windows.Forms.ToolStripStatusLabel NombretoolStripStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem consultaFactoriasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultaTipoArrozToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informacionToolStripMenuItem;
     }
 }
 

@@ -46,13 +46,9 @@ namespace ProyectoFinal.UI.Registro
                 tiposArroz.TipoArrozId = Convert.ToInt32(KilostextBox.Text);
             tiposArroz.Descripcion = DescripcionTextBox.Text;
             tiposArroz.Kilos = Convert.ToDecimal(KilostextBox.Text);
+            tiposArroz.FechaRegistro = FechadateTimePicker.Value;
             return tiposArroz;
         }
-        /*private void LlenaCampo(TiposArroz tiposArroz)
-        {
-            TipoArrozIDNumericUpDown.Value = tiposArroz.TipoArrozId;
-            DescripcionTextBox.Text = tiposArroz.Descripcion;
-        }*/
         private bool Validar()
         {
             bool paso = true;
@@ -85,11 +81,11 @@ namespace ProyectoFinal.UI.Registro
                  paso = TipoArrozBLL.Guardar(tiposArroz);
             else
             {
-                    /*if (!ExisteEnLaBaseDeDatos())
+                    if (!ExisteEnLaBaseDeDatos())
                     {
                         MessageBox.Show("No Puedes Modificar un Tipo De Arroz Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    }*/
+                    }
                     paso = repositorio.Modificar(tiposArroz);
                     if(paso)
                     {
@@ -142,10 +138,9 @@ namespace ProyectoFinal.UI.Registro
             errorProvider.Clear();
             TipoArroz tiposArroz = repositorio.Buscar(Convert.ToInt32(TipoArrozIdcomboBox.Text));
             DescripcionTextBox.Text = tiposArroz.Descripcion;
-            KilostextBox.Text = Convert.ToString(tiposArroz.Kilos);      
+            KilostextBox.Text = Convert.ToString(tiposArroz.Kilos);
+            FechadateTimePicker.Value = tiposArroz.FechaRegistro;
         }
-
-
         /* private void BuscarButton_Click(object sender, EventArgs e)
          {
              errorProvider.Clear();

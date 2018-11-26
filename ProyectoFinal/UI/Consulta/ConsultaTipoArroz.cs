@@ -1,30 +1,31 @@
 ﻿using ProyectoFinal.BLL;
 using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Consulta
 {
     public partial class ConsultaTipoArroz : Form
     {
+        List<TipoArroz> ListaArroz;
         public ConsultaTipoArroz()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
+            DesdedateTimePicker.Enabled = false;
+            HastadateTimePicker.Enabled = false;
         }
+        
         Expression<Func<TipoArroz, bool>> filtro = x => true;
         private void Seleccion()
         {
             errorProvider.Clear();
+            ListaArroz = new List<TipoArroz>();
 
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
@@ -53,10 +54,20 @@ namespace ProyectoFinal.UI.Consulta
                         break;
 
                 }
-                //filtro = (c => c.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && c.FechaNacimiento.Date <= HastadateTimePicker.Value.Date);
+                
             }
-            ProductoresdataGridView.DataSource = null;
-            ProductoresdataGridView.DataSource = TipoArrozBLL.GetList(filtro);
+            if (FiltracheckBox.Checked == true)
+            {
+                ListaArroz = TipoArrozBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
+                ProductoresdataGridView.DataSource = null;
+                ProductoresdataGridView.DataSource = ListaArroz;
+            }
+            else
+            {
+                ListaArroz = TipoArrozBLL.GetList(filtro);
+                ProductoresdataGridView.DataSource = null;
+                ProductoresdataGridView.DataSource = ListaArroz;
+            }
         }
 
         private bool Validar()
@@ -86,11 +97,7 @@ namespace ProyectoFinal.UI.Consulta
                 Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
             }
-            if (FiltrocomboBox.SelectedIndex == 2)
-            {
-                //En caso que fuesemos a buscar por Nombres entonces si podremos Digitar Letras
-                Constantes.ValidarNombreTextBox(sender, e);
-            }
+            
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
         private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -101,14 +108,28 @@ namespace ProyectoFinal.UI.Consulta
                 errorProvider.Clear();
         }
 
-        private void ImprimirButton_Click(object sender, EventArgs e)
+        private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
-            /* ReporteDeProductor reporte = new ReporteDeProductor(ProductoresBLL.GetList(filtro));
-             reporte.Show();*/
+             ReportesDeTipoArroz reporte = new ReportesDeTipoArroz(ListaArroz);
+             reporte.Show();
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
+        }
+
+        private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(FiltracheckBox.Checked==true)
+            {
+                DesdedateTimePicker.Enabled = true;
+                HastadateTimePicker.Enabled = true;
+            }
+            else
+            {
+                DesdedateTimePicker.Enabled = false;
+                HastadateTimePicker.Enabled = false;
+            }
         }
     }
 }

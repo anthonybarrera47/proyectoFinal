@@ -97,6 +97,12 @@
     <Compile Include="UI\Consulta\ConsultaDeFactorias.Designer.cs">
       <DependentUpon>ConsultaDeFactorias.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Consulta\ConsultaDePesadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consulta\ConsultaDePesadas.Designer.cs">
+      <DependentUpon>ConsultaDePesadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Consulta\ConsultaProductores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,16 +157,23 @@
     <Compile Include="UI\Registro\RegistroTiposArroz.Designer.cs">
       <DependentUpon>RegistroTiposArroz.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Reportes\ReporteDeFactoria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Reportes\ReporteDeFactoria.Designer.cs">
-      <DependentUpon>ReporteDeFactoria.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Reportes\ReporteDeFactoria1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteDeFactoria.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDePesada.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteDePesada.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDePesadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReporteDePesadas.Designer.cs">
+      <DependentUpon>ReporteDePesadas.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Reportes\ReporteDeProductores.cs">
       <AutoGen>True</AutoGen>
@@ -174,16 +187,35 @@
     <Compile Include="UI\Reportes\ReporteDeProductor.Designer.cs">
       <DependentUpon>ReporteDeProductor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Reportes\ReporteDeTiposArroz.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Reportes\ReporteDeTiposArroz.Designer.cs">
-      <DependentUpon>ReporteDeTiposArroz.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Reportes\ReporteDeTiposArroz1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteDeTiposArroz.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportePesadaDetalle.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportePesadaDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportePesadaDetalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportePesadaDetalles.Designer.cs">
+      <DependentUpon>ReportePesadaDetalles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportesDeFactoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportesDeFactoria.Designer.cs">
+      <DependentUpon>ReportesDeFactoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportesDeTipoArroz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReportesDeTipoArroz.Designer.cs">
+      <DependentUpon>ReportesDeTipoArroz.cs</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
@@ -205,6 +237,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Consulta\ConsultaDeFactorias.resx">
       <DependentUpon>ConsultaDeFactorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consulta\ConsultaDePesadas.resx">
+      <DependentUpon>ConsultaDePesadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Consulta\ConsultaProductores.resx">
       <DependentUpon>ConsultaProductores.cs</DependentUpon>
@@ -237,6 +272,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteDeFactoria1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDePesada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteDePesada.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReporteDePesadas.resx">
+      <DependentUpon>ReporteDePesadas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\ReporteDeProductores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteDeProductores.cs</LastGenOutput>
@@ -247,6 +289,19 @@
     <EmbeddedResource Include="UI\Reportes\ReporteDeTiposArroz.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteDeTiposArroz1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReportePesadaDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportePesadaDetalle.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReportePesadaDetalles.resx">
+      <DependentUpon>ReportePesadaDetalles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReportesDeFactoria.resx">
+      <DependentUpon>ReportesDeFactoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReportesDeTipoArroz.resx">
+      <DependentUpon>ReportesDeTipoArroz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.aa.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>

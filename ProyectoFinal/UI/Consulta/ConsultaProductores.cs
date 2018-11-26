@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.BLL;
+using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
@@ -17,42 +18,64 @@ namespace ProyectoFinal.UI.Consulta
     public partial class ConsultaProductores : Form
     {
         Expression<Func<Productores, bool>> filtro = x => true;
+        List<Productores> ListaProductores = new List<Productores>();
         public ConsultaProductores()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
+            DesdedateTimePicker.Enabled = false;
+            HastadateTimePicker.Enabled = false;
         }
 
         private void Seleccion()
         {
             errorProvider.Clear();
             //var lista = new List<Productores>();
+            ListaProductores = new List<Productores>();
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
                 {
                     case 0: //Todo
-                        //lista = ProductoresBLL.GetList(x => true);
                         filtro = x => true;
                         break;
-                    case 1:
+                    case 1: // ID
                         if (!Validar())
                             return;
                         int id = Convert.ToInt32(CriteriotextBox.Text);
-                        //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
                         filtro = x => x.ProductorId == id;
                         break;
-                    case 2:
+                    case 2: // Nombre
                         if (!Validar())
                             return;
-                        //lista = ProductoresBLL.GetList(p => p.Nombre.Contains(CriteriotextBox.Text));
                         filtro = x => x.Nombre.Contains(CriteriotextBox.Text);
                         break;
+                    case 3: // Telefono
+                        if (!Validar())
+                            return;
+                        filtro = x => x.Telefono.Contains(CriteriotextBox.Text);
+                        break;
+                    case 4: // Cedula
+                        if (!Validar())
+                            return;
+                        filtro = x => x.Cedula.Contains(CriteriotextBox.Text);
+                        break;
                 }
-                //filtro = (c => c.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && c.FechaNacimiento.Date <= HastadateTimePicker.Value.Date);
+                
             }
-            ProductoresdataGridView.DataSource = null;
-            ProductoresdataGridView.DataSource = ProductoresBLL.GetList(filtro);
+            if (FiltracheckBox.Checked == true)
+            {
+                ListaProductores = ProductoresBLL.GetList(filtro).Where(x => x.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && x.FechaNacimiento.Date <= HastadateTimePicker.Value.Date).ToList();
+                ProductoresdataGridView.DataSource = null;
+                ProductoresdataGridView.DataSource = ListaProductores;
+            }
+            else
+            {
+                ListaProductores = ProductoresBLL.GetList(filtro);
+                ProductoresdataGridView.DataSource = null;
+                ProductoresdataGridView.DataSource = ListaProductores;
+            }
+            
         }
 
         private bool Validar()
@@ -80,42 +103,20 @@ namespace ProyectoFinal.UI.Consulta
 
             if (FiltrocomboBox.SelectedIndex == 1)
             {
-                //Para obligar a que sólo se introduzcan números
-                if (Char.IsDigit(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else
-                  if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    //el resto de teclas pulsadas se desactivan
-                    e.Handled = true;
-                }
-                return;
+                Constantes.ValidarSoloNumeros(sender, e);
             }
             if (FiltrocomboBox.SelectedIndex == 2)
             {
                 //En caso que fuesemos a buscar por Nombres entonces si podremos Digitar Letras
-                if (Char.IsLetter(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else if (Char.IsControl(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else if (Char.IsSeparator(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
+                Constantes.ValidarNombreTextBox(sender, e);
+            }
+            if(FiltrocomboBox.SelectedIndex == 3)
+            {
+                CriteriotextBox.MaxLength = 12;
+            }
+            if(FiltrocomboBox.SelectedIndex == 4)
+            {
+                CriteriotextBox.MaxLength = 13;
             }
 
         }
@@ -130,7 +131,7 @@ namespace ProyectoFinal.UI.Consulta
 
         private void ImprimirButton_Click(object sender, EventArgs e)
         {
-            ReporteDeProductor reporte = new ReporteDeProductor(ProductoresBLL.GetList(filtro));
+            ReporteDeProductor reporte = new ReporteDeProductor(ListaProductores);
             reporte.Show();
         }
 
@@ -142,6 +143,20 @@ namespace ProyectoFinal.UI.Consulta
         private void FiltrocomboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
+        }
+
+        private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FiltracheckBox.Checked == true)
+            {
+                DesdedateTimePicker.Enabled = true;
+                HastadateTimePicker.Enabled = true;
+            }
+            else
+            {
+                DesdedateTimePicker.Enabled = false;
+                HastadateTimePicker.Enabled = false;
+            }
         }
     }
 }

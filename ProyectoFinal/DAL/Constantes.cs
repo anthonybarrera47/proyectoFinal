@@ -58,5 +58,32 @@ namespace ProyectoFinal.DAL
             
             return;
         }
+        public static void ValidarNumerosDecimales(object sender,KeyPressEventArgs e,String cadena)
+        {
+            if (e.KeyChar == 8)
+            {
+                e.Handled = false;
+                return;
+            }
+            bool IsDec = false;
+            int nroDec = 0;
+
+            for (int x = 0; x < cadena.Length; x++)
+            {
+                if (cadena[x] == '.')
+                { IsDec = true; }
+                if (IsDec && nroDec++ >= 2)
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+                e.Handled = false;
+            else if (e.KeyChar == 46)
+                e.Handled = (IsDec) ? true : false;
+            else
+                e.Handled = true;
+        }
     }
 }
