@@ -1,4 +1,4 @@
-#Proyecto Final Del Ciclo Academico 3-2018 De La Materia Programacion Aplicada l
+#Proyecto Final Del Ciclo Academico 3-2018 De La Materia Programacion Aplicada l.
 
 Este Proyecto Consiste en un sistema para la Compra de arroz por la medida metrica Kilos, aparte de esta caracteristica el sistema consiste en algunos modulos como los de registro y consultas.
 Dentro de cada uno podemos encontrar la creacion de Clientes,Factorias entre otros como la consulta de los mismos.
