@@ -412,5 +412,8 @@
   <ItemGroup>
     <None Include="Resources\invoice.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\ProyectoFinal.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
