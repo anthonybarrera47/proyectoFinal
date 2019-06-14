@@ -10,11 +10,11 @@ namespace ProyectoFinal.Entidades
     public class Pesadas
     {
         [Key]
-        public int PesadasId { get; set; }
-        public int ProductorId { get; set; }
-        public int TipoArrozId { get; set; }
-        public int FactoriaId { get; set; }
-        public int UsuarioId { get; set; }
+        public int PesadasID { get; set; }
+        public int ProductorID { get; set; }
+        public int TipoArrozID { get; set; }
+        public int FactoriaID { get; set; }
+        public int UsuarioID { get; set; }
         public decimal Fanega { get; set; }
         public decimal PrecioFanega { get; set; }
         public decimal TotalKiloGramos { get; set; }
@@ -24,14 +24,14 @@ namespace ProyectoFinal.Entidades
 
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
 
-        public Pesadas(int PesadaId,int ProductorId,int TipoArrozId,int FactoriaId,int UsuarioId,decimal Fanega,decimal PrecioFanega
+        public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
             ,decimal TotalKiloGramos,decimal TotalSacos,decimal TotalPagar,List<PesadasDetalle> pesadasDetalles)
         {
-            this.PesadasId = PesadasId;
-            this.ProductorId = ProductorId;
-            this.TipoArrozId = TipoArrozId;
-            this.FactoriaId = FactoriaId;
-            this.UsuarioId = UsuarioId;
+            this.PesadasID = PesadaID;
+            this.ProductorID = ProductorId;
+            this.TipoArrozID = TipoArrozId;
+            this.FactoriaID = FactoriaId;
+            this.UsuarioID = UsuarioId;
             this.Fanega = Fanega;
             this.PrecioFanega = PrecioFanega;
             this.TotalKiloGramos = TotalKiloGramos;
@@ -41,11 +41,11 @@ namespace ProyectoFinal.Entidades
         }
         public Pesadas()
         {
-            PesadasId = 0;
-            ProductorId = 0;
-            TipoArrozId = 0;
-            FactoriaId = 0;
-            UsuarioId = 0;
+            PesadasID = 0;
+            ProductorID = 0;
+            TipoArrozID = 0;
+            FactoriaID = 0;
+            UsuarioID = 0;
             Fanega = 0;
             PrecioFanega = 0;
             TotalKiloGramos = 0;

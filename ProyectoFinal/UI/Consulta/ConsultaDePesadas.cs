@@ -42,27 +42,27 @@ namespace ProyectoFinal.UI.Consulta
                     case 1:
                         if (!Validar())
                             return;
-                        filtro = x => x.PesadasId == ID;
+                        filtro = x => x.PesadasID == ID;
                         break;
                     case 2:
                         if (!Validar())
                             return;
-                        filtro = x => x.ProductorId == ID;
+                        filtro = x => x.ProductorID == ID;
                         break;
                     case 3://Direccion
                         if (!Validar())
                             return;
-                        filtro = x => x.TipoArrozId == ID;
+                        filtro = x => x.TipoArrozID == ID;
                         break;
                     case 4://Telefono
                         if (!Validar())
                             return;    
-                        filtro = x => x.FactoriaId == ID;
+                        filtro = x => x.FactoriaID == ID;
                         break;
                     case 5:
                         if (!Validar())
                             return;
-                        filtro = x => x.UsuarioId == ID;
+                        filtro = x => x.UsuarioID == ID;
                         break;
                     case 6:
                         if (!Validar())

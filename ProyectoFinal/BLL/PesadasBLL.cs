@@ -12,7 +12,7 @@ namespace ProyectoFinal.BLL
 {
     public class PesadasBLL
     {
-        private static Usuario usuario = new Usuario();
+        private static Usuario Usuario = new Usuario();
 
         public static bool Guardar(Pesadas pesadas)
         {
@@ -20,7 +20,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                if(db.pesadas.Add(pesadas)!=null)
+                if(db.Pesadas.Add(pesadas)!=null)
                 {
                     db.SaveChanges();
                     paso = true;
@@ -37,7 +37,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                if(db.pesadaDetalle.Add(pesadasDetalle)!=null)
+                if(db.PesadaDetalle.Add(pesadasDetalle)!=null)
                 {
                     db.SaveChanges();
                     paso = true;
@@ -56,12 +56,12 @@ namespace ProyectoFinal.BLL
             try
             {
                 
-                var pesadaDetalle = Buscar(pesadas.PesadasId);
+                var pesadaDetalle = Buscar(pesadas.PesadasID);
                 db.Entry(pesadas).State = EntityState.Modified;
                 ArreglarDetalle(pesadaDetalle);
                 foreach (var item in pesadas.PesadasDetalles)
                 {
-                    if (item.Id == 0)
+                    if (item.ID == 0)
                         GuardarDetalle(item);
                     else
                     {
@@ -78,7 +78,7 @@ namespace ProyectoFinal.BLL
                     if (db.SaveChanges() > 0)
                         paso = true;
                 }
-                EnviarKilaje(Buscar(pesadas.PesadasId).PesadasDetalles);
+                EnviarKilaje(Buscar(pesadas.PesadasID).PesadasDetalles);
             }catch(Exception)
             { throw; }
             finally
@@ -92,10 +92,10 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                var Eliminar = db.pesadas.Find(Id);
+                var Eliminar = db.Pesadas.Find(Id);
                 if(Eliminar!=null)
                 {
-                    db.pesadaDetalle.RemoveRange(db.pesadaDetalle.Where(x => x.PesadasId == Eliminar.PesadasId));
+                    db.PesadaDetalle.RemoveRange(db.PesadaDetalle.Where(x => x.PesadasID == Eliminar.PesadasID));
                     db.Entry(Eliminar).State = EntityState.Deleted;
                     if (db.SaveChanges() > 0)
                         paso = true;
@@ -113,7 +113,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                pesadas = db.pesadas.Find(Id);
+                pesadas = db.Pesadas.Find(Id);
                 if(pesadas!=null)
                 {
                     pesadas.PesadasDetalles.Count();
@@ -130,7 +130,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                pesada = db.pesadas.Where(pesadas).ToList();
+                pesada = db.Pesadas.Where(pesadas).ToList();
                 foreach(var item in pesada)
                 {
                     item.PesadasDetalles.Count();
@@ -145,7 +145,7 @@ namespace ProyectoFinal.BLL
         {
             foreach(var item in detalle)
             {
-                TipoArroz kilaje = TipoArrozBLL.Buscar(item.TipoArrozId);
+                TipoArroz kilaje = TipoArrozBLL.Buscar(item.TipoArrozID);
                 kilaje.Kilos += item.Kilos;
                 TipoArrozBLL.Modificar(kilaje);
             }
@@ -154,7 +154,7 @@ namespace ProyectoFinal.BLL
         {
             foreach(var item in detalle)
             {
-                var kilaje = TipoArrozBLL.Buscar(item.TipoArrozId);
+                var kilaje = TipoArrozBLL.Buscar(item.TipoArrozID);
                 kilaje.Kilos -= item.Kilos;
                 TipoArrozBLL.Modificar(kilaje);
             }
@@ -163,7 +163,7 @@ namespace ProyectoFinal.BLL
         {
             foreach(var item in pesada.PesadasDetalles)
             {
-                var tipoArroz = TipoArrozBLL.Buscar(item.TipoArrozId);
+                var tipoArroz = TipoArrozBLL.Buscar(item.TipoArrozID);
                 tipoArroz.Kilos -= item.Kilos;
                 TipoArrozBLL.Modificar(tipoArroz);
             }
@@ -172,7 +172,7 @@ namespace ProyectoFinal.BLL
         {
             foreach(var item in list)
             {
-                if (item.Id == detalle.Id)
+                if (item.ID == detalle.ID)
                 {
                     item.Kilos = detalle.Kilos;
                     item.CantidadDeSacos = detalle.CantidadDeSacos;
@@ -183,12 +183,12 @@ namespace ProyectoFinal.BLL
         }
         public static void UsuarioParaLogin(String Nombre,int id)
         {
-            usuario.Nombre = Nombre;
-            usuario.UsuarioId = id;
+            Usuario.Nombre = Nombre;
+            Usuario.UsuarioID = id;
         }
         public static Usuario GetUsuario()
         {
-            return usuario;
+            return Usuario;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace ProyectoFinal.UI.Consulta
                         if (!Validar())
                             return;
                         int id = Convert.ToInt32(CriteriotextBox.Text);
-                        filtro = x => x.ProductorId == id;
+                        filtro = x => x.ProductorID == id;
                         break;
                     case 2: // Nombre
                         if (!Validar())

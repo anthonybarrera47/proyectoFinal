@@ -10,21 +10,21 @@ namespace ProyectoFinal.Entidades
     public class TipoArroz
     {
         [Key]
-        public int TipoArrozId { get; set; }
+        public int TipoArrozID { get; set; }
         public String Descripcion { get; set; }
         public decimal Kilos { get; set; }
         public DateTime FechaRegistro { get; set; }
 
-        public TipoArroz(int TipoArrozId,String Descripcion,decimal Kilos,DateTime FechaRegistro)
+        public TipoArroz(int TipoArrozID,String Descripcion,decimal Kilos,DateTime FechaRegistro)
         {
-            this.TipoArrozId = TipoArrozId;
+            this.TipoArrozID = TipoArrozID;
             this.Descripcion = Descripcion;
             this.Kilos = Kilos;
             this.FechaRegistro = FechaRegistro;
         }
         public TipoArroz()
         {
-            TipoArrozId = 0;
+            TipoArrozID = 0;
             Descripcion = string.Empty;
             Kilos = 0;
             FechaRegistro = DateTime.Now;

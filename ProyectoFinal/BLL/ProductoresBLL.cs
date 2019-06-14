@@ -17,7 +17,7 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                if (db.productores.Add(productores) != null)
+                if (db.Productores.Add(productores) != null)
                 {
                     db.SaveChanges();
                     paso = true;
@@ -51,8 +51,8 @@ namespace ProyectoFinal.BLL
             bool paso = true;
             try
             {
-                Productores productores = db.productores.Find(id);
-                db.productores.Remove(productores);
+                Productores productores = db.Productores.Find(id);
+                db.Productores.Remove(productores);
                 if (db.SaveChanges() > 0)
                     paso = true;
             }
@@ -68,7 +68,7 @@ namespace ProyectoFinal.BLL
             Productores productores = new Productores();
             try
             {
-                productores = db.productores.Find(id);
+                productores = db.Productores.Find(id);
             }
             catch (Exception)
             { throw; }
@@ -82,7 +82,7 @@ namespace ProyectoFinal.BLL
             List<Productores> productores = new List<Productores>();
             try
             {
-                productores = db.productores.Where(expression).ToList();
+                productores = db.Productores.Where(expression).ToList();
             }
             catch (Exception)
             { throw; }

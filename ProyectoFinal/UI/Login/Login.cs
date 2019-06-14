@@ -44,8 +44,8 @@ namespace ProyectoFinal.UI.Login
                     {
                         foreach (var item in repositorio.GetList(x => x.UserName.Equals(username)))
                         {
-                            PesadasBLL.UsuarioParaLogin(item.Nombre, item.UsuarioId);
-                            tiposUsuario = repositorio.Buscar(item.UsuarioId);
+                            PesadasBLL.UsuarioParaLogin(item.Nombre, item.UsuarioID);
+                            tiposUsuario = repositorio.Buscar(item.UsuarioID);
                         }
                         if (tiposUsuario.Tipo.Equals(Constantes.admi))
                             tipoUsuario = Constantes.admi;

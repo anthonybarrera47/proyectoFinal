@@ -39,7 +39,7 @@ namespace ProyectoFinal.UI.Consulta
                         if (!Validar())
                             return;
                         int id = Convert.ToInt32(CriteriotextBox.Text);
-                        filtro = x => x.TipoArrozId == id;
+                        filtro = x => x.TipoArrozID == id;
                         break;
                     case 2:
                         if (!Validar())

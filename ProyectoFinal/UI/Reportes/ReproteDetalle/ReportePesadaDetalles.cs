@@ -24,16 +24,16 @@ namespace ProyectoFinal.UI.Reportes
         private void PesadaDetallecrystalReportViewer1_Load(object sender, EventArgs e)
         {
             
-            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorId);
-            TipoArroz tipoArroz = TipoArrozBLL.Buscar(pesadas.TipoArrozId);
-            Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaId);
+            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
+            TipoArroz tipoArroz = TipoArrozBLL.Buscar(pesadas.TipoArrozID);
+            Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaID);
             ReportePesadaDetalle reporte = new ReportePesadaDetalle();
             reporte.SetDataSource(data);
             reporte.SetParameterValue("Usuario", Nombre);
             reporte.SetParameterValue("Productor", productores.Nombre);
             reporte.SetParameterValue("Tipo Arroz", tipoArroz.Descripcion);
             reporte.SetParameterValue("Factoria", factoria.Nombre);
-            reporte.SetParameterValue("PesadaId", pesadas.PesadasId);
+            reporte.SetParameterValue("PesadaId", pesadas.PesadasID);
             reporte.SetParameterValue("TotalKilos", pesadas.TotalKiloGramos);
             reporte.SetParameterValue("TotalSacos", pesadas.TotalSacos);
             reporte.SetParameterValue("Fanega", pesadas.Fanega);

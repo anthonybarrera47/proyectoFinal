@@ -2,11 +2,8 @@
 using ProyectoFinal.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoFinal.BLL
 {
@@ -18,7 +15,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                pesadaDetalle = db.pesadaDetalle.Find(Id);
+                pesadaDetalle = db.PesadaDetalle.Find(Id);
             }catch(Exception)
             { throw; }
             finally
@@ -31,10 +28,10 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                var Eliminar = db.pesadaDetalle.Find(Id);
+                var Eliminar = db.PesadaDetalle.Find(Id);
                 if (Eliminar != null)
                 {
-                    db.Entry(Eliminar).State = EntityState.Deleted;
+                    db.Entry(Eliminar).State = System.Data.Entity.EntityState.Deleted;
                     if (db.SaveChanges() > 0)
                         paso = true;
                 }
@@ -51,7 +48,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                pesadasDetalles = db.pesadaDetalle.Where(pesadas).ToList();
+                pesadasDetalles = db.PesadaDetalle.Where(pesadas).ToList();
             }catch(Exception)
             { throw; }
             finally

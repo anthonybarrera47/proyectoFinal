@@ -11,7 +11,7 @@ namespace ProyectoFinal.Entidades
     public class Usuario
     {
         [Key]
-        public int UsuarioId { get; set; }
+        public int UsuarioID { get; set; }
         public string UserName { get; set; }
         public String Nombre { get; set; }
         public String Password { get; set; }
@@ -20,7 +20,7 @@ namespace ProyectoFinal.Entidades
 
         public Usuario()
         {
-            UsuarioId = 0;
+            UsuarioID = 0;
             UserName = string.Empty;
             Nombre = string.Empty;
             Password = string.Empty;
@@ -30,7 +30,7 @@ namespace ProyectoFinal.Entidades
 
         public Usuario(int usuarioId, string userName, string nombre, string password, string tipo, DateTime fechaRegistro)
         {
-            UsuarioId = usuarioId;
+            UsuarioID = usuarioId;
             UserName = userName;
             Nombre = nombre;
             Password = password;

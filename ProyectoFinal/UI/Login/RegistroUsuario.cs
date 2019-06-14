@@ -22,7 +22,7 @@ namespace ProyectoFinal.UI.Login
             UsuarioIdcomboBox.Items.Clear();
             foreach(var item in repositorio.GetList(x=>true))
             {
-                UsuarioIdcomboBox.Items.Add(item.UsuarioId);
+                UsuarioIdcomboBox.Items.Add(item.UsuarioID);
             }
         }
         private void Limpiar()
@@ -48,9 +48,9 @@ namespace ProyectoFinal.UI.Login
         {
             Usuario usuario = new Usuario();
             if (UsuarioIdcomboBox.Text.Equals(string.Empty))
-                usuario.UsuarioId = 0;
+                usuario.UsuarioID = 0;
             else
-                usuario.UsuarioId = Convert.ToInt32(UsuarioIdcomboBox.Text);
+                usuario.UsuarioID = Convert.ToInt32(UsuarioIdcomboBox.Text);
             usuario.UserName = NombreUserTextBox.Text;
             usuario.Nombre = NombreTextBox.Text;
             usuario.Password = PasswordTextBox.Text;
@@ -156,6 +156,23 @@ namespace ProyectoFinal.UI.Login
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
+        }
+
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
+            errorProvider.Clear();
+            int.TryParse(UsuarioIdcomboBox.Text, out int ID);
+            if (!ExisteEnLaBaseDeDatos())
+            {
+                errorProvider.SetError(UsuarioIdcomboBox, "No Puede Borrar Una Factoria Inexistente");
+                return;
+            }
+            if (repositorio.Eliminar(ID))
+            {
+                Limpiar();
+                MessageBox.Show("Factoria Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

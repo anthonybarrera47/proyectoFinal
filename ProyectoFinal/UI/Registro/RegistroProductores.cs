@@ -26,7 +26,7 @@ namespace ProyectoFinal.UI.Registro
             ProductorIdcomboBox.Items.Clear();
             foreach (var item in ProductoresBLL.GetList(x => true))
             {
-                ProductorIdcomboBox.Items.Add(item.ProductorId);
+                ProductorIdcomboBox.Items.Add(item.ProductorID);
             }
         }
         private void Limpiar()
@@ -43,9 +43,9 @@ namespace ProyectoFinal.UI.Registro
         {
             Productores productores = new Productores();
             if (ProductorIdcomboBox.Text.Equals(string.Empty))
-                productores.ProductorId = 0;
+                productores.ProductorID = 0;
             else
-                productores.ProductorId = Convert.ToInt32(ProductorIdcomboBox.Text);
+                productores.ProductorID = Convert.ToInt32(ProductorIdcomboBox.Text);
             productores.Nombre = NombreTextBox.Text;
             productores.Telefono = TelefonomaskedTextBox.Text;
             productores.Cedula = CedulaMasketTextBox.Text;
@@ -54,7 +54,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private void LlenaCampo(Productores productores)
         {
-            ProductorIdcomboBox.Text = Convert.ToString(productores.ProductorId);
+            ProductorIdcomboBox.Text = Convert.ToString(productores.ProductorID);
             NombreTextBox.Text = productores.Nombre;
             TelefonomaskedTextBox.Text = productores.Telefono;
             CedulaMasketTextBox.Text = productores.Cedula;

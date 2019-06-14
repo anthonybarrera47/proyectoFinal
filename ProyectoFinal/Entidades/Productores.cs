@@ -10,7 +10,7 @@ namespace ProyectoFinal.Entidades
     public class Productores
     {
         [Key]
-        public int ProductorId { get; set; }
+        public int ProductorID { get; set; }
         public String Nombre { get; set; }
         public String Telefono { get; set; }
         public String Cedula { get; set; }
@@ -19,7 +19,7 @@ namespace ProyectoFinal.Entidades
 
         public Productores()
         {
-            ProductorId = 0;
+            ProductorID = 0;
             Nombre = string.Empty;
             Telefono = string.Empty;
             FechaNacimiento = DateTime.Now;
@@ -27,7 +27,7 @@ namespace ProyectoFinal.Entidades
         }
         public Productores(int ProductorId, String Nombre, String Telefono, DateTime FechaNacimiento, String Cedula)
         {
-            this.ProductorId = ProductorId;
+            this.ProductorID = ProductorId;
             this.Nombre = Nombre;
             this.Telefono = Telefono;
             this.FechaNacimiento = FechaNacimiento;

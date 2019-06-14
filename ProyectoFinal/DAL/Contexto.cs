@@ -10,12 +10,12 @@ namespace ProyectoFinal.DAL
 {
     public class Contexto : DbContext
     {
-        public DbSet<Factoria> factorias { get; set; }
-        public DbSet<TipoArroz> tiposArroz { get; set; }
-        public DbSet<Productores> productores { get; set; }
-        public DbSet<Pesadas> pesadas { get; set; }
-        public DbSet<Usuario> usuario { get; set; }
-        public DbSet<PesadasDetalle> pesadaDetalle { get; set; }
+        public DbSet<Factoria> Factorias { get; set; }
+        public DbSet<TipoArroz> TiposArroz { get; set; }
+        public DbSet<Productores> Productores { get; set; }
+        public DbSet<Pesadas> Pesadas { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<PesadasDetalle> PesadaDetalle { get; set; }
 
         public Contexto() : base("ConStr")
         { }

@@ -26,7 +26,7 @@ namespace ProyectoFinal.UI.Registro
             TipoArrozIdcomboBox.Items.Clear();
             foreach(var item in repositorio.GetList(x=>true))
             {
-                TipoArrozIdcomboBox.Items.Add(item.TipoArrozId);
+                TipoArrozIdcomboBox.Items.Add(item.TipoArrozID);
             }
         }
         private void Limpiar()
@@ -41,9 +41,9 @@ namespace ProyectoFinal.UI.Registro
         {
             TipoArroz tiposArroz = new TipoArroz();
             if (TipoArrozIdcomboBox.Text.Equals(string.Empty))
-                tiposArroz.TipoArrozId = 0;
+                tiposArroz.TipoArrozID = 0;
             else
-                tiposArroz.TipoArrozId = Convert.ToInt32(KilostextBox.Text);
+                tiposArroz.TipoArrozID = Convert.ToInt32(KilostextBox.Text);
             tiposArroz.Descripcion = DescripcionTextBox.Text;
             tiposArroz.Kilos = Convert.ToDecimal(KilostextBox.Text);
             tiposArroz.FechaRegistro = FechadateTimePicker.Value;

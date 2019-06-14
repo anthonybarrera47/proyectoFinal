@@ -44,7 +44,7 @@ namespace ProyectoFinal.UI.Login
                             return;
                         int id = Convert.ToInt32(CriteriotextBox.Text);
                         //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
-                        filtro = x => x.UsuarioId == id;
+                        filtro = x => x.UsuarioID == id;
                         break;
                     case 2:
                         if (!Validar())

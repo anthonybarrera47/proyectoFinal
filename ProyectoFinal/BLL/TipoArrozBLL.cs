@@ -17,7 +17,7 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                if (db.tiposArroz.Add(tiposArroz) != null)
+                if (db.TiposArroz.Add(tiposArroz) != null)
                 {
                     db.SaveChanges();
                     paso = true;
@@ -49,8 +49,8 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                TipoArroz tiposArroz = db.tiposArroz.Find(id);
-                db.tiposArroz.Remove(tiposArroz);
+                TipoArroz tiposArroz = db.TiposArroz.Find(id);
+                db.TiposArroz.Remove(tiposArroz);
                 if (db.SaveChanges() > 0)
                     paso = true;
             }catch(Exception)
@@ -65,7 +65,7 @@ namespace ProyectoFinal.BLL
             TipoArroz tiposArroz = new TipoArroz();
             try
             {
-                 tiposArroz = db.tiposArroz.Find(id);
+                 tiposArroz = db.TiposArroz.Find(id);
             }catch(Exception)
             { throw; }
             finally
@@ -78,7 +78,7 @@ namespace ProyectoFinal.BLL
             List<TipoArroz> tiposArroz = new List<TipoArroz>();
             try
             {
-                tiposArroz = db.tiposArroz.Where(expression).ToList();
+                tiposArroz = db.TiposArroz.Where(expression).ToList();
             }catch(Exception)
             { throw; }
             finally

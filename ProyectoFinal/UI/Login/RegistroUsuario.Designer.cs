@@ -97,6 +97,7 @@
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 13;
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 

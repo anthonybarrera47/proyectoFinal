@@ -17,7 +17,7 @@ namespace ProyectoFinal.BLL
             bool paso = false;
             try
             {
-                if(db.factorias.Add(factoria)!=null)
+                if(db.Factorias.Add(factoria)!=null)
                 {
                     db.SaveChanges();
                     paso = true;
@@ -53,8 +53,8 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                Factoria factoria = db.factorias.Find(id);
-                db.factorias.Remove(factoria);
+                Factoria factoria = db.Factorias.Find(id);
+                db.Factorias.Remove(factoria);
                 if (db.SaveChanges() > 0)
                     paso = true;
             }catch(Exception)
@@ -69,7 +69,7 @@ namespace ProyectoFinal.BLL
             Factoria factoria = new Factoria();
             try
             {
-                factoria = db.factorias.Find(id);
+                factoria = db.Factorias.Find(id);
             }catch(Exception)
             { throw; }
             finally
@@ -82,7 +82,7 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                factorias = db.factorias.Where(expression).ToList();
+                factorias = db.Factorias.Where(expression).ToList();
             }catch(Exception)
             { throw; }
             finally
