@@ -86,9 +86,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 17);
+            this.label1.Size = new System.Drawing.Size(83, 17);
             this.label1.TabIndex = 14;
-            this.label1.Text = "ID";
+            this.label1.Text = "ProductorID";
             // 
             // label2
             // 
@@ -128,7 +128,7 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(88, 63);
+            this.NombreTextBox.Location = new System.Drawing.Point(112, 63);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(191, 22);
             this.NombreTextBox.TabIndex = 1;
@@ -136,7 +136,7 @@
             // 
             // CedulaMasketTextBox
             // 
-            this.CedulaMasketTextBox.Location = new System.Drawing.Point(88, 92);
+            this.CedulaMasketTextBox.Location = new System.Drawing.Point(112, 92);
             this.CedulaMasketTextBox.Mask = "000-0000000-0";
             this.CedulaMasketTextBox.Name = "CedulaMasketTextBox";
             this.CedulaMasketTextBox.Size = new System.Drawing.Size(191, 22);
@@ -144,7 +144,7 @@
             // 
             // TelefonomaskedTextBox
             // 
-            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(88, 121);
+            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(112, 121);
             this.TelefonomaskedTextBox.Mask = "000-000-0000";
             this.TelefonomaskedTextBox.Name = "TelefonomaskedTextBox";
             this.TelefonomaskedTextBox.Size = new System.Drawing.Size(191, 22);
@@ -154,16 +154,16 @@
             // 
             this.FechaNacimientodateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechaNacimientodateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(173, 150);
+            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(172, 151);
             this.FechaNacimientodateTimePicker.Name = "FechaNacimientodateTimePicker";
-            this.FechaNacimientodateTimePicker.Size = new System.Drawing.Size(106, 22);
+            this.FechaNacimientodateTimePicker.Size = new System.Drawing.Size(131, 22);
             this.FechaNacimientodateTimePicker.TabIndex = 4;
             // 
             // ProductorIdcomboBox
             // 
             this.ProductorIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ProductorIdcomboBox.FormattingEnabled = true;
-            this.ProductorIdcomboBox.Location = new System.Drawing.Point(88, 32);
+            this.ProductorIdcomboBox.Location = new System.Drawing.Point(112, 32);
             this.ProductorIdcomboBox.Name = "ProductorIdcomboBox";
             this.ProductorIdcomboBox.Size = new System.Drawing.Size(191, 24);
             this.ProductorIdcomboBox.TabIndex = 0;
@@ -173,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 250);
+            this.ClientSize = new System.Drawing.Size(324, 250);
             this.Controls.Add(this.ProductorIdcomboBox);
             this.Controls.Add(this.FechaNacimientodateTimePicker);
             this.Controls.Add(this.TelefonomaskedTextBox);

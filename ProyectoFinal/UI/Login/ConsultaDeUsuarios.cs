@@ -24,13 +24,13 @@ namespace ProyectoFinal.UI.Login
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
         }
-        List<Usuario> ListaUsuarios;
-        Expression<Func<Usuario, bool>> filtro = x => true;
+        List<Usuarios> ListaUsuarios;
+        Expression<Func<Usuarios, bool>> filtro = x => true;
         private void Seleccion()
         {
             errorProvider.Clear();
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
-            ListaUsuarios = new List<Usuario>();
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            ListaUsuarios = new List<Usuarios>();
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
@@ -116,7 +116,7 @@ namespace ProyectoFinal.UI.Login
         private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker.Value.Date)
-                errorProvider.SetError(HastadateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(HastadateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }
@@ -162,11 +162,11 @@ namespace ProyectoFinal.UI.Login
         private void ValidarFecha()
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker.Value.Date)
-                errorProvider.SetError(HastadateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(HastadateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
             if (HastadateTimePicker.Value.Date < DesdedateTimePicker.Value.Date)
-                errorProvider.SetError(DesdedateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(DesdedateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }

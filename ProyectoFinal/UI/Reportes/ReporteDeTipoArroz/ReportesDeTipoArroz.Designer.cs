@@ -51,6 +51,7 @@
             this.Controls.Add(this.TipoArrozcrystalReportViewer);
             this.Name = "ReportesDeTipoArroz";
             this.Text = "ReportesDeTipoArroz";
+            this.Load += new System.EventHandler(this.ReportesDeTipoArroz_Load);
             this.ResumeLayout(false);
 
         }

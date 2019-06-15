@@ -12,7 +12,7 @@ namespace ProyectoFinal.BLL
 {
     public class PesadasBLL
     {
-        private static Usuario Usuario = new Usuario();
+        private static Usuarios Usuario = new Usuarios();
 
         public static bool Guardar(Pesadas pesadas)
         {
@@ -56,12 +56,12 @@ namespace ProyectoFinal.BLL
             try
             {
                 
-                var pesadaDetalle = Buscar(pesadas.PesadasID);
+                var pesadaDetalle = Buscar(pesadas.PesadaID);
                 db.Entry(pesadas).State = EntityState.Modified;
                 ArreglarDetalle(pesadaDetalle);
                 foreach (var item in pesadas.PesadasDetalles)
                 {
-                    if (item.ID == 0)
+                    if (item.PesadaDetalleID == 0)
                         GuardarDetalle(item);
                     else
                     {
@@ -78,7 +78,7 @@ namespace ProyectoFinal.BLL
                     if (db.SaveChanges() > 0)
                         paso = true;
                 }
-                EnviarKilaje(Buscar(pesadas.PesadasID).PesadasDetalles);
+                EnviarKilaje(Buscar(pesadas.PesadaID).PesadasDetalles);
             }catch(Exception)
             { throw; }
             finally
@@ -95,7 +95,7 @@ namespace ProyectoFinal.BLL
                 var Eliminar = db.Pesadas.Find(Id);
                 if(Eliminar!=null)
                 {
-                    db.PesadaDetalle.RemoveRange(db.PesadaDetalle.Where(x => x.PesadasID == Eliminar.PesadasID));
+                    db.PesadaDetalle.RemoveRange(db.PesadaDetalle.Where(x => x.PesadasID == Eliminar.PesadaID));
                     db.Entry(Eliminar).State = EntityState.Deleted;
                     if (db.SaveChanges() > 0)
                         paso = true;
@@ -172,7 +172,7 @@ namespace ProyectoFinal.BLL
         {
             foreach(var item in list)
             {
-                if (item.ID == detalle.ID)
+                if (item.PesadaDetalleID == detalle.PesadaDetalleID)
                 {
                     item.Kilos = detalle.Kilos;
                     item.CantidadDeSacos = detalle.CantidadDeSacos;
@@ -186,7 +186,7 @@ namespace ProyectoFinal.BLL
             Usuario.Nombre = Nombre;
             Usuario.UsuarioID = id;
         }
-        public static Usuario GetUsuario()
+        public static Usuarios GetUsuario()
         {
             return Usuario;
         }

@@ -14,7 +14,7 @@ namespace ProyectoFinal.DAL
         public DbSet<TipoArroz> TiposArroz { get; set; }
         public DbSet<Productores> Productores { get; set; }
         public DbSet<Pesadas> Pesadas { get; set; }
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Usuarios> Usuario { get; set; }
         public DbSet<PesadasDetalle> PesadaDetalle { get; set; }
 
         public Contexto() : base("ConStr")

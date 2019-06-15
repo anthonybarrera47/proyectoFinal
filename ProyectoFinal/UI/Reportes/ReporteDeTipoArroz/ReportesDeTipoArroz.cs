@@ -20,13 +20,17 @@ namespace ProyectoFinal.UI.Reportes
             InitializeComponent();
             data = lista;
         }
-
         private void TipoArrozcrystalReportViewer_Load(object sender, EventArgs e)
         {
             ReporteDeTiposArroz reporteDeTiposArroz = new ReporteDeTiposArroz();
             reporteDeTiposArroz.SetDataSource(data);
             TipoArrozcrystalReportViewer.ReportSource = reporteDeTiposArroz;
             TipoArrozcrystalReportViewer.Refresh();
+        }
+
+        private void ReportesDeTipoArroz_Load(object sender, EventArgs e)
+        {
+            TipoArrozcrystalReportViewer_Load(sender, e);
         }
     }
 }

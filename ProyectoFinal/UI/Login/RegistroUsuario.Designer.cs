@@ -58,9 +58,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 17);
+            this.label1.Size = new System.Drawing.Size(70, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Id";
+            this.label1.Text = "UsuarioID";
             // 
             // label2
             // 
@@ -135,10 +135,10 @@
             this.UsuarioradioButton2.AutoSize = true;
             this.UsuarioradioButton2.Location = new System.Drawing.Point(138, 18);
             this.UsuarioradioButton2.Name = "UsuarioradioButton2";
-            this.UsuarioradioButton2.Size = new System.Drawing.Size(78, 21);
+            this.UsuarioradioButton2.Size = new System.Drawing.Size(85, 21);
             this.UsuarioradioButton2.TabIndex = 1;
             this.UsuarioradioButton2.TabStop = true;
-            this.UsuarioradioButton2.Text = "Usuario";
+            this.UsuarioradioButton2.Text = "Usuarios";
             this.UsuarioradioButton2.UseVisualStyleBackColor = true;
             // 
             // AdministradorRadioButton
@@ -216,7 +216,7 @@
             this.UsuarioIdcomboBox.FormattingEnabled = true;
             this.UsuarioIdcomboBox.Location = new System.Drawing.Point(168, 19);
             this.UsuarioIdcomboBox.Name = "UsuarioIdcomboBox";
-            this.UsuarioIdcomboBox.Size = new System.Drawing.Size(121, 24);
+            this.UsuarioIdcomboBox.Size = new System.Drawing.Size(135, 24);
             this.UsuarioIdcomboBox.TabIndex = 22;
             this.UsuarioIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.UsuarioIdcomboBox_SelectedIndexChanged);
             // 
@@ -247,7 +247,7 @@
             this.Controls.Add(this.Nivel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RegistroUsuario";
-            this.Text = "Registro Usuario | AgroSoft";
+            this.Text = "Registro Usuarios | AgroSoft";
             this.Nivel.ResumeLayout(false);
             this.Nivel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();

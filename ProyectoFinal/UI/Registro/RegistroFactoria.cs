@@ -54,17 +54,17 @@ namespace ProyectoFinal.UI.Registro
             factoria.Nombre = NombreTextBox.Text;
             factoria.Direccion = DireccionTextBox.Text;
             factoria.Telefono = TelefonoTextBox.Text;
-            factoria.Fecha = FechadateTimePicker.Value;
+            factoria.FechaRegistro = FechadateTimePicker.Value;
 
             return factoria;
         }
-        /*private void LlenaCampo(Factoria factoria)
+        private void LlenaCampo(Factoria factoria)
         {
-            FactoriaIDNumericUpDown.Value = factoria.FactoriaID;
+            FactoriaIdcomboBox.Text = Convert.ToString(factoria.FactoriaID);
             NombreTextBox.Text = factoria.Nombre;
             DireccionTextBox.Text = factoria.Direccion;
             TelefonoTextBox.Text = factoria.Telefono;
-        }*/
+        }
         private bool Validar()
         {
             ErrorProvider.Clear();
@@ -107,10 +107,9 @@ namespace ProyectoFinal.UI.Registro
         {
             Factoria factoria;
             repositorio = new RepositorioBase<Factoria>();
-            bool paso = false;
+            bool paso;
             if (!Validar())
                 return;
-
             factoria = LlenaClase();
             if (FactoriaIdcomboBox.Text.Equals(string.Empty))
                 //paso = repositorio.Guardar(factoria);
@@ -143,15 +142,14 @@ namespace ProyectoFinal.UI.Registro
         {
             repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
-            int ID;
-            int.TryParse(FactoriaIdcomboBox.Text, out ID);
+            int.TryParse(FactoriaIdcomboBox.Text, out int ID);
 
             if (!ExisteEnLaBaseDeDatos())
             {
                 ErrorProvider.SetError(FactoriaIdcomboBox, "No Puede Borrar Una Factoria Inexistente");
                 return;
             }
-            //if(repositorio.Eliminar(ID))
+            //if(repositorio.Eliminar(PesadaDetalleID))
             if (FactoriaBLL.Eliminar(ID))
             {
                 Limpiar();
@@ -163,12 +161,12 @@ namespace ProyectoFinal.UI.Registro
         {
             repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
-            int ID;
-            int.TryParse(FactoriaIDNumericUpDown.Text, out ID);
+            int PesadaDetalleID;
+            int.TryParse(FactoriaIDNumericUpDown.Text, out PesadaDetalleID);
             Factoria factoria = new Factoria();
 
-            //factoria = repositorio.Buscar(ID);
-            factoria = FactoriaBLL.Buscar(ID);
+            //factoria = repositorio.Buscar(PesadaDetalleID);
+            factoria = FactoriaBLL.Buscar(PesadaDetalleID);
             if (factoria != null)
             {
                 ErrorProvider.Clear();
@@ -178,16 +176,11 @@ namespace ProyectoFinal.UI.Registro
             else
                 MessageBox.Show("Factoria no Encontrada!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }*/
-
         private void FactoriaIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Factoria factoria = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdcomboBox.Text));
-            NombreTextBox.Text = factoria.Nombre;
-            DireccionTextBox.Text = factoria.Direccion;
-            TelefonoTextBox.Text = factoria.Telefono;
-            FechadateTimePicker.Value = factoria.Fecha;
+            LlenaCampo(factoria);
         }
-
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);

@@ -14,7 +14,7 @@ namespace ProyectoFinal.Entidades
         public String Nombre { get; set; }
         public String Direccion { get; set; }
         public String Telefono { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
         public Factoria()
         {
@@ -22,7 +22,7 @@ namespace ProyectoFinal.Entidades
             Nombre = string.Empty;
             Direccion = string.Empty;
             Telefono = string.Empty;
-            Fecha = DateTime.Now;
+            FechaRegistro = DateTime.Now;
         }
         public Factoria(int FactoriaID,String Nombre,String Direccion,String Telefono,DateTime Fecha)
         {
@@ -30,7 +30,7 @@ namespace ProyectoFinal.Entidades
             this.Nombre = Nombre;
             this.Direccion = Direccion;
             this.Telefono = Telefono;
-            this.Fecha = Fecha;
+            this.FechaRegistro = Fecha;
         }
     }
 }

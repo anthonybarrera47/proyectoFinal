@@ -29,19 +29,24 @@ namespace ProyectoFinal.UI.Reportes
             Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaID);
             ReportePesadaDetalle reporte = new ReportePesadaDetalle();
             reporte.SetDataSource(data);
-            reporte.SetParameterValue("Usuario", Nombre);
+            reporte.SetParameterValue("Usuarios", Nombre);
             reporte.SetParameterValue("Productor", productores.Nombre);
-            reporte.SetParameterValue("Tipo Arroz", tipoArroz.Descripcion);
+            reporte.SetParameterValue("TipoUsuario Arroz", tipoArroz.Descripcion);
             reporte.SetParameterValue("Factoria", factoria.Nombre);
-            reporte.SetParameterValue("PesadaId", pesadas.PesadasID);
+            reporte.SetParameterValue("PesadaId", pesadas.PesadaID);
             reporte.SetParameterValue("TotalKilos", pesadas.TotalKiloGramos);
             reporte.SetParameterValue("TotalSacos", pesadas.TotalSacos);
             reporte.SetParameterValue("Fanega", pesadas.Fanega);
             reporte.SetParameterValue("PrecioFanega", pesadas.PrecioFanega);
             reporte.SetParameterValue("TotalAPagar", pesadas.TotalPagar);
-            reporte.SetParameterValue("Fecha", pesadas.FechaRegistro);
+            reporte.SetParameterValue("FechaRegistro", pesadas.FechaRegistro);
             PesadaDetallecrystalReportViewer1.ReportSource = reporte;
             PesadaDetallecrystalReportViewer1.Refresh();
+        }
+
+        private void ReportePesadaDetalles_Load(object sender, EventArgs e)
+        {
+            PesadaDetallecrystalReportViewer1_Load(sender, e);
         }
     }
 }

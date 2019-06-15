@@ -22,5 +22,10 @@ namespace ProyectoFinal.UI.Reportes
             ProductorescrystalReportViewer1.ReportSource = reporteDeProductores;
             ProductorescrystalReportViewer1.Refresh();
         }
+
+        private void ReporteDeProductor_Load(object sender, EventArgs e)
+        {
+            ProductorescrystalReportViewer1_Load(sender, e);
+        }
     }
 }

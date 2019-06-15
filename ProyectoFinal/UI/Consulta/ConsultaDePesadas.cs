@@ -42,7 +42,7 @@ namespace ProyectoFinal.UI.Consulta
                     case 1:
                         if (!Validar())
                             return;
-                        filtro = x => x.PesadasID == ID;
+                        filtro = x => x.PesadaID == ID;
                         break;
                     case 2:
                         if (!Validar())
@@ -140,11 +140,11 @@ namespace ProyectoFinal.UI.Consulta
         private void ValidarFecha()
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker1.Value.Date)
-                errorProvider.SetError(HastadateTimePicker1, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(HastadateTimePicker1, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
             if (HastadateTimePicker1.Value.Date < DesdedateTimePicker.Value.Date)
-                errorProvider.SetError(DesdedateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(DesdedateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }

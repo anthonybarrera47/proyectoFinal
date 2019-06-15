@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace ProyectoFinal.Entidades
     public class Pesadas
     {
         [Key]
-        public int PesadasID { get; set; }
+        public int PesadaID { get; set; }
         public int ProductorID { get; set; }
         public int TipoArrozID { get; set; }
         public int FactoriaID { get; set; }
@@ -27,7 +28,7 @@ namespace ProyectoFinal.Entidades
         public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
             ,decimal TotalKiloGramos,decimal TotalSacos,decimal TotalPagar,List<PesadasDetalle> pesadasDetalles)
         {
-            this.PesadasID = PesadaID;
+            this.PesadaID = PesadaID;
             this.ProductorID = ProductorId;
             this.TipoArrozID = TipoArrozId;
             this.FactoriaID = FactoriaId;
@@ -41,7 +42,7 @@ namespace ProyectoFinal.Entidades
         }
         public Pesadas()
         {
-            PesadasID = 0;
+            PesadaID = 0;
             ProductorID = 0;
             TipoArrozID = 0;
             FactoriaID = 0;

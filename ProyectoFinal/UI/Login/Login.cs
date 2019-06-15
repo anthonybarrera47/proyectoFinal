@@ -26,16 +26,16 @@ namespace ProyectoFinal.UI.Login
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             if (!Validar())
                 return;
-            Expression<Func<Usuario, bool>> filtro = x => true;
-            List<Usuario> usuario = new List<Usuario>();
+            Expression<Func<Usuarios, bool>> filtro = x => true;
+            List<Usuarios> usuario = new List<Usuarios>();
             var username = UserTextBox.Text;
             var password = PassWordTextBox.Text;
             filtro = x => x.UserName.Equals(username);
             usuario = repositorio.GetList(filtro);
-            Usuario tiposUsuario = new Usuario();
+            Usuarios tiposUsuario = new Usuarios();
             if(usuario.Count > 0)
             {
                 if (usuario.Exists(x => x.UserName.Equals(username)))
@@ -47,9 +47,9 @@ namespace ProyectoFinal.UI.Login
                             PesadasBLL.UsuarioParaLogin(item.Nombre, item.UsuarioID);
                             tiposUsuario = repositorio.Buscar(item.UsuarioID);
                         }
-                        if (tiposUsuario.Tipo.Equals(Constantes.admi))
+                        if (tiposUsuario.TipoUsuario.Equals(Constantes.admi))
                             tipoUsuario = Constantes.admi;
-                        else if (tiposUsuario.Tipo.Equals(Constantes.user))
+                        else if (tiposUsuario.TipoUsuario.Equals(Constantes.user))
                             tipoUsuario = Constantes.user;
                         this.Close();
                         Thread hilo = new Thread(AbrirMainForms);
@@ -59,45 +59,21 @@ namespace ProyectoFinal.UI.Login
                         MessageBox.Show("Contraseña Incorrecto!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    MessageBox.Show("Usuario " + username + " Por Favor Consulte un Administrador", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Usuarios " + username + " Por Favor Consulte un Administrador", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                repositorio.Guardar(new Usuario()
+                repositorio.Guardar(new Usuarios()
                 {
                     Nombre = "Admin",
                     UserName = "root",
-                    Password = "1234",
-                    Tipo = "A",
+                    Password = "root1234",
+                    TipoUsuario = "A",
                     FechaRegistro = DateTime.Now
-                });
+                });;
                 MessageBox.Show("Al parecer es tu primera vez ejecutando el programa," +
-                    "El Username es *Root* y el Password *1234*","AgroSoft",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    "El Username es *root* y el Password *root1234*","AgroSoft",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
-            /*
-             var username = UserTextBox.Text;
-             var password = PassWordTextBox.Text;
-
-             using (Contexto db = new Contexto())
-             {
-                 var usuario = db.usuario.FirstOrDefault(u => u.UserName == username);
-                 if (usuario != null)
-                 {
-                     if (usuario.Password == password)
-                     {
-                         MessageBox.Show("Login Exitoso!!", "Logueo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                         PesadasBLL.UsuarioParaLogin(usuario.Nombre, usuario.UsuarioId);
-                         this.Close();
-                         Thread hilo = new Thread(AbrirMainForms);
-                         hilo.Start();
-
-                     }
-                     else
-                         MessageBox.Show("Login Erroneo!!", "Logueo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-                 else
-                     MessageBox.Show("Login Erroneo el usuario " + username + " No existe ", "Logueo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             }*/
         }
         private void AbrirMainForms()
         {
@@ -115,6 +91,12 @@ namespace ProyectoFinal.UI.Login
             if (string.IsNullOrWhiteSpace(PassWordTextBox.Text))
             {
                 errorProvider.SetError(PassWordTextBox, "Este Campo Esta vacio");
+                PassWordTextBox.Focus();
+                paso = false;
+            }
+            if(PassWordTextBox.TextLength<8)
+            {
+                errorProvider.SetError(PassWordTextBox, "Las contraseñas son mayor o igual a 8 caracteres");
                 PassWordTextBox.Focus();
                 paso = false;
             }

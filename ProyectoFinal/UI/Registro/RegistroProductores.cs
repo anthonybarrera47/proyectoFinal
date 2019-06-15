@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -50,6 +51,7 @@ namespace ProyectoFinal.UI.Registro
             productores.Telefono = TelefonomaskedTextBox.Text;
             productores.Cedula = CedulaMasketTextBox.Text;
             productores.FechaNacimiento = FechaNacimientodateTimePicker.Value;
+            productores.FechaRegistro = DateTime.Now;
             return productores;
         }
         private void LlenaCampo(Productores productores)

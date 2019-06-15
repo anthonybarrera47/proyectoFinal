@@ -28,5 +28,10 @@ namespace ProyectoFinal.UI.Reportes
             FactoriacrystalReportViewer.ReportSource = reporteDeFactoria;
             FactoriacrystalReportViewer.Refresh();
         }
+
+        private void ReportesDeFactoria_Load(object sender, EventArgs e)
+        {
+            FactoriacrystalReportViewer_Load(sender, e);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace ProyectoFinal.DAL
                 e.Handled = true;
             }
         }
-        //Este metodo Valida El TextBox para que este solo acepte numeros enteros efectivo a la hora de consultas por ID.
+        //Este metodo Valida El TextBox para que este solo acepte numeros enteros efectivo a la hora de consultas por PesadaDetalleID.
         public static void ValidarSoloNumeros(object sender,KeyPressEventArgs e)
         {
             //Para obligar a que sólo se introduzcan números

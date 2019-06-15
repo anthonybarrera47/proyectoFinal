@@ -20,7 +20,7 @@ namespace ProyectoFinal.BLL.Tests
             {
                 
                 Direccion = "Las Guaranas",
-                Fecha = DateTime.Now,
+                FechaRegistro = DateTime.Now,
                 Nombre = "Comercial Herrera",
                 Telefono = "829-111-1111"
             };

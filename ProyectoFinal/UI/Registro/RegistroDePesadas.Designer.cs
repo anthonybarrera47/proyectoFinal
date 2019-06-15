@@ -104,9 +104,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(477, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 17);
+            this.label3.Size = new System.Drawing.Size(87, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Tipo Arroz";
+            this.label3.Text = "TipoArroz ID";
             // 
             // label4
             // 
@@ -294,6 +294,7 @@
             this.DetalledataGridView.Location = new System.Drawing.Point(16, 82);
             this.DetalledataGridView.Name = "DetalledataGridView";
             this.DetalledataGridView.ReadOnly = true;
+            this.DetalledataGridView.RowHeadersWidth = 51;
             this.DetalledataGridView.RowTemplate.Height = 24;
             this.DetalledataGridView.Size = new System.Drawing.Size(848, 500);
             this.DetalledataGridView.TabIndex = 36;
@@ -530,6 +531,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "RegistroDePesadas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistroDePesadas";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

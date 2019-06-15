@@ -51,6 +51,7 @@
             this.Controls.Add(this.ProductorescrystalReportViewer1);
             this.Name = "ReporteDeProductor";
             this.Text = "Reporte De Productor | AgroSoft";
+            this.Load += new System.EventHandler(this.ReporteDeProductor_Load);
             this.ResumeLayout(false);
 
         }

@@ -39,7 +39,7 @@ namespace ProyectoFinal.UI.Consulta
                     case 0: //Todo
                         filtro = x => true;
                         break;
-                    case 1: // ID
+                    case 1: // PesadaDetalleID
                         if (!Validar())
                             return;
                         int id = Convert.ToInt32(CriteriotextBox.Text);
@@ -124,7 +124,7 @@ namespace ProyectoFinal.UI.Consulta
         private void HastadateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker.Value.Date)
-                errorProvider.SetError(HastadateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(HastadateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }

@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 namespace ProyectoFinal.Entidades
 {
 
-    public class Usuario
+    public class Usuarios
     {
         [Key]
         public int UsuarioID { get; set; }
         public string UserName { get; set; }
         public String Nombre { get; set; }
         public String Password { get; set; }
-        public String Tipo { get; set; }
+        public String TipoUsuario { get; set; }
         public DateTime FechaRegistro { get; set; }
 
-        public Usuario()
+        public Usuarios()
         {
             UsuarioID = 0;
             UserName = string.Empty;
             Nombre = string.Empty;
             Password = string.Empty;
-            Tipo = string.Empty;
+            TipoUsuario = string.Empty;
             FechaRegistro = DateTime.Now;
         }
 
-        public Usuario(int usuarioId, string userName, string nombre, string password, string tipo, DateTime fechaRegistro)
+        public Usuarios(int usuarioId, string userName, string nombre, string password, string tipo, DateTime fechaRegistro)
         {
             UsuarioID = usuarioId;
             UserName = userName;
             Nombre = nombre;
             Password = password;
-            Tipo = tipo;
+            TipoUsuario = tipo;
             FechaRegistro = fechaRegistro;
         }
     }

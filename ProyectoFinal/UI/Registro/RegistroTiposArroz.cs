@@ -83,7 +83,7 @@ namespace ProyectoFinal.UI.Registro
             {
                     if (!ExisteEnLaBaseDeDatos())
                     {
-                        MessageBox.Show("No Puedes Modificar un Tipo De Arroz Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No Puedes Modificar un TipoUsuario De Arroz Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     paso = repositorio.Modificar(tiposArroz);
@@ -96,7 +96,7 @@ namespace ProyectoFinal.UI.Registro
             }
             if (paso)
             {
-                MessageBox.Show("Tipo De Arroz Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("TipoUsuario De Arroz Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
@@ -114,23 +114,23 @@ namespace ProyectoFinal.UI.Registro
             }*/
             if(TipoArrozIdcomboBox.Text.Equals(string.Empty))
             {
-                MessageBox.Show("Para Eliminar Debe Buscar algun Tipo de Arroz", "AgroSoft",
+                MessageBox.Show("Para Eliminar Debe Buscar algun TipoUsuario de Arroz", "AgroSoft",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            var respuesta = MessageBox.Show("¿Va a Eliminar este Tipo de Arroz", "AgroSoft"
+            var respuesta = MessageBox.Show("¿Va a Eliminar este TipoUsuario de Arroz", "AgroSoft"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(respuesta==DialogResult.Yes)
             {
                 if(KilostextBox.Text != Convert.ToString("0"))
                 {
-                    MessageBox.Show("Este Tipo de Arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Este TipoUsuario de Arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 if (repositorio.Eliminar(Convert.ToInt32(TipoArrozIdcomboBox.Text)))
                 {
                     Limpiar();
-                    MessageBox.Show("Tipo De Arroz Eliminado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("TipoUsuario De Arroz Eliminado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LlenarComboBox();
 
                 }
@@ -159,10 +159,10 @@ namespace ProyectoFinal.UI.Registro
              { 
                  errorProvider.Clear();
                  LlenaCampo(tiposArroz);
-                 MessageBox.Show("Tipo De Arroz Encontrado!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 MessageBox.Show("TipoUsuario De Arroz Encontrado!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
              }
              else
-                 MessageBox.Show("Tipo De Arroz Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 MessageBox.Show("TipoUsuario De Arroz Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }*/
     }
 }

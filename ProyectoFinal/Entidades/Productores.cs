@@ -15,7 +15,7 @@ namespace ProyectoFinal.Entidades
         public String Telefono { get; set; }
         public String Cedula { get; set; }
         public DateTime FechaNacimiento { get; set; }
-
+        public DateTime FechaRegistro { get; set; }
 
         public Productores()
         {

@@ -10,7 +10,7 @@ namespace ProyectoFinal.Entidades
     public class PesadasDetalle
     {
         [Key]
-        public int ID { get; set; }
+        public int PesadaDetalleID { get; set; }
         public int PesadasID { get; set; }
         public int TipoArrozID { get; set; }
         public decimal Kilos { get; set; }
@@ -19,7 +19,7 @@ namespace ProyectoFinal.Entidades
 
         public PesadasDetalle()
         {
-            ID = 0;
+            PesadaDetalleID = 0;
             PesadasID = 0;
             TipoArrozID = 0;
             Kilos = 0;
@@ -28,7 +28,7 @@ namespace ProyectoFinal.Entidades
 
         public PesadasDetalle(int ID, int pesadaID,int TipoArrozId, decimal kilos, decimal cantidadDeSacos)
         {
-            this.ID = ID;
+            this.PesadaDetalleID = ID;
             this.PesadasID = pesadaID;
             this.TipoArrozID = TipoArrozId;
             Kilos = kilos;

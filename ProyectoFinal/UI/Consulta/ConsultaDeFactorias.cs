@@ -64,7 +64,7 @@ namespace ProyectoFinal.UI.Consulta
             }
             if (FiltracheckBox.Checked == true)
             {
-                ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.Fecha.Date >= DesdedateTimePicker.Value.Date && x.Fecha.Date <= HastadateTimePicker1.Value.Date).ToList();
+                ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();
                 FactoriasdataGridView.DataSource = null;
                 FactoriasdataGridView.DataSource = ListaFactorias;
             }
@@ -115,11 +115,11 @@ namespace ProyectoFinal.UI.Consulta
         private void ValidarFecha()
         {
             if (DesdedateTimePicker.Value.Date > HastadateTimePicker1.Value.Date)
-                errorProvider.SetError(HastadateTimePicker1, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(HastadateTimePicker1, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else 
                 errorProvider.Clear();
             if (HastadateTimePicker1.Value.Date < DesdedateTimePicker.Value.Date)
-                errorProvider.SetError(DesdedateTimePicker, "La Fecha del campo Desde no puede ser mayor que la del Campo Hasta");
+                errorProvider.SetError(DesdedateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
         }

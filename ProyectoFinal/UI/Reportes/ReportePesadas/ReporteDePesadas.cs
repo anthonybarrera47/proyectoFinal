@@ -33,5 +33,10 @@ namespace ProyectoFinal.UI.Reportes
             PesadascrystalReportViewer.ReportSource = reporteDePesada;
             PesadascrystalReportViewer.Refresh();
         }
+
+        private void ReporteDePesadas_Load(object sender, EventArgs e)
+        {
+            PesadascrystalReportViewer_Load(sender, e);
+        }
     }
 }

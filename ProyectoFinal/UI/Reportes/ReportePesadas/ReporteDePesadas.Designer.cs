@@ -51,6 +51,7 @@
             this.Controls.Add(this.PesadascrystalReportViewer);
             this.Name = "ReporteDePesadas";
             this.Text = "Reporte De Pesadas | AgroSoft";
+            this.Load += new System.EventHandler(this.ReporteDePesadas_Load);
             this.ResumeLayout(false);
 
         }

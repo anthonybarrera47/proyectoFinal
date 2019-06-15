@@ -53,7 +53,7 @@
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
-            "ID",
+            "PesadaDetalleID",
             "Descripcion",
             "Quintales"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(21, 41);

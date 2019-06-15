@@ -51,6 +51,7 @@
             this.Controls.Add(this.FactoriacrystalReportViewer);
             this.Name = "ReportesDeFactoria";
             this.Text = "ReportesDeFactoria";
+            this.Load += new System.EventHandler(this.ReportesDeFactoria_Load);
             this.ResumeLayout(false);
 
         }

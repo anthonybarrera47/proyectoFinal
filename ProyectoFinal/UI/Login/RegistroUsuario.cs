@@ -18,7 +18,7 @@ namespace ProyectoFinal.UI.Login
         }
         private void LlenarComboBox()
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             UsuarioIdcomboBox.Items.Clear();
             foreach(var item in repositorio.GetList(x=>true))
             {
@@ -44,9 +44,9 @@ namespace ProyectoFinal.UI.Login
                 tipos = Constantes.user;
             return tipos;
         }
-        private Usuario LlenaClase()
+        private Usuarios LlenaClase()
         {
-            Usuario usuario = new Usuario();
+            Usuarios usuario = new Usuarios();
             if (UsuarioIdcomboBox.Text.Equals(string.Empty))
                 usuario.UsuarioID = 0;
             else
@@ -54,15 +54,15 @@ namespace ProyectoFinal.UI.Login
             usuario.UserName = NombreUserTextBox.Text;
             usuario.Nombre = NombreTextBox.Text;
             usuario.Password = PasswordTextBox.Text;
-            usuario.Tipo = Checke();
+            usuario.TipoUsuario = Checke();
             usuario.FechaRegistro = FechaRegistrodateTimePicker.Value;
             return usuario;
         }
         private bool Validar()
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
-            List<Usuario> usuario = new List<Usuario>();
-            Expression<Func<Usuario, bool>> filtro = x => true;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            List<Usuarios> usuario = new List<Usuarios>();
+            Expression<Func<Usuarios, bool>> filtro = x => true;
             var username = NombreUserTextBox.Text;
             filtro = x => x.UserName.Equals(username);
             usuario = repositorio.GetList(filtro);
@@ -70,7 +70,7 @@ namespace ProyectoFinal.UI.Login
             bool paso = true;
             if (usuario.Exists(x=>username.Equals(username)))
             {
-                errorProvider.SetError(NombreUserTextBox,"Nombre De Usuario Existente!!");
+                errorProvider.SetError(NombreUserTextBox,"Nombre De Usuarios Existente!!");
                 paso = false;
             }
             if(String.IsNullOrWhiteSpace(NombreTextBox.Text))
@@ -89,6 +89,11 @@ namespace ProyectoFinal.UI.Login
                 errorProvider.SetError(PasswordTextBox, "Este Campo Esta Vacio o Contiene Espacios En Blancos");
                 paso = false;
             }
+            if(PasswordTextBox.TextLength<8)
+            {
+                errorProvider.SetError(ConfirmarPasswordTextBox, "La Contraseña debe tener mas de 8 caracteres");
+                paso = false;
+            }
             if(!PasswordTextBox.Text.Equals(ConfirmarPasswordTextBox.Text))
             {
                 errorProvider.SetError(ConfirmarPasswordTextBox, "Las Contraseñas Deben ser Iguales");
@@ -102,16 +107,16 @@ namespace ProyectoFinal.UI.Login
         }
         private bool ExisteEnLaBaseDeDatos()
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
-            Usuario usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
             return (usuario != null);
         }
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             if (!Validar())
                 return;
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
-            Usuario usuario;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            Usuarios usuario;
             bool paso = false;
             usuario = LlenaClase();
             if (UsuarioIdcomboBox.Text == string.Empty)
@@ -120,7 +125,7 @@ namespace ProyectoFinal.UI.Login
             {
                 if (!ExisteEnLaBaseDeDatos())
                 {
-                    MessageBox.Show("No Puedes Modificar un Usuario Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No Puedes Modificar un Usuarios Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 paso = repositorio.Modificar(usuario);
@@ -133,7 +138,7 @@ namespace ProyectoFinal.UI.Login
             }
             if (paso)
             {
-                MessageBox.Show("Usuario Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuarios Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UsuarioIdcomboBox.DataSource = null;
                 LlenarComboBox();
                 Limpiar();
@@ -141,11 +146,11 @@ namespace ProyectoFinal.UI.Login
             else
                 MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        //Este Es el Metodo Buscar utilizado manejando un evento de cambio de Index En el ComboBox De los ID
+        //Este Es el Metodo Buscar utilizado manejando un evento de cambio de Index En el ComboBox De los PesadaDetalleID
         private void UsuarioIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
-            Usuario usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
             NombreTextBox.Text = usuario.Nombre;
             NombreUserTextBox.Text = usuario.UserName;
             PasswordTextBox.Text = usuario.Password;
@@ -160,7 +165,7 @@ namespace ProyectoFinal.UI.Login
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            RepositorioBase<Usuario> repositorio = new RepositorioBase<Usuario>();
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             errorProvider.Clear();
             int.TryParse(UsuarioIdcomboBox.Text, out int ID);
             if (!ExisteEnLaBaseDeDatos())
