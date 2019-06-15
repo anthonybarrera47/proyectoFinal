@@ -95,5 +95,19 @@ namespace ProyectoFinal.DAL
             }
             return paso;
         }
+        public static string SHA1(string password)
+        {
+            using (SHA1Managed SHa1 = new SHA1Managed())
+            {
+                var hash = SHa1.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte item in hash)
+                {
+                    sb.Append(item.ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
     }
 }

@@ -53,7 +53,7 @@ namespace ProyectoFinal.UI.Login
                 usuario.UsuarioID = Convert.ToInt32(UsuarioIdcomboBox.Text);
             usuario.UserName = NombreUserTextBox.Text;
             usuario.Nombre = NombreTextBox.Text;
-            usuario.Password = PasswordTextBox.Text;
+            usuario.Password = Constantes.SHA1(PasswordTextBox.Text);
             usuario.TipoUsuario = Checke();
             usuario.FechaRegistro = FechaRegistrodateTimePicker.Value;
             return usuario;

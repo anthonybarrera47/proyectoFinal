@@ -40,7 +40,7 @@ namespace ProyectoFinal.UI.Login
             {
                 if (usuario.Exists(x => x.UserName.Equals(username)))
                 {
-                    if (usuario.Exists(x => x.Password.Equals(password)))
+                    if (usuario.Exists(x => x.Password.Equals(Constantes.SHA1(password))))
                     {
                         foreach (var item in repositorio.GetList(x => x.UserName.Equals(username)))
                         {
@@ -67,7 +67,7 @@ namespace ProyectoFinal.UI.Login
                 {
                     Nombre = "Admin",
                     UserName = "root",
-                    Password = "root1234",
+                    Password = Constantes.SHA1("root1234"),
                     TipoUsuario = "A",
                     FechaRegistro = DateTime.Now
                 });;
@@ -107,20 +107,7 @@ namespace ProyectoFinal.UI.Login
             UserTextBox.Text = string.Empty;
             PassWordTextBox.Text = string.Empty;
         }   
-        public static string SHA1(string password)
-        {
-            using (SHA1Managed SHa1 = new SHA1Managed())
-            {
-                var hash = SHa1.ComputeHash(Encoding.UTF8.GetBytes(password));
-                var sb = new StringBuilder(hash.Length * 2);
-
-                foreach(byte item in hash)
-                {
-                    sb.Append(item.ToString("X2"));
-                }
-                return sb.ToString();
-            }
-        }
+        
 
         private void PassWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
