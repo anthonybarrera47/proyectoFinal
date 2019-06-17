@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.UI.Login;
+using ProyectoFinal.UI.Registro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace ProyectoFinal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            //Application.Run(new Login());
+            Application.Run(new RegistroDePesadas());
             //Application.Run(new VentanaPrincipal());
         }
     }

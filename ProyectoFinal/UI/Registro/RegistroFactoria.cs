@@ -16,51 +16,32 @@ namespace ProyectoFinal.UI.Registro
 {
     public partial class RegistroFactoria : Form
     {
-        internal RepositorioBase<Factoria> repositorio;
         public RegistroFactoria()
         {
-
-            InitializeComponent();
-            LlenaComboBox();
-            
-        }
-        private void LlenaComboBox()
-        {
-            FactoriaIdcomboBox.Items.Clear();
-            foreach (var item in FactoriaBLL.GetList(x => true))
-            {
-                FactoriaIdcomboBox.Items.Add(item.FactoriaID);
-            }
+            InitializeComponent(); 
         }
         private void Limpiar()
         {
             ErrorProvider.Clear();
-            FactoriaIdcomboBox.Text = string.Empty;
+            FactoriaIDnumericUpDown.Value = 0;
             NombreTextBox.Text = string.Empty;
             DireccionTextBox.Text = string.Empty;
             TelefonoTextBox.Text = string.Empty;
             FechadateTimePicker.Value = DateTime.Now;
-            LlenaComboBox();
         }
-
         private Factoria LlenaClase()
         {
-            Factoria factoria = new Factoria();
-
-            if (FactoriaIdcomboBox.Text.Equals(string.Empty))
-                factoria.FactoriaID = 0;
-            else
-                factoria.FactoriaID = Convert.ToInt32(FactoriaIdcomboBox.Text);
+            Factoria factoria = new Factoria();       
+            factoria.FactoriaID = 0;
             factoria.Nombre = NombreTextBox.Text;
             factoria.Direccion = DireccionTextBox.Text;
             factoria.Telefono = TelefonoTextBox.Text;
             factoria.FechaRegistro = FechadateTimePicker.Value;
-
             return factoria;
         }
         private void LlenaCampo(Factoria factoria)
         {
-            FactoriaIdcomboBox.Text = Convert.ToString(factoria.FactoriaID);
+            FactoriaIDnumericUpDown.Value = factoria.FactoriaID;
             NombreTextBox.Text = factoria.Nombre;
             DireccionTextBox.Text = factoria.Direccion;
             TelefonoTextBox.Text = factoria.Telefono;
@@ -93,27 +74,24 @@ namespace ProyectoFinal.UI.Registro
         }
         private bool ExisteEnLaBaseDeDatos()
         {
-            repositorio = new RepositorioBase<Factoria>();
-            //Factoria factoria = repositorio.Buscar((int)FactoriaIDNumericUpDown.Value);
-            Factoria factoria = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdcomboBox.Text));
+            RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
+            Factoria factoria = repositorio.Buscar((int)FactoriaIDnumericUpDown.Value);
             return (factoria != null);
         }
         private void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
-
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            Factoria factoria;
-            repositorio = new RepositorioBase<Factoria>();
-            bool paso;
             if (!Validar())
                 return;
+            Factoria factoria;
+            RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
+            bool paso;
             factoria = LlenaClase();
-            if (FactoriaIdcomboBox.Text.Equals(string.Empty))
-                //paso = repositorio.Guardar(factoria);
-                paso = FactoriaBLL.Guardar(factoria);
+            if (FactoriaIDnumericUpDown.Value==0)
+                paso = repositorio.Guardar(factoria);    
             else
             {
                 if (!ExisteEnLaBaseDeDatos())
@@ -124,8 +102,8 @@ namespace ProyectoFinal.UI.Registro
                 paso = FactoriaBLL.Modificar(factoria);
                 if (paso)
                 {
-                    MessageBox.Show("Factoria Modificada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
+                    MessageBox.Show("Factoria Modificada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -137,55 +115,40 @@ namespace ProyectoFinal.UI.Registro
             else
                 MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            repositorio = new RepositorioBase<Factoria>();
+            RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
-            int.TryParse(FactoriaIdcomboBox.Text, out int ID);
+            int.TryParse(FactoriaIDnumericUpDown.Text, out int ID);
 
             if (!ExisteEnLaBaseDeDatos())
             {
-                ErrorProvider.SetError(FactoriaIdcomboBox, "No Puede Borrar Una Factoria Inexistente");
+                ErrorProvider.SetError(FactoriaIDnumericUpDown, "No Puede Borrar Una Factoria Inexistente");
                 return;
             }
-            //if(repositorio.Eliminar(PesadaDetalleID))
-            if (FactoriaBLL.Eliminar(ID))
+            if(repositorio.Eliminar(ID))
             {
                 Limpiar();
                 MessageBox.Show("Factoria Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        /*
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            repositorio = new RepositorioBase<Factoria>();
-            ErrorProvider.Clear();
-            int PesadaDetalleID;
-            int.TryParse(FactoriaIDNumericUpDown.Text, out PesadaDetalleID);
-            Factoria factoria = new Factoria();
-
-            //factoria = repositorio.Buscar(PesadaDetalleID);
-            factoria = FactoriaBLL.Buscar(PesadaDetalleID);
+            RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
+            ErrorProvider.Clear(); 
+            int.TryParse(FactoriaIDnumericUpDown.Text, out int ID);
+            Factoria factoria = repositorio.Buscar(ID);
             if (factoria != null)
             {
                 ErrorProvider.Clear();
                 LlenaCampo(factoria);
-                MessageBox.Show("Factoria Encontrada!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Factoria no Encontrada!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }*/
-        private void FactoriaIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Factoria factoria = FactoriaBLL.Buscar(Convert.ToInt32(FactoriaIdcomboBox.Text));
-            LlenaCampo(factoria);
         }
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
         }
-
-       
     }
 }

@@ -39,8 +39,7 @@ namespace ProyectoFinal.BLL
             {
                 if(db.PesadaDetalle.Add(pesadasDetalle)!=null)
                 {
-                    db.SaveChanges();
-                    paso = true;
+                    paso = db.SaveChanges() >0 ;
                 }
             }catch(Exception)
             { throw; }
@@ -55,7 +54,6 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                
                 var pesadaDetalle = Buscar(pesadas.PesadaID);
                 db.Entry(pesadas).State = EntityState.Modified;
                 ArreglarDetalle(pesadaDetalle);
@@ -74,10 +72,8 @@ namespace ProyectoFinal.BLL
                     }
                 }
                 if(pas == false)
-                {
-                    if (db.SaveChanges() > 0)
-                        paso = true;
-                }
+                    paso = (db.SaveChanges() > 0);
+              
                 EnviarKilaje(Buscar(pesadas.PesadaID).PesadasDetalles);
             }catch(Exception)
             { throw; }
@@ -176,8 +172,7 @@ namespace ProyectoFinal.BLL
                 {
                     item.Kilos = detalle.Kilos;
                     item.CantidadDeSacos = detalle.CantidadDeSacos;
-                }
-                    
+                }   
             }
             return list;
         }

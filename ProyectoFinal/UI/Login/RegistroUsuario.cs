@@ -94,7 +94,7 @@ namespace ProyectoFinal.UI.Login
                 errorProvider.SetError(ConfirmarPasswordTextBox, "La Contraseña debe tener mas de 8 caracteres");
                 paso = false;
             }
-            if(!PasswordTextBox.Text.Equals(ConfirmarPasswordTextBox.Text))
+            if(!Constantes.SHA1(PasswordTextBox.Text).Equals(Constantes.SHA1(ConfirmarPasswordTextBox.Text)))
             {
                 errorProvider.SetError(ConfirmarPasswordTextBox, "Las Contraseñas Deben ser Iguales");
                 paso = false;
@@ -157,7 +157,6 @@ namespace ProyectoFinal.UI.Login
             ConfirmarPasswordTextBox.Text = usuario.Password;
             FechaRegistrodateTimePicker.Value = usuario.FechaRegistro;
         }
-
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);

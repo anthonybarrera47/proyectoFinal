@@ -41,16 +41,18 @@
             this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.Telefono = new System.Windows.Forms.Label();
             this.TelefonoTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.FactoriaIdcomboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.FactoriaIDnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BuscarButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FactoriaIDnumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 17);
+            this.label1.Location = new System.Drawing.Point(12, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
@@ -60,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 50);
+            this.label2.Location = new System.Drawing.Point(12, 55);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
@@ -70,7 +72,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 81);
+            this.label3.Location = new System.Drawing.Point(12, 86);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 17);
@@ -79,7 +81,7 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(92, 47);
+            this.NombreTextBox.Location = new System.Drawing.Point(85, 52);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(171, 22);
             this.NombreTextBox.TabIndex = 1;
@@ -87,7 +89,7 @@
             // 
             // DireccionTextBox
             // 
-            this.DireccionTextBox.Location = new System.Drawing.Point(92, 78);
+            this.DireccionTextBox.Location = new System.Drawing.Point(85, 83);
             this.DireccionTextBox.Name = "DireccionTextBox";
             this.DireccionTextBox.Size = new System.Drawing.Size(171, 22);
             this.DireccionTextBox.TabIndex = 2;
@@ -95,7 +97,7 @@
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(211, 172);
+            this.EliminarButton.Location = new System.Drawing.Point(204, 177);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 7;
@@ -105,7 +107,7 @@
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(120, 172);
+            this.GuardarButton.Location = new System.Drawing.Point(113, 177);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
             this.GuardarButton.TabIndex = 6;
@@ -115,7 +117,7 @@
             // NuevoButton
             // 
             this.NuevoButton.Image = global::ProyectoFinal.Properties.Resources.if_manilla_folder_new_23456;
-            this.NuevoButton.Location = new System.Drawing.Point(22, 172);
+            this.NuevoButton.Location = new System.Drawing.Point(15, 177);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(52, 45);
             this.NuevoButton.TabIndex = 5;
@@ -129,7 +131,7 @@
             // Telefono
             // 
             this.Telefono.AutoSize = true;
-            this.Telefono.Location = new System.Drawing.Point(19, 114);
+            this.Telefono.Location = new System.Drawing.Point(12, 119);
             this.Telefono.Margin = new System.Windows.Forms.Padding(3);
             this.Telefono.Name = "Telefono";
             this.Telefono.Size = new System.Drawing.Size(64, 17);
@@ -138,26 +140,16 @@
             // 
             // TelefonoTextBox
             // 
-            this.TelefonoTextBox.Location = new System.Drawing.Point(92, 109);
+            this.TelefonoTextBox.Location = new System.Drawing.Point(85, 114);
             this.TelefonoTextBox.Mask = "000-000-0000";
             this.TelefonoTextBox.Name = "TelefonoTextBox";
             this.TelefonoTextBox.Size = new System.Drawing.Size(171, 22);
             this.TelefonoTextBox.TabIndex = 3;
             // 
-            // FactoriaIdcomboBox
-            // 
-            this.FactoriaIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FactoriaIdcomboBox.FormattingEnabled = true;
-            this.FactoriaIdcomboBox.Location = new System.Drawing.Point(92, 14);
-            this.FactoriaIdcomboBox.Name = "FactoriaIdcomboBox";
-            this.FactoriaIdcomboBox.Size = new System.Drawing.Size(171, 24);
-            this.FactoriaIdcomboBox.TabIndex = 0;
-            this.FactoriaIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.FactoriaIdcomboBox_SelectedIndexChanged);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 137);
+            this.label4.Location = new System.Drawing.Point(12, 142);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 17);
@@ -168,19 +160,37 @@
             // 
             this.FechadateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechadateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechadateTimePicker.Location = new System.Drawing.Point(92, 137);
+            this.FechadateTimePicker.Location = new System.Drawing.Point(85, 142);
             this.FechadateTimePicker.Name = "FechadateTimePicker";
             this.FechadateTimePicker.Size = new System.Drawing.Size(171, 22);
             this.FechadateTimePicker.TabIndex = 4;
+            // 
+            // FactoriaIDnumericUpDown
+            // 
+            this.FactoriaIDnumericUpDown.Location = new System.Drawing.Point(85, 20);
+            this.FactoriaIDnumericUpDown.Name = "FactoriaIDnumericUpDown";
+            this.FactoriaIDnumericUpDown.Size = new System.Drawing.Size(120, 22);
+            this.FactoriaIDnumericUpDown.TabIndex = 14;
+            // 
+            // BuscarButton
+            // 
+            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.if_search_1730951;
+            this.BuscarButton.Location = new System.Drawing.Point(211, 4);
+            this.BuscarButton.Name = "BuscarButton";
+            this.BuscarButton.Size = new System.Drawing.Size(45, 42);
+            this.BuscarButton.TabIndex = 15;
+            this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // RegistroFactoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 238);
+            this.ClientSize = new System.Drawing.Size(291, 235);
+            this.Controls.Add(this.BuscarButton);
+            this.Controls.Add(this.FactoriaIDnumericUpDown);
             this.Controls.Add(this.FechadateTimePicker);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.FactoriaIdcomboBox);
             this.Controls.Add(this.TelefonoTextBox);
             this.Controls.Add(this.Telefono);
             this.Controls.Add(this.EliminarButton);
@@ -197,6 +207,7 @@
             this.Name = "RegistroFactoria";
             this.Text = "Registro De Factorias | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FactoriaIDnumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,8 +225,9 @@
         private System.Windows.Forms.ErrorProvider ErrorProvider;
         private System.Windows.Forms.Label Telefono;
         private System.Windows.Forms.MaskedTextBox TelefonoTextBox;
-        private System.Windows.Forms.ComboBox FactoriaIdcomboBox;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button BuscarButton;
+        private System.Windows.Forms.NumericUpDown FactoriaIDnumericUpDown;
     }
 }

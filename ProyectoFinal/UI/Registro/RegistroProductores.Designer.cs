@@ -43,8 +43,10 @@
             this.CedulaMasketTextBox = new System.Windows.Forms.MaskedTextBox();
             this.TelefonomaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.FechaNacimientodateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.ProductorIdcomboBox = new System.Windows.Forms.ComboBox();
+            this.BuscarButton = new System.Windows.Forms.Button();
+            this.ProductorIDnumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductorIDnumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider
@@ -54,7 +56,7 @@
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(206, 178);
+            this.EliminarButton.Location = new System.Drawing.Point(247, 178);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 7;
@@ -64,7 +66,7 @@
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(115, 178);
+            this.GuardarButton.Location = new System.Drawing.Point(132, 178);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
             this.GuardarButton.TabIndex = 6;
@@ -128,7 +130,7 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(112, 63);
+            this.NombreTextBox.Location = new System.Drawing.Point(112, 61);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(191, 22);
             this.NombreTextBox.TabIndex = 1;
@@ -136,7 +138,7 @@
             // 
             // CedulaMasketTextBox
             // 
-            this.CedulaMasketTextBox.Location = new System.Drawing.Point(112, 92);
+            this.CedulaMasketTextBox.Location = new System.Drawing.Point(112, 90);
             this.CedulaMasketTextBox.Mask = "000-0000000-0";
             this.CedulaMasketTextBox.Name = "CedulaMasketTextBox";
             this.CedulaMasketTextBox.Size = new System.Drawing.Size(191, 22);
@@ -144,7 +146,7 @@
             // 
             // TelefonomaskedTextBox
             // 
-            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(112, 121);
+            this.TelefonomaskedTextBox.Location = new System.Drawing.Point(112, 119);
             this.TelefonomaskedTextBox.Mask = "000-000-0000";
             this.TelefonomaskedTextBox.Name = "TelefonomaskedTextBox";
             this.TelefonomaskedTextBox.Size = new System.Drawing.Size(191, 22);
@@ -154,27 +156,35 @@
             // 
             this.FechaNacimientodateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechaNacimientodateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(172, 151);
+            this.FechaNacimientodateTimePicker.Location = new System.Drawing.Point(172, 148);
             this.FechaNacimientodateTimePicker.Name = "FechaNacimientodateTimePicker";
             this.FechaNacimientodateTimePicker.Size = new System.Drawing.Size(131, 22);
             this.FechaNacimientodateTimePicker.TabIndex = 4;
             // 
-            // ProductorIdcomboBox
+            // BuscarButton
             // 
-            this.ProductorIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ProductorIdcomboBox.FormattingEnabled = true;
-            this.ProductorIdcomboBox.Location = new System.Drawing.Point(112, 32);
-            this.ProductorIdcomboBox.Name = "ProductorIdcomboBox";
-            this.ProductorIdcomboBox.Size = new System.Drawing.Size(191, 24);
-            this.ProductorIdcomboBox.TabIndex = 0;
-            this.ProductorIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.ProductorIdcomboBox_SelectedIndexChanged);
+            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.if_search_1730951;
+            this.BuscarButton.Location = new System.Drawing.Point(247, 18);
+            this.BuscarButton.Name = "BuscarButton";
+            this.BuscarButton.Size = new System.Drawing.Size(56, 37);
+            this.BuscarButton.TabIndex = 20;
+            this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
+            // 
+            // ProductorIDnumericUpDown
+            // 
+            this.ProductorIDnumericUpDown.Location = new System.Drawing.Point(112, 32);
+            this.ProductorIDnumericUpDown.Name = "ProductorIDnumericUpDown";
+            this.ProductorIDnumericUpDown.Size = new System.Drawing.Size(129, 22);
+            this.ProductorIDnumericUpDown.TabIndex = 21;
             // 
             // RegistroProductores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 250);
-            this.Controls.Add(this.ProductorIdcomboBox);
+            this.Controls.Add(this.ProductorIDnumericUpDown);
+            this.Controls.Add(this.BuscarButton);
             this.Controls.Add(this.FechaNacimientodateTimePicker);
             this.Controls.Add(this.TelefonomaskedTextBox);
             this.Controls.Add(this.CedulaMasketTextBox);
@@ -193,6 +203,7 @@
             this.Name = "RegistroProductores";
             this.Text = "Registro De Productores | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductorIDnumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,6 +224,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker FechaNacimientodateTimePicker;
-        private System.Windows.Forms.ComboBox ProductorIdcomboBox;
+        private System.Windows.Forms.NumericUpDown ProductorIDnumericUpDown;
+        private System.Windows.Forms.Button BuscarButton;
     }
 }

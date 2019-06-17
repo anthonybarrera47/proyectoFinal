@@ -39,16 +39,18 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.KilostextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TipoArrozIdcomboBox = new System.Windows.Forms.ComboBox();
             this.FechadateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.TipoIDNumericUpdown = new System.Windows.Forms.NumericUpDown();
+            this.BuscarButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TipoIDNumericUpdown)).BeginInit();
             this.SuspendLayout();
             // 
             // EliminarButton
             // 
             this.EliminarButton.Image = global::ProyectoFinal.Properties.Resources.if_1_04_511562;
-            this.EliminarButton.Location = new System.Drawing.Point(197, 142);
+            this.EliminarButton.Location = new System.Drawing.Point(265, 158);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(52, 45);
             this.EliminarButton.TabIndex = 5;
@@ -58,7 +60,7 @@
             // GuardarButton
             // 
             this.GuardarButton.Image = global::ProyectoFinal.Properties.Resources.if_floppy_285657;
-            this.GuardarButton.Location = new System.Drawing.Point(107, 142);
+            this.GuardarButton.Location = new System.Drawing.Point(137, 158);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(52, 45);
             this.GuardarButton.TabIndex = 4;
@@ -68,7 +70,7 @@
             // NuevoButton
             // 
             this.NuevoButton.Image = global::ProyectoFinal.Properties.Resources.if_manilla_folder_new_23456;
-            this.NuevoButton.Location = new System.Drawing.Point(9, 142);
+            this.NuevoButton.Location = new System.Drawing.Point(9, 158);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(52, 45);
             this.NuevoButton.TabIndex = 3;
@@ -78,7 +80,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 21);
+            this.label1.Location = new System.Drawing.Point(17, 31);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
@@ -88,7 +90,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 49);
+            this.label2.Location = new System.Drawing.Point(17, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 17);
@@ -97,9 +99,9 @@
             // 
             // DescripcionTextBox
             // 
-            this.DescripcionTextBox.Location = new System.Drawing.Point(106, 44);
+            this.DescripcionTextBox.Location = new System.Drawing.Point(106, 58);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
-            this.DescripcionTextBox.Size = new System.Drawing.Size(153, 22);
+            this.DescripcionTextBox.Size = new System.Drawing.Size(214, 22);
             this.DescripcionTextBox.TabIndex = 1;
             // 
             // errorProvider
@@ -109,59 +111,67 @@
             // KilostextBox
             // 
             this.KilostextBox.Enabled = false;
-            this.KilostextBox.Location = new System.Drawing.Point(106, 74);
+            this.KilostextBox.Location = new System.Drawing.Point(106, 90);
             this.KilostextBox.Name = "KilostextBox";
             this.KilostextBox.ReadOnly = true;
-            this.KilostextBox.Size = new System.Drawing.Size(153, 22);
+            this.KilostextBox.Size = new System.Drawing.Size(214, 22);
             this.KilostextBox.TabIndex = 19;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 77);
+            this.label3.Location = new System.Drawing.Point(16, 91);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 17);
             this.label3.TabIndex = 18;
             this.label3.Text = "Kilos";
             // 
-            // TipoArrozIdcomboBox
-            // 
-            this.TipoArrozIdcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.TipoArrozIdcomboBox.FormattingEnabled = true;
-            this.TipoArrozIdcomboBox.Location = new System.Drawing.Point(106, 12);
-            this.TipoArrozIdcomboBox.Name = "TipoArrozIdcomboBox";
-            this.TipoArrozIdcomboBox.Size = new System.Drawing.Size(153, 24);
-            this.TipoArrozIdcomboBox.TabIndex = 0;
-            this.TipoArrozIdcomboBox.SelectedIndexChanged += new System.EventHandler(this.TipoArrozIdcomboBox_SelectedIndexChanged);
-            // 
             // FechadateTimePicker
             // 
             this.FechadateTimePicker.CustomFormat = "dd/MM/yyyy";
             this.FechadateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechadateTimePicker.Location = new System.Drawing.Point(154, 104);
+            this.FechadateTimePicker.Location = new System.Drawing.Point(154, 120);
             this.FechadateTimePicker.Name = "FechadateTimePicker";
-            this.FechadateTimePicker.Size = new System.Drawing.Size(105, 22);
+            this.FechadateTimePicker.Size = new System.Drawing.Size(166, 22);
             this.FechadateTimePicker.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 105);
+            this.label4.Location = new System.Drawing.Point(17, 121);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 17);
             this.label4.TabIndex = 21;
             this.label4.Text = "Fecha de Registro";
             // 
+            // TipoIDNumericUpdown
+            // 
+            this.TipoIDNumericUpdown.Location = new System.Drawing.Point(106, 26);
+            this.TipoIDNumericUpdown.Name = "TipoIDNumericUpdown";
+            this.TipoIDNumericUpdown.Size = new System.Drawing.Size(153, 22);
+            this.TipoIDNumericUpdown.TabIndex = 22;
+            // 
+            // BuscarButton
+            // 
+            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.if_search_1730951;
+            this.BuscarButton.Location = new System.Drawing.Point(265, 10);
+            this.BuscarButton.Name = "BuscarButton";
+            this.BuscarButton.Size = new System.Drawing.Size(55, 44);
+            this.BuscarButton.TabIndex = 23;
+            this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
+            // 
             // RegistroTiposArroz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 201);
+            this.ClientSize = new System.Drawing.Size(352, 226);
+            this.Controls.Add(this.BuscarButton);
+            this.Controls.Add(this.TipoIDNumericUpdown);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.FechadateTimePicker);
-            this.Controls.Add(this.TipoArrozIdcomboBox);
             this.Controls.Add(this.KilostextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DescripcionTextBox);
@@ -176,6 +186,7 @@
             this.Name = "RegistroTiposArroz";
             this.Text = "Tipos De Arroz | AgroSoft";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TipoIDNumericUpdown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,8 +203,9 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.TextBox KilostextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox TipoArrozIdcomboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker;
+        private System.Windows.Forms.NumericUpDown TipoIDNumericUpdown;
+        private System.Windows.Forms.Button BuscarButton;
     }
 }

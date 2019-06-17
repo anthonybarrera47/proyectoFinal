@@ -20,33 +20,20 @@ namespace ProyectoFinal.UI.Registro
         public RegistroProductores()
         {
             InitializeComponent();
-            LlenaComboBox();
-        }
-        private void LlenaComboBox()
-        {
-            ProductorIdcomboBox.Items.Clear();
-            foreach (var item in ProductoresBLL.GetList(x => true))
-            {
-                ProductorIdcomboBox.Items.Add(item.ProductorID);
-            }
         }
         private void Limpiar()
         {
             errorProvider.Clear();
-            ProductorIdcomboBox.Text = string.Empty;
+            ProductorIDnumericUpDown.Value = 0;
             NombreTextBox.Text = string.Empty;
             TelefonomaskedTextBox.Text = string.Empty;
             CedulaMasketTextBox.Text = string.Empty;
             FechaNacimientodateTimePicker.Value = DateTime.Now;
-            LlenaComboBox();
         }
         private Productores LlenaClase()
         {
             Productores productores = new Productores();
-            if (ProductorIdcomboBox.Text.Equals(string.Empty))
-                productores.ProductorID = 0;
-            else
-                productores.ProductorID = Convert.ToInt32(ProductorIdcomboBox.Text);
+            productores.ProductorID = (int)ProductorIDnumericUpDown.Value;
             productores.Nombre = NombreTextBox.Text;
             productores.Telefono = TelefonomaskedTextBox.Text;
             productores.Cedula = CedulaMasketTextBox.Text;
@@ -56,7 +43,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private void LlenaCampo(Productores productores)
         {
-            ProductorIdcomboBox.Text = Convert.ToString(productores.ProductorID);
+            ProductorIDnumericUpDown.Value = productores.ProductorID;
             NombreTextBox.Text = productores.Nombre;
             TelefonomaskedTextBox.Text = productores.Telefono;
             CedulaMasketTextBox.Text = productores.Cedula;
@@ -66,12 +53,7 @@ namespace ProyectoFinal.UI.Registro
         {
             bool paso = true;
             errorProvider.Clear();
-            //Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");
-            if(NombreTextBox.Text[0].Equals(" "))
-            {
-                errorProvider.SetError(NombreTextBox, "El Primer Caracter es un espacio en Blanco");
-                paso = false;
-            }
+            //Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");  
             if (String.IsNullOrWhiteSpace(NombreTextBox.Text) )
             {
                 errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio , Ni Debe Contener caracteres!!");
@@ -103,19 +85,21 @@ namespace ProyectoFinal.UI.Registro
         {
             Limpiar();
         }
-
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            Productores productores;
-            bool paso = false;
             if (!Validar())
                 return;
-
-            productores = LlenaClase();
-            if (ProductorIdcomboBox.Text.Equals(string.Empty))
+            bool paso = false;
+            Productores productores = LlenaClase();
+            if (ProductorIDnumericUpDown.Value==0)
                 paso = ProductoresBLL.Guardar(productores);
             else
             {
+                if (!ExisteEnLaBaseDeDatos())
+                {
+                    MessageBox.Show("No puede Modificar un productor Inexistente!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 paso = ProductoresBLL.Modificar(productores);
                 if (paso)
                 {
@@ -132,12 +116,11 @@ namespace ProyectoFinal.UI.Registro
             else
                 MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductorIdcomboBox.Text, out int id);
-            if(ProductorIdcomboBox.Text.Equals(string.Empty))
+            int.TryParse(ProductorIDnumericUpDown.Text, out int id);
+            if(!ExisteEnLaBaseDeDatos())
             {
                 MessageBox.Show("Debes buscar un Productor Antes de eliminar", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -147,29 +130,28 @@ namespace ProyectoFinal.UI.Registro
                 Limpiar();
                 MessageBox.Show("Productor Eliminado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
+        }
+        private bool ExisteEnLaBaseDeDatos()
+        {
+            Productores productor = ProductoresBLL.Buscar((int)ProductorIDnumericUpDown.Value);
+            return (productor != null);
         }
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
         }
-
-        private void ProductorIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void BuscarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductorIdcomboBox.Text, out int id);
-            Productores productores = new Productores();
-
-            productores = ProductoresBLL.Buscar(id);
+            int.TryParse(ProductorIDnumericUpDown.Text, out int ID);
+            Productores productores = ProductoresBLL.Buscar(ID);
             if (productores != null)
             {
                 errorProvider.Clear();
-                LlenaCampo(productores);
-                MessageBox.Show("Productor Encontrado!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LlenaCampo(productores); 
             }
             else
                 MessageBox.Show("Productor no Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
         }
     }
 }

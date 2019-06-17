@@ -1,9 +1,9 @@
 ﻿using ProyectoFinal.BLL;
 using ProyectoFinal.Entidades;
-using ProyectoFinal.UI.Reportes.ReproteDetalle;
+using ProyectoFinal.UI.Reportes.ReporteDetalle;
 using System;
 using System.Collections.Generic;
-
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Reportes
@@ -15,38 +15,44 @@ namespace ProyectoFinal.UI.Reportes
         String Nombre;
         public ReportePesadaDetalles(Pesadas pesada,List<PesadasDetalle>Lista,string nombre)
         {
+            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+          
             data = Lista;
             pesadas = pesada;
             Nombre = nombre;
         }
-
-        private void PesadaDetallecrystalReportViewer1_Load(object sender, EventArgs e)
+        private void Cargar()
         {
-            
-            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
+             Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
             TipoArroz tipoArroz = TipoArrozBLL.Buscar(pesadas.TipoArrozID);
             Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaID);
             ReportePesadaDetalle reporte = new ReportePesadaDetalle();
+            
             reporte.SetDataSource(data);
-            reporte.SetParameterValue("Usuarios", Nombre);
+            reporte.SetParameterValue("Usuario", Nombre);
             reporte.SetParameterValue("Productor", productores.Nombre);
-            reporte.SetParameterValue("TipoUsuario Arroz", tipoArroz.Descripcion);
+            reporte.SetParameterValue("Tipo Arroz", tipoArroz.Descripcion);
             reporte.SetParameterValue("Factoria", factoria.Nombre);
-            reporte.SetParameterValue("PesadaId", pesadas.PesadaID);
+            reporte.SetParameterValue("PesadaID", pesadas.PesadaID);
             reporte.SetParameterValue("TotalKilos", pesadas.TotalKiloGramos);
             reporte.SetParameterValue("TotalSacos", pesadas.TotalSacos);
             reporte.SetParameterValue("Fanega", pesadas.Fanega);
             reporte.SetParameterValue("PrecioFanega", pesadas.PrecioFanega);
             reporte.SetParameterValue("TotalAPagar", pesadas.TotalPagar);
-            reporte.SetParameterValue("FechaRegistro", pesadas.FechaRegistro);
+            reporte.SetParameterValue("Fecha", pesadas.FechaRegistro);
+
             PesadaDetallecrystalReportViewer1.ReportSource = reporte;
             PesadaDetallecrystalReportViewer1.Refresh();
+           
         }
-
+        private void PesadaDetallecrystalReportViewer1_Load(object sender, EventArgs e)
+        {
+            Cargar();
+        }
         private void ReportePesadaDetalles_Load(object sender, EventArgs e)
         {
-            PesadaDetallecrystalReportViewer1_Load(sender, e);
+            Cargar();
         }
     }
 }
