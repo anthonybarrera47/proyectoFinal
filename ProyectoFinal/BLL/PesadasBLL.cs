@@ -21,10 +21,7 @@ namespace ProyectoFinal.BLL
             try
             {
                 if(db.Pesadas.Add(pesadas)!=null)
-                {
-                    db.SaveChanges();
-                    paso = true;
-                }
+                    paso =(db.SaveChanges() > 0);
             }catch(Exception)
             { throw;}
             finally
@@ -50,31 +47,40 @@ namespace ProyectoFinal.BLL
         public static bool Modificar(Pesadas pesadas)
         {
             bool paso = false;
-            bool pas = false;
+            var Anterior = Buscar(pesadas.PesadaID);
             Contexto db = new Contexto();
             try
-            {
-                var pesadaDetalle = Buscar(pesadas.PesadaID);
-                db.Entry(pesadas).State = EntityState.Modified;
-                ArreglarDetalle(pesadaDetalle);
-                foreach (var item in pesadas.PesadasDetalles)
+            {              
+                foreach(var item in Anterior.PesadasDetalles)
                 {
-                    if (item.PesadaDetalleID == 0)
-                        GuardarDetalle(item);
-                    else
+                    var Kilos = db.TiposArroz.Find(item.TipoArrozID);
+                    if(!pesadas.PesadasDetalles.Exists(d=>d.PesadaDetalleID == item.PesadaDetalleID))
                     {
-                        db.Entry(item).State = EntityState.Modified;
-                        if(db.SaveChanges()>0)
-                        {
-                            paso = true;
-                            pas = true;
-                        }
+                        Kilos.Kilos -= item.Kilos;
+                        db.Entry(item).State = EntityState.Deleted;
                     }
                 }
-                if(pas == false)
-                    paso = (db.SaveChanges() > 0);
-              
-                EnviarKilaje(Buscar(pesadas.PesadaID).PesadasDetalles);
+                foreach(var item in pesadas.PesadasDetalles)
+                {
+                    var estado = System.Data.Entity.EntityState.Unchanged;
+                    if(item.PesadaDetalleID==0)
+                    {
+                        var Kilos = db.TiposArroz.Find(item.TipoArrozID);
+                        Kilos.Kilos += item.Kilos;
+                        estado = EntityState.Added;
+                    }
+                    else
+                    {
+                        var AnteriorDetalle = PesadaDetalleBLL.Buscar(item.PesadaDetalleID);
+                        var Kilos = db.TiposArroz.Find(item.TipoArrozID);
+                        Kilos.Kilos -= AnteriorDetalle.Kilos;
+                        Kilos.Kilos += item.Kilos;
+                        estado = EntityState.Modified;
+                    }
+                    db.Entry(item).State = estado;
+                }
+                db.Entry(pesadas).State = EntityState.Modified;
+                paso = (db.SaveChanges() > 0); 
             }catch(Exception)
             { throw; }
             finally

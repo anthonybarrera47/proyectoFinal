@@ -42,6 +42,12 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return paso;
         }
+        public static PesadasDetalle BuscarElemento(List<PesadasDetalle> lista,int ID)
+        {
+            PesadasDetalle pDetalle = new PesadasDetalle();
+
+
+        }
         public static List<PesadasDetalle> GetList(Expression<Func<PesadasDetalle,bool>>pesadas)
         {
             List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();

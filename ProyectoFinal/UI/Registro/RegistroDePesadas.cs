@@ -15,7 +15,6 @@ namespace ProyectoFinal.UI.Registro
     {
         bool Confirmar = false;
         public int FilaSeleccionada { get; set; }
-
         Pesadas PesadasOriginal = new Pesadas();
         List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();
         Pesadas pesadaImprimir;
@@ -64,6 +63,7 @@ namespace ProyectoFinal.UI.Registro
             FechaRegistrodateTimePicker.Value = DateTime.Now;
             EliminarDetalleButton.Enabled = false;
             PesadasOriginal.PesadasDetalles = new List<PesadasDetalle>();
+            pesadasDetalles = new List<PesadasDetalle>();
             DetalledataGridView.DataSource = null;
             LlenaComboBox();
             ImprimirButton.Visible = false;
@@ -86,6 +86,16 @@ namespace ProyectoFinal.UI.Registro
             pesad.FechaRegistro = FechaRegistrodateTimePicker.Value;
             pesad.PesadasDetalles = PesadasOriginal.PesadasDetalles;
             return pesad;
+        }
+        private PesadasDetalle LlenaClaseDetalle()
+        {
+            PesadasDetalle pDetalle = new PesadasDetalle();
+            pDetalle.PesadasID = (int)PesadaIDnumericUpDown.Value;
+            pDetalle.PesadaDetalleID = (int)IDDetalle.Value;
+            pDetalle.Kilos = KilosPesadosnumericUpDown.Value;
+            pDetalle.CantidadDeSacos = CantidadSaconumericUpDown.Value;
+            pDetalle.TipoArrozID =(int)TipoArrozIdComboBox.SelectedValue;
+            return pDetalle;
         }
         private void LlenaCampo(Pesadas pesad)
         {
@@ -200,7 +210,7 @@ namespace ProyectoFinal.UI.Registro
             }
             else
             {
-                var resultado = MessageBox.Show("Va a modificar algo, ¿Seguro que desea Hacerlo", "AgroSoft",
+                var resultado = MessageBox.Show("Va a modificar algo, ¿Seguro que desea Hacerlo?", "AgroSoft",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
                 {
@@ -214,18 +224,17 @@ namespace ProyectoFinal.UI.Registro
                                 PesadaDetalleBLL.Eliminar(item.PesadaDetalleID);
                             }
                         }
-                        if (Confirmar)
-                        {
-                            PesadasBLL.DescontarKilaje(pesadasDetalles);
-                            Confirmar = false;
-                        }
+                        //if (Confirmar)
+                        //{
+                        //    PesadasBLL.DescontarKilaje(pesadasDetalles);
+                        //    Confirmar = false;
+                        //}
                         var resultad = MessageBox.Show("Desea Imprimir un recibo?", "AgroSoft",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (resultad == DialogResult.Yes)
                         {
                             ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesad, pesad.PesadasDetalles,PesadasBLL.GetUsuario().Nombre);
                             reporte.Show();
-
                         }
                         Limpiar();
                     }
@@ -235,14 +244,20 @@ namespace ProyectoFinal.UI.Registro
 
             }
         }
+        private void DetalledataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FilaSeleccionada = e.RowIndex;
+            EliminarDetalleButton.Enabled = true;
+        }
         private void AgregarButton_Click(object sender, EventArgs e)
         {
             if (!ValidarDetalle())
                 return;
+            PesadasDetalle pDetalle = new PesadasDetalle();
+            pDetalle = LlenaClaseDetalle();
             IDDetalle.Visible = true;
             if (IDDetalle.Value == 0)
-                PesadasOriginal.PesadasDetalles.Add(new PesadasDetalle(0, PesadasOriginal.PesadaID, Convert.ToInt32(TipoArrozIdComboBox.SelectedValue),
-                    Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
+                PesadasOriginal.PesadasDetalles.Add(pDetalle);
             else
             {
                 int pesadaId = Convert.ToInt32(PesadaIDnumericUpDown.Value);
@@ -250,24 +265,32 @@ namespace ProyectoFinal.UI.Registro
                 {
                     PesadasOriginal.PesadasDetalles = PesadaDetalleBLL.GetList(x => x.PesadasID == pesadaId);
                 }
-                PesadasOriginal.PesadasDetalles.Add(new PesadasDetalle(0, Convert.ToInt32(PesadaIDnumericUpDown.Value), Convert.ToInt32(TipoArrozIdComboBox.Text),
-                    Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
-                PesadasOriginal.PesadasDetalles = PesadasBLL.Editar(PesadasOriginal.PesadasDetalles, new PesadasDetalle(Convert.ToInt32(IDDetalle.Value), Convert.ToInt32(ProductorIdcomboBox.Text),
-                                              Convert.ToInt32(TipoArrozIdComboBox.Text), Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
+                PesadasDetalle Detalle =  
+                PesadasOriginal.PesadasDetalles.Add(pDetalle);     
+                //PesadasOriginal.PesadasDetalles = PesadasBLL.Editar(PesadasOriginal.PesadasDetalles, new PesadasDetalle(Convert.ToInt32(IDDetalle.Value), Convert.ToInt32(ProductorIdcomboBox.SelectedValue),
+                                              //Convert.ToInt32(TipoArrozIdComboBox.SelectedValue), Convert.ToDecimal(KilosPesadosnumericUpDown.Value), Convert.ToDecimal(CantidadSaconumericUpDown.Value)));
+                                       
+               /* List<PesadasDetalle> lista = PesadasOriginal.PesadasDetalles;
+                if (lista.Exists(x => x.PesadaDetalleID == (int)IDDetalle.Value))
+                {
+                    foreach (var item in lista)
+                    {
+                        if (item.PesadaDetalleID == (int)IDDetalle.Value)
+                        {
+                            CantidadSaconumericUpDown.Value = item.CantidadDeSacos;
+                            KilosPesadosnumericUpDown.Value = item.Kilos;
+                            return;
+                        }
+                    }
+                }*/
             }
             Calculos();
             DetalledataGridView.DataSource = null;
-            DetalledataGridView.DataSource = PesadasOriginal.PesadasDetalles;   
+            DetalledataGridView.DataSource = PesadasOriginal.PesadasDetalles;
             EliminarDetalleButton.Enabled = true;
             KilosPesadosnumericUpDown.Value = 0;
             CantidadSaconumericUpDown.Value = 0;
         }
-        private void DetalledataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            FilaSeleccionada = e.RowIndex;
-            EliminarDetalleButton.Enabled = true;
-        }
-
         private void EliminarDetalleButton_Click(object sender, EventArgs e)
         {
             var resultado = MessageBox.Show("¿Desea Eliminar El Detalle que ha seleccionado?",
@@ -294,6 +317,25 @@ namespace ProyectoFinal.UI.Registro
                 Calculos();
             }
         }
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show("¿Desea Eliminar?", "AgroSoft",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado.Equals(DialogResult.Yes))
+            {
+                PesadasBLL.ArreglarDetalle(PesadasBLL.Buscar(Convert.ToInt32(PesadaIDnumericUpDown.Value)));
+                if (PesadasBLL.Eliminar(Convert.ToInt32(PesadaIDnumericUpDown.Value)))
+                {
+                    MessageBox.Show("Pesada Eliminada!!", "AgroSoft",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DetalledataGridView.DataSource = null;
+                    LlenaComboBox();
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("Pesada No pudo Ser Eliminada!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void Calculos()
         {
             Decimal TotalKG = 0, totalsacos = 0;
@@ -315,25 +357,6 @@ namespace ProyectoFinal.UI.Registro
             DetalledataGridView.DataSource = null;
             DetalledataGridView.DataSource = pesadasDetalles;
         }
-        private void EliminarButton_Click(object sender, EventArgs e)
-        {
-            var resultado = MessageBox.Show("¿Desea Eliminar?", "AgroSoft",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);  
-            if (resultado.Equals(DialogResult.Yes))
-            {
-                PesadasBLL.ArreglarDetalle(PesadasBLL.Buscar(Convert.ToInt32(PesadaIDnumericUpDown.Value)));
-                if (PesadasBLL.Eliminar(Convert.ToInt32(PesadaIDnumericUpDown.Value)))
-                {
-                    MessageBox.Show("Pesada Eliminada!!", "AgroSoft",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DetalledataGridView.DataSource = null;
-                    LlenaComboBox();
-                    Limpiar();
-                }
-                else
-                    MessageBox.Show("Pesada No pudo Ser Eliminada!!", "AgroSoft",MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void Cargar()
         {
             ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesadaImprimir, pesadaImprimir.PesadasDetalles, PesadasBLL.GetUsuario().Nombre);
@@ -354,7 +377,6 @@ namespace ProyectoFinal.UI.Registro
         {
             LlenaComboBox();
         }
-
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
@@ -389,27 +411,30 @@ namespace ProyectoFinal.UI.Registro
 
         private void IDDetalle_ValueChanged(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             if (IDDetalle.Value == 0)
                 return;
+            CantidadSaconumericUpDown.Value = 0;
+            KilosPesadosnumericUpDown.Value = 0;
             List<PesadasDetalle> lista = PesadasOriginal.PesadasDetalles;
-            foreach(var item in lista)
+            if (lista.Exists(x => x.PesadaDetalleID == (int)IDDetalle.Value))
             {
-                if(lista.Exists(x=>x.PesadaDetalleID==(int)IDDetalle.Value))
+                foreach (var item in lista)
                 {
-                    CantidadSaconumericUpDown.Value = item.CantidadDeSacos;
-                    KilosPesadosnumericUpDown.Value = item.Kilos;
-                }
-                else
-                {
-                    MessageBox.Show("El ID del detalle introducido no existe, agregue el correcto o ponga valor 0", "AgroSoft",
-                                    MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                    if (item.PesadaDetalleID == (int)IDDetalle.Value)
+                    {
+                        CantidadSaconumericUpDown.Value = item.CantidadDeSacos;
+                        KilosPesadosnumericUpDown.Value = item.Kilos;
+                        return;
+                    }
                 }
             }
-        }
-
-        private void DetalledataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            else
+            {
+                errorProvider.SetError(IDDetalle, "El ID que ingreso no existe, introduzca un valor correto");
+            }
+            
         }
     }
 }

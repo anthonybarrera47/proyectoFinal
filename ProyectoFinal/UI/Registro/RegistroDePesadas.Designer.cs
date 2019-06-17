@@ -35,6 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.IDDetalle = new System.Windows.Forms.NumericUpDown();
             this.AgregarTipoArroz = new System.Windows.Forms.PictureBox();
             this.PrecioFaneganumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.FaneganumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -70,8 +71,8 @@
             this.PesadaIDnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.AgregarProductor = new System.Windows.Forms.PictureBox();
             this.AgregarFactoria = new System.Windows.Forms.PictureBox();
-            this.IDDetalle = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IDDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarTipoArroz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioFaneganumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FaneganumericUpDown)).BeginInit();
@@ -82,7 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PesadaIDnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarProductor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarFactoria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IDDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -154,6 +154,14 @@
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesadas";
+            // 
+            // IDDetalle
+            // 
+            this.IDDetalle.Location = new System.Drawing.Point(540, 50);
+            this.IDDetalle.Name = "IDDetalle";
+            this.IDDetalle.Size = new System.Drawing.Size(120, 22);
+            this.IDDetalle.TabIndex = 55;
+            this.IDDetalle.ValueChanged += new System.EventHandler(this.IDDetalle_ValueChanged);
             // 
             // AgregarTipoArroz
             // 
@@ -292,11 +300,9 @@
             this.DetalledataGridView.ReadOnly = true;
             this.DetalledataGridView.RowHeadersWidth = 51;
             this.DetalledataGridView.RowTemplate.Height = 24;
-            this.DetalledataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DetalledataGridView.Size = new System.Drawing.Size(848, 500);
             this.DetalledataGridView.TabIndex = 36;
             this.DetalledataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalledataGridView_CellClick);
-            this.DetalledataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalledataGridView_CellContentClick);
             // 
             // CantidadSaconumericUpDown
             // 
@@ -502,14 +508,6 @@
             this.AgregarFactoria.TabStop = false;
             this.AgregarFactoria.Click += new System.EventHandler(this.AgregarFactoria_Click);
             // 
-            // IDDetalle
-            // 
-            this.IDDetalle.Location = new System.Drawing.Point(540, 50);
-            this.IDDetalle.Name = "IDDetalle";
-            this.IDDetalle.Size = new System.Drawing.Size(120, 22);
-            this.IDDetalle.TabIndex = 55;
-            this.IDDetalle.ValueChanged += new System.EventHandler(this.IDDetalle_ValueChanged);
-            // 
             // RegistroDePesadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -543,6 +541,7 @@
             this.Text = "Registro De Pesadas";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IDDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarTipoArroz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioFaneganumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FaneganumericUpDown)).EndInit();
@@ -553,7 +552,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PesadaIDnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarProductor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgregarFactoria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IDDetalle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -22,7 +22,6 @@ namespace ProyectoFinal.Entidades
         public decimal TotalSacos { get; set; }
         public decimal TotalPagar { get; set; }
         public DateTime FechaRegistro { get; set; }
-
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
 
         public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
