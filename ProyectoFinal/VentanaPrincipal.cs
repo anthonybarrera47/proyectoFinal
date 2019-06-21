@@ -21,7 +21,7 @@ namespace ProyectoFinal
         public VentanaPrincipal()
         {
             InitializeComponent();
-            Comprobar();
+            //Comprobar();
         }
         private void CrearFactoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {

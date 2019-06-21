@@ -103,9 +103,8 @@ namespace ProyectoFinal.UI.Login
         private bool ExisteEnLaBaseDeDatos()
         {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            if (UsuarioTextBox.Text == string.Empty)
-                return false;   
-            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioTextBox.Text));
+            int.TryParse(UsuarioTextBox.Text, out int ID); 
+            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(ID));
             return (usuario != null);
         }
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -188,7 +187,7 @@ namespace ProyectoFinal.UI.Login
 
         private void NombreUserTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            Constantes.ValidarNoEspaciosEnBlancos(sender, e);
         }
     }
 }

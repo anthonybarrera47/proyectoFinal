@@ -53,7 +53,7 @@
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
-            "PesadaDetalleID",
+            "ID",
             "Nombre",
             "Direccion",
             "Telefono"});
@@ -87,9 +87,12 @@
             // 
             this.FactoriasdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FactoriasdataGridView.Location = new System.Drawing.Point(15, 104);
+            this.FactoriasdataGridView.MultiSelect = false;
             this.FactoriasdataGridView.Name = "FactoriasdataGridView";
             this.FactoriasdataGridView.ReadOnly = true;
+            this.FactoriasdataGridView.RowHeadersWidth = 51;
             this.FactoriasdataGridView.RowTemplate.Height = 24;
+            this.FactoriasdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FactoriasdataGridView.Size = new System.Drawing.Size(847, 503);
             this.FactoriasdataGridView.TabIndex = 8;
             // 
@@ -98,7 +101,8 @@
             this.CriteriotextBox.Location = new System.Drawing.Point(154, 43);
             this.CriteriotextBox.Name = "CriteriotextBox";
             this.CriteriotextBox.Size = new System.Drawing.Size(378, 22);
-            this.CriteriotextBox.TabIndex = 9;
+            this.CriteriotextBox.TabIndex = 1;
+            this.CriteriotextBox.TextChanged += new System.EventHandler(this.CriteriotextBox_TextChanged);
             this.CriteriotextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CriteriotextBox_KeyPress);
             // 
             // errorProvider
@@ -111,7 +115,7 @@
             this.ImprimirButton.Location = new System.Drawing.Point(754, 10);
             this.ImprimirButton.Name = "ImprimirButton";
             this.ImprimirButton.Size = new System.Drawing.Size(103, 88);
-            this.ImprimirButton.TabIndex = 12;
+            this.ImprimirButton.TabIndex = 3;
             this.ImprimirButton.UseVisualStyleBackColor = true;
             this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click_1);
             // 
@@ -121,7 +125,7 @@
             this.BuscarButton.Location = new System.Drawing.Point(538, 22);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(52, 45);
-            this.BuscarButton.TabIndex = 10;
+            this.BuscarButton.TabIndex = 2;
             this.BuscarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BuscarButton.UseVisualStyleBackColor = true;
             this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click_1);
@@ -133,7 +137,7 @@
             this.FiltracheckBox.Location = new System.Drawing.Point(16, 78);
             this.FiltracheckBox.Name = "FiltracheckBox";
             this.FiltracheckBox.Size = new System.Drawing.Size(166, 22);
-            this.FiltracheckBox.TabIndex = 23;
+            this.FiltracheckBox.TabIndex = 4;
             this.FiltracheckBox.Text = "Filtrar Por Fechas";
             this.FiltracheckBox.UseVisualStyleBackColor = true;
             this.FiltracheckBox.CheckedChanged += new System.EventHandler(this.FiltracheckBox_CheckedChanged_1);
@@ -144,7 +148,7 @@
             this.HastadateTimePicker1.Location = new System.Drawing.Point(468, 78);
             this.HastadateTimePicker1.Name = "HastadateTimePicker1";
             this.HastadateTimePicker1.Size = new System.Drawing.Size(122, 22);
-            this.HastadateTimePicker1.TabIndex = 22;
+            this.HastadateTimePicker1.TabIndex = 6;
             this.HastadateTimePicker1.ValueChanged += new System.EventHandler(this.HastadateTimePicker1_ValueChanged);
             // 
             // DesdedateTimePicker
@@ -153,7 +157,7 @@
             this.DesdedateTimePicker.Location = new System.Drawing.Point(282, 78);
             this.DesdedateTimePicker.Name = "DesdedateTimePicker";
             this.DesdedateTimePicker.Size = new System.Drawing.Size(112, 22);
-            this.DesdedateTimePicker.TabIndex = 21;
+            this.DesdedateTimePicker.TabIndex = 5;
             this.DesdedateTimePicker.ValueChanged += new System.EventHandler(this.DesdedateTimePicker_ValueChanged);
             // 
             // label5
@@ -173,7 +177,7 @@
             this.label6.Location = new System.Drawing.Point(215, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 18);
-            this.label6.TabIndex = 19;
+            this.label6.TabIndex = 3;
             this.label6.Text = "Desde";
             // 
             // ConsultaDeFactorias

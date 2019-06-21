@@ -46,17 +46,15 @@ namespace ProyectoFinal.UI.Consulta
                 switch (FiltrocomboBox.SelectedIndex)
                 {
                     case 0: //Todo
-                        //lista = ProductoresBLL.GetList(x => true);
                         filtro = x => true;
                         break;
-                    case 1:
+                    case 1://ID
                         if (!Validar())
                             return;
-                        int id = Convert.ToInt32(CriteriotextBox.Text);
-                        //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
-                        filtro = x => x.FactoriaID == id;
+                        int.TryParse(CriteriotextBox.Text, out int ID);
+                        filtro = x => x.FactoriaID == ID;
                         break;
-                    case 2:
+                    case 2://Nombre
                         if (!Validar())
                             return;
                         filtro = x => x.Nombre.Contains(CriteriotextBox.Text);
@@ -77,13 +75,22 @@ namespace ProyectoFinal.UI.Consulta
                  ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();            
             else
                 ListaFactorias = FactoriaBLL.GetList(filtro);
-
             CargarGrid(ListaFactorias);
         }
         private void CargarGrid(List<Factoria> lista)
         {
             FactoriasdataGridView.DataSource = null;
-            FactoriasdataGridView.DataSource = lista;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("Nombre", typeof(string));
+            dt.Columns.Add("Direccion", typeof(string));
+            dt.Columns.Add("Telefono", typeof(string));
+            dt.Columns.Add("FechaRegistro", typeof(DateTime));
+            foreach(var item in lista)
+            {
+                dt.Rows.Add(item.FactoriaID, item.Nombre, item.Direccion, item.Telefono, item.FechaRegistro);
+            }
+            FactoriasdataGridView.DataSource = dt;
         }
         private bool Validar()
         {
@@ -106,14 +113,8 @@ namespace ProyectoFinal.UI.Consulta
             if ((int)e.KeyChar == (int)Keys.Enter)
                 Seleccion();
             if (FiltrocomboBox.SelectedIndex == 1)
-            {
                 Constantes.ValidarSoloNumeros(sender, e);
-                CriteriotextBox.MaxLength = 9;
-            }
-            if (FiltrocomboBox.SelectedIndex == 4)
-            {
-                CriteriotextBox.MaxLength = 12;
-            }
+
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
         private void ValidarFecha()
@@ -134,7 +135,18 @@ namespace ProyectoFinal.UI.Consulta
         }
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            FactoriasdataGridView.DataSource = null;
             CriteriotextBox.Text = string.Empty;
+            if (FiltrocomboBox.SelectedIndex == 1)
+            {
+                CriteriotextBox.Focus();
+                CriteriotextBox.MaxLength = 9;
+            }
+            if (FiltrocomboBox.SelectedIndex == 4)
+            {
+                CriteriotextBox.Focus();
+                CriteriotextBox.MaxLength = 12;
+            }
         }
         private void FiltracheckBox_CheckedChanged_1(object sender, EventArgs e)
         {
@@ -169,6 +181,10 @@ namespace ProyectoFinal.UI.Consulta
             };
             FFactoria.Ejecutar(p);
             this.Close();
+        }
+        private void CriteriotextBox_TextChanged(object sender, EventArgs e)
+        {
+            Seleccion();
         }
     }
 }

@@ -36,14 +36,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DesdedateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.ProductoresdataGridView = new System.Windows.Forms.DataGridView();
+            this.TipodataGridView = new System.Windows.Forms.DataGridView();
             this.CriteriotextBox = new System.Windows.Forms.TextBox();
             this.HastadateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ImprimirButton = new System.Windows.Forms.Button();
             this.BuscarButton = new System.Windows.Forms.Button();
             this.FiltracheckBox = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TipodataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,16 +110,18 @@
             this.DesdedateTimePicker.Size = new System.Drawing.Size(112, 22);
             this.DesdedateTimePicker.TabIndex = 5;
             // 
-            // ProductoresdataGridView
+            // TipodataGridView
             // 
-            this.ProductoresdataGridView.AllowUserToDeleteRows = false;
-            this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
-            this.ProductoresdataGridView.Name = "ProductoresdataGridView";
-            this.ProductoresdataGridView.ReadOnly = true;
-            this.ProductoresdataGridView.RowTemplate.Height = 24;
-            this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 503);
-            this.ProductoresdataGridView.TabIndex = 8;
+            this.TipodataGridView.AllowUserToDeleteRows = false;
+            this.TipodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TipodataGridView.Location = new System.Drawing.Point(21, 102);
+            this.TipodataGridView.Name = "TipodataGridView";
+            this.TipodataGridView.ReadOnly = true;
+            this.TipodataGridView.RowHeadersWidth = 51;
+            this.TipodataGridView.RowTemplate.Height = 24;
+            this.TipodataGridView.Size = new System.Drawing.Size(847, 503);
+            this.TipodataGridView.TabIndex = 8;
+            this.TipodataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductoresdataGridView_ColumnHeaderMouseClick);
             // 
             // CriteriotextBox
             // 
@@ -184,7 +186,7 @@
             this.Controls.Add(this.HastadateTimePicker);
             this.Controls.Add(this.BuscarButton);
             this.Controls.Add(this.CriteriotextBox);
-            this.Controls.Add(this.ProductoresdataGridView);
+            this.Controls.Add(this.TipodataGridView);
             this.Controls.Add(this.DesdedateTimePicker);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -196,7 +198,7 @@
             this.MaximizeBox = false;
             this.Name = "ConsultaTipoArroz";
             this.Text = "Consulta De Tipos De Arroz | AgroSoft";
-            ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TipodataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,7 +213,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker DesdedateTimePicker;
-        private System.Windows.Forms.DataGridView ProductoresdataGridView;
+        private System.Windows.Forms.DataGridView TipodataGridView;
         private System.Windows.Forms.TextBox CriteriotextBox;
         private System.Windows.Forms.Button BuscarButton;
         private System.Windows.Forms.DateTimePicker HastadateTimePicker;

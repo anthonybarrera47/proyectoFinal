@@ -51,6 +51,7 @@
             this.Controls.Add(this.PesadaDetallecrystalReportViewer1);
             this.Name = "ReportePesadaDetalles";
             this.Text = "ReportePesadaDetalles";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReportePesadaDetalles_FormClosed);
             this.Load += new System.EventHandler(this.ReportePesadaDetalles_Load);
             this.ResumeLayout(false);
 

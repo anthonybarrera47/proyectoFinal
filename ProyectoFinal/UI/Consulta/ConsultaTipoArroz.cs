@@ -59,14 +59,14 @@ namespace ProyectoFinal.UI.Consulta
             if (FiltracheckBox.Checked == true)
             {
                 ListaArroz = TipoArrozBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
-                ProductoresdataGridView.DataSource = null;
-                ProductoresdataGridView.DataSource = ListaArroz;
+                TipodataGridView.DataSource = null;
+                TipodataGridView.DataSource = ListaArroz;
             }
             else
             {
                 ListaArroz = TipoArrozBLL.GetList(filtro);
-                ProductoresdataGridView.DataSource = null;
-                ProductoresdataGridView.DataSource = ListaArroz;
+                TipodataGridView.DataSource = null;
+                TipodataGridView.DataSource = ListaArroz;
             }
         }
 
@@ -130,6 +130,53 @@ namespace ProyectoFinal.UI.Consulta
                 DesdedateTimePicker.Enabled = false;
                 HastadateTimePicker.Enabled = false;
             }
+        }
+        bool direccion = false;
+        private void ProductoresdataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var bs = new BindingSource();
+            var lista = ListaArroz;
+            if (TipodataGridView.Columns[e.ColumnIndex].Name == "TipoArrozID")
+            {
+                if (!direccion)
+                {
+                    lista = (ListaArroz.OrderBy(x => x.TipoArrozID)).ToList();
+                    direccion = true;
+                }
+                else
+                {
+                    lista = (ListaArroz.OrderByDescending(x => x.TipoArrozID)).ToList();
+                    direccion = false;
+                }   
+            }
+            if (TipodataGridView.Columns[e.ColumnIndex].Name == "Descripcion")
+            {
+                if (!direccion)
+                {
+                    lista = (ListaArroz.OrderBy(x => x.Descripcion)).ToList();
+                    direccion = true;
+                }
+                else
+                {
+                    lista = (ListaArroz.OrderByDescending(x => x.Descripcion)).ToList();
+                    direccion = false;
+                }
+            }
+            if (TipodataGridView.Columns[e.ColumnIndex].Name == "Kilos")
+            {
+                if (!direccion)
+                {
+                    lista = (ListaArroz.OrderBy(x => x.Kilos)).ToList();
+                    direccion = true;
+                }
+                else
+                {
+                    lista = (ListaArroz.OrderByDescending(x => x.Kilos)).ToList();
+                    direccion = false;
+                }
+            }
+            bs.DataSource = lista;
+            TipodataGridView.DataSource = bs;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace ProyectoFinal.UI.Registro
         Pesadas PesadasOriginal = new Pesadas();
         List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();
         Pesadas pesadaImprimir;
+        Thread t;
         Productores ProductoresGlobales { get; set; }
         Factoria FactoriaGlobales { get; set; }
         public RegistroDePesadas()
@@ -346,18 +347,22 @@ namespace ProyectoFinal.UI.Registro
         private void Cargar()
         {
             ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesadaImprimir, pesadaImprimir.PesadasDetalles, PesadasBLL.GetUsuario().Nombre);
-            Application.Run(reporte);
+            reporte.ShowDialog();
         }
         private void ImprimirButton_Click(object sender, EventArgs e)
         {
+            t = new Thread(Cargar);
             try
             {
-                Thread t = new Thread(Cargar);
+                
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
             }
             catch(Exception)
             { throw; }
+            finally
+            { 
+            }
         }
         public void ActualizarInformacionComboBox(object sender,FormClosedEventArgs e)
         {

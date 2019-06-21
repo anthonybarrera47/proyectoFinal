@@ -13,6 +13,7 @@ namespace ProyectoFinal.UI.Reportes
         List<PesadasDetalle> data = new List<PesadasDetalle>();
         Pesadas pesadas;
         String Nombre;
+        ReportePesadaDetalle reporte = new ReportePesadaDetalle();
         public ReportePesadaDetalles(Pesadas pesada,List<PesadasDetalle>Lista,string nombre)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -24,10 +25,10 @@ namespace ProyectoFinal.UI.Reportes
         }
         private void Cargar()
         {
-             Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
+            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
             TipoArroz tipoArroz = TipoArrozBLL.Buscar(pesadas.TipoArrozID);
             Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaID);
-            ReportePesadaDetalle reporte = new ReportePesadaDetalle();
+            
             
             reporte.SetDataSource(data);
             reporte.SetParameterValue("Usuario", Nombre);
@@ -53,6 +54,12 @@ namespace ProyectoFinal.UI.Reportes
         private void ReportePesadaDetalles_Load(object sender, EventArgs e)
         {
             Cargar();
+        }
+
+        private void ReportePesadaDetalles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            reporte.Dispose();
+            this.Dispose();
         }
     }
 }

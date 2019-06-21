@@ -60,6 +60,10 @@ namespace ProyectoFinal.DAL
             
             return;
         }
+        public static void ValidarNoEspaciosEnBlancos(object sender,KeyPressEventArgs e)
+        {
+            e.Handled = e.KeyChar == Convert.ToChar(Keys.Space);
+        }
         public static void ValidarNumerosDecimales(object sender,KeyPressEventArgs e,String cadena)
         {
             if (e.KeyChar == 8)

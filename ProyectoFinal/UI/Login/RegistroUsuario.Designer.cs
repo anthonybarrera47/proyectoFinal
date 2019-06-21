@@ -103,7 +103,7 @@
             this.EliminarButton.Location = new System.Drawing.Point(250, 216);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(106, 63);
-            this.EliminarButton.TabIndex = 13;
+            this.EliminarButton.TabIndex = 8;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.EliminarButton.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.GuardarButton.Location = new System.Drawing.Point(139, 216);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(106, 63);
-            this.GuardarButton.TabIndex = 12;
+            this.GuardarButton.TabIndex = 7;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.GuardarButton.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             this.NuevoButton.Location = new System.Drawing.Point(19, 216);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(106, 63);
-            this.NuevoButton.TabIndex = 11;
+            this.NuevoButton.TabIndex = 6;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.NuevoButton.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@
             this.Nivel.Location = new System.Drawing.Point(19, 156);
             this.Nivel.Name = "Nivel";
             this.Nivel.Size = new System.Drawing.Size(339, 54);
-            this.Nivel.TabIndex = 14;
+            this.Nivel.TabIndex = 5;
             this.Nivel.TabStop = false;
             this.Nivel.Text = "Nivel";
             // 
@@ -175,9 +175,10 @@
             // 
             this.NombreUserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreUserTextBox.Location = new System.Drawing.Point(193, 65);
+            this.NombreUserTextBox.MaxLength = 25;
             this.NombreUserTextBox.Name = "NombreUserTextBox";
             this.NombreUserTextBox.Size = new System.Drawing.Size(165, 22);
-            this.NombreUserTextBox.TabIndex = 15;
+            this.NombreUserTextBox.TabIndex = 2;
             this.NombreUserTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombreUserTextBox_KeyPress);
             // 
             // PasswordTextBox
@@ -187,7 +188,7 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(165, 22);
-            this.PasswordTextBox.TabIndex = 16;
+            this.PasswordTextBox.TabIndex = 3;
             // 
             // ConfirmarPasswordTextBox
             // 
@@ -196,7 +197,7 @@
             this.ConfirmarPasswordTextBox.Name = "ConfirmarPasswordTextBox";
             this.ConfirmarPasswordTextBox.PasswordChar = '*';
             this.ConfirmarPasswordTextBox.Size = new System.Drawing.Size(165, 22);
-            this.ConfirmarPasswordTextBox.TabIndex = 17;
+            this.ConfirmarPasswordTextBox.TabIndex = 4;
             // 
             // NombreTextBox
             // 
@@ -204,7 +205,7 @@
             this.NombreTextBox.Location = new System.Drawing.Point(193, 44);
             this.NombreTextBox.Name = "NombreTextBox";
             this.NombreTextBox.Size = new System.Drawing.Size(165, 22);
-            this.NombreTextBox.TabIndex = 19;
+            this.NombreTextBox.TabIndex = 1;
             this.NombreTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombreTextBox_KeyPress);
             // 
             // label5
@@ -249,7 +250,7 @@
             this.UsuarioTextBox.MaxLength = 9;
             this.UsuarioTextBox.Name = "UsuarioTextBox";
             this.UsuarioTextBox.Size = new System.Drawing.Size(165, 22);
-            this.UsuarioTextBox.TabIndex = 22;
+            this.UsuarioTextBox.TabIndex = 0;
             this.UsuarioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsuarioTextBox_KeyPress);
             // 
             // BuscarUsuarios
