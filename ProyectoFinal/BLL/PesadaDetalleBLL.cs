@@ -42,10 +42,16 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return paso;
         }
-        public static PesadasDetalle BuscarElemento(List<PesadasDetalle> lista,int ID)
+        public static PesadasDetalle BuscarElemento(List<PesadasDetalle> lista,PesadasDetalle DetalleOriginal,int ID)
         {
             PesadasDetalle pDetalle = new PesadasDetalle();
-
+            pDetalle = lista.Find(x => x.PesadaDetalleID == ID);
+            pDetalle.PesadasID = DetalleOriginal.PesadasID;
+            pDetalle.PesadaDetalleID = DetalleOriginal.PesadaDetalleID;
+            pDetalle.Kilos = DetalleOriginal.Kilos;
+            pDetalle.CantidadDeSacos = DetalleOriginal.CantidadDeSacos;
+            pDetalle.TipoArrozID = DetalleOriginal.TipoArrozID;
+            return pDetalle;
 
         }
         public static List<PesadasDetalle> GetList(Expression<Func<PesadasDetalle,bool>>pesadas)

@@ -99,7 +99,6 @@ namespace ProyectoFinal.UI.Consulta
                 FactoriasdataGridView.DataSource = ListaPesadas;
             }
         }
-
         private bool Validar()
         {
             bool paso = true;
@@ -112,7 +111,6 @@ namespace ProyectoFinal.UI.Consulta
             }
             return paso;
         }
-
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             Seleccion();
@@ -122,10 +120,8 @@ namespace ProyectoFinal.UI.Consulta
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
                 Seleccion();
-
             if (FiltrocomboBox.SelectedIndex == 1 || FiltrocomboBox.SelectedIndex == 2 || FiltrocomboBox.SelectedIndex == 3 || FiltrocomboBox.SelectedIndex == 4 || FiltrocomboBox.SelectedIndex == 5)
             {
-
                 Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
             }

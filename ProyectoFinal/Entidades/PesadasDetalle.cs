@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,6 @@ namespace ProyectoFinal.Entidades
         public int TipoArrozID { get; set; }
         public decimal Kilos { get; set; }
         public decimal CantidadDeSacos { get; set; }
-
-
         public PesadasDetalle()
         {
             PesadaDetalleID = 0;
@@ -25,7 +24,6 @@ namespace ProyectoFinal.Entidades
             Kilos = 0;
             CantidadDeSacos = 0;
         }
-
         public PesadasDetalle(int ID, int pesadaID,int TipoArrozId, decimal kilos, decimal cantidadDeSacos)
         {
             this.PesadaDetalleID = ID;

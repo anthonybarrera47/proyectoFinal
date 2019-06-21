@@ -19,14 +19,23 @@ namespace ProyectoFinal.UI.Consulta
     {
         Expression<Func<Productores, bool>> filtro = x => true;
         List<Productores> ListaProductores = new List<Productores>();
+        public IRetorno<Productores> PContrato { get; set; }
+        public static string Llamado;
         public ConsultaProductores()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
+            ComprobarLlamado();
         }
-
+        public void ComprobarLlamado()
+        {
+            if (Llamado == null)
+                return;
+            if (Llamado.Equals("BuscarProductor_Click"))
+                ProductoresdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
+        }
         private void Seleccion()
         {
             errorProvider.Clear();
@@ -60,8 +69,7 @@ namespace ProyectoFinal.UI.Consulta
                             return;
                         filtro = x => x.Cedula.Contains(CriteriotextBox.Text);
                         break;
-                }
-                
+                } 
             }
             if (FiltracheckBox.Checked == true)
             {
@@ -75,7 +83,6 @@ namespace ProyectoFinal.UI.Consulta
                 ProductoresdataGridView.DataSource = null;
                 ProductoresdataGridView.DataSource = ListaProductores;
             }
-            
         }
 
         private bool Validar()
@@ -157,6 +164,19 @@ namespace ProyectoFinal.UI.Consulta
                 DesdedateTimePicker.Enabled = false;
                 HastadateTimePicker.Enabled = false;
             }
+        }
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!(e.RowIndex > -1))
+                return;
+            int index = e.RowIndex;
+            DataGridViewRow row = ProductoresdataGridView.Rows[index];
+            Productores p = new Productores
+            {
+                ProductorID = Convert.ToInt32(row.Cells[0].Value), 
+            };
+            PContrato.Ejecutar(p);
+            this.Close();
         }
     }
 }

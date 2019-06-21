@@ -18,14 +18,25 @@ namespace ProyectoFinal.UI.Consulta
     public partial class ConsultaDeFactorias : Form
     {
         List<Factoria> ListaFactorias;
+        public static String Llamado;
+        public IRetorno<Factoria> FFactoria { get; set; }
+        Expression<Func<Factoria, bool>> filtro = x => true;
         public ConsultaDeFactorias()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker1.Enabled = false;
+            ComprobarLlamado();
         }
-        Expression<Func<Factoria, bool>> filtro = x => true;
+        public void ComprobarLlamado()
+        {
+            if (Llamado == null)
+                return;
+            if (Llamado.Equals("BuscarFactoria_Click"))
+                FactoriasdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
+        }
+       
         private void Seleccion()
         {
             errorProvider.Clear();
@@ -63,19 +74,17 @@ namespace ProyectoFinal.UI.Consulta
                 }
             }
             if (FiltracheckBox.Checked == true)
-            {
-                ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();
-                FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaFactorias;
-            }
+                 ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();            
             else
-            {
                 ListaFactorias = FactoriaBLL.GetList(filtro);
-                FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaFactorias;
-            }
-        }
 
+            CargarGrid(ListaFactorias);
+        }
+        private void CargarGrid(List<Factoria> lista)
+        {
+            FactoriasdataGridView.DataSource = null;
+            FactoriasdataGridView.DataSource = lista;
+        }
         private bool Validar()
         {
             bool paso = true;
@@ -88,20 +97,16 @@ namespace ProyectoFinal.UI.Consulta
             }
             return paso;
         }
-
         private void BuscarButton_Click_1(object sender, EventArgs e)
         {
             Seleccion();
         }
-
         private void CriteriotextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
                 Seleccion();
-
             if (FiltrocomboBox.SelectedIndex == 1)
             {
-
                 Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
             }
@@ -109,7 +114,6 @@ namespace ProyectoFinal.UI.Consulta
             {
                 CriteriotextBox.MaxLength = 12;
             }
-
         }
         //Avisamosa al usuario de algun error en la consulta por fechas
         private void ValidarFecha()
@@ -123,19 +127,15 @@ namespace ProyectoFinal.UI.Consulta
             else
                 errorProvider.Clear();
         }
-       
-
         private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
             ReportesDeFactoria reporte = new ReportesDeFactoria(ListaFactorias);
             reporte.Show();
         }
-
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
         }
-
         private void FiltracheckBox_CheckedChanged_1(object sender, EventArgs e)
         {
             if (FiltracheckBox.Checked == true)
@@ -149,15 +149,26 @@ namespace ProyectoFinal.UI.Consulta
                 HastadateTimePicker1.Enabled = false;
             }
         }
-
         private void DesdedateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             ValidarFecha();
         }
-
         private void HastadateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             ValidarFecha();
+        }
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!(e.RowIndex > -1))
+                return;
+            int index = e.RowIndex;
+            DataGridViewRow row = FactoriasdataGridView.Rows[index];
+            Factoria p = new Factoria
+            {
+                FactoriaID = Convert.ToInt32(row.Cells[0].Value),
+            };
+            FFactoria.Ejecutar(p);
+            this.Close();
         }
     }
 }

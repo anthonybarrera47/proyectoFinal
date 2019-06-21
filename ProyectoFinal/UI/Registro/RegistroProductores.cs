@@ -20,11 +20,12 @@ namespace ProyectoFinal.UI.Registro
         public RegistroProductores()
         {
             InitializeComponent();
+            Limpiar();
         }
         private void Limpiar()
         {
             errorProvider.Clear();
-            ProductorIDnumericUpDown.Value = 0;
+            ProductorIDTextBox.Text = 0.ToString();
             NombreTextBox.Text = string.Empty;
             TelefonomaskedTextBox.Text = string.Empty;
             CedulaMasketTextBox.Text = string.Empty;
@@ -32,18 +33,20 @@ namespace ProyectoFinal.UI.Registro
         }
         private Productores LlenaClase()
         {
-            Productores productores = new Productores();
-            productores.ProductorID = (int)ProductorIDnumericUpDown.Value;
-            productores.Nombre = NombreTextBox.Text;
-            productores.Telefono = TelefonomaskedTextBox.Text;
-            productores.Cedula = CedulaMasketTextBox.Text;
-            productores.FechaNacimiento = FechaNacimientodateTimePicker.Value;
-            productores.FechaRegistro = DateTime.Now;
+            Productores productores = new Productores
+            {
+                ProductorID = Convert.ToInt32(ProductorIDTextBox.Text),
+                Nombre = NombreTextBox.Text,
+                Telefono = TelefonomaskedTextBox.Text,
+                Cedula = CedulaMasketTextBox.Text,
+                FechaNacimiento = FechaNacimientodateTimePicker.Value,
+                FechaRegistro = DateTime.Now
+            };
             return productores;
         }
         private void LlenaCampo(Productores productores)
         {
-            ProductorIDnumericUpDown.Value = productores.ProductorID;
+            ProductorIDTextBox.Text = productores.ProductorID.ToString();
             NombreTextBox.Text = productores.Nombre;
             TelefonomaskedTextBox.Text = productores.Telefono;
             CedulaMasketTextBox.Text = productores.Cedula;
@@ -89,9 +92,9 @@ namespace ProyectoFinal.UI.Registro
         {
             if (!Validar())
                 return;
-            bool paso = false;
             Productores productores = LlenaClase();
-            if (ProductorIDnumericUpDown.Value==0)
+            bool paso = false;
+            if (Convert.ToInt32(ProductorIDTextBox.Text)==0)
                 paso = ProductoresBLL.Guardar(productores);
             else
             {
@@ -119,7 +122,7 @@ namespace ProyectoFinal.UI.Registro
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductorIDnumericUpDown.Text, out int id);
+            int.TryParse(ProductorIDTextBox.Text, out int id);
             if(!ExisteEnLaBaseDeDatos())
             {
                 MessageBox.Show("Debes buscar un Productor Antes de eliminar", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,7 +136,8 @@ namespace ProyectoFinal.UI.Registro
         }
         private bool ExisteEnLaBaseDeDatos()
         {
-            Productores productor = ProductoresBLL.Buscar((int)ProductorIDnumericUpDown.Value);
+            int.TryParse(ProductorIDTextBox.Text, out int ID);
+            Productores productor = ProductoresBLL.Buscar(ID);
             return (productor != null);
         }
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -143,7 +147,7 @@ namespace ProyectoFinal.UI.Registro
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            int.TryParse(ProductorIDnumericUpDown.Text, out int ID);
+            int.TryParse(ProductorIDTextBox.Text, out int ID);
             Productores productores = ProductoresBLL.Buscar(ID);
             if (productores != null)
             {
@@ -152,6 +156,13 @@ namespace ProyectoFinal.UI.Registro
             }
             else
                 MessageBox.Show("Productor no Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ProductorIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                BuscarButton_Click(sender, e);
+            Constantes.ValidarSoloNumeros(sender, e);
         }
     }
 }

@@ -18,12 +18,13 @@ namespace ProyectoFinal.UI.Registro
     {
         public RegistroFactoria()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            Limpiar();
         }
         private void Limpiar()
         {
             ErrorProvider.Clear();
-            FactoriaIDnumericUpDown.Value = 0;
+            FactoriaIDTextBox.Text = 0.ToString();
             NombreTextBox.Text = string.Empty;
             DireccionTextBox.Text = string.Empty;
             TelefonoTextBox.Text = string.Empty;
@@ -41,7 +42,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private void LlenaCampo(Factoria factoria)
         {
-            FactoriaIDnumericUpDown.Value = factoria.FactoriaID;
+            FactoriaIDTextBox.Text = factoria.FactoriaID.ToString();
             NombreTextBox.Text = factoria.Nombre;
             DireccionTextBox.Text = factoria.Direccion;
             TelefonoTextBox.Text = factoria.Telefono;
@@ -75,7 +76,7 @@ namespace ProyectoFinal.UI.Registro
         private bool ExisteEnLaBaseDeDatos()
         {
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
-            Factoria factoria = repositorio.Buscar((int)FactoriaIDnumericUpDown.Value);
+            Factoria factoria = repositorio.Buscar(Convert.ToInt32(FactoriaIDTextBox.Text));
             return (factoria != null);
         }
         private void NuevoButton_Click(object sender, EventArgs e)
@@ -90,7 +91,7 @@ namespace ProyectoFinal.UI.Registro
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             bool paso;
             factoria = LlenaClase();
-            if (FactoriaIDnumericUpDown.Value==0)
+            if (Convert.ToInt32(FactoriaIDTextBox.Text)==0)
                 paso = repositorio.Guardar(factoria);    
             else
             {
@@ -119,11 +120,11 @@ namespace ProyectoFinal.UI.Registro
         {
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
-            int.TryParse(FactoriaIDnumericUpDown.Text, out int ID);
+            int.TryParse(FactoriaIDTextBox.Text, out int ID);
 
             if (!ExisteEnLaBaseDeDatos())
             {
-                ErrorProvider.SetError(FactoriaIDnumericUpDown, "No Puede Borrar Una Factoria Inexistente");
+                ErrorProvider.SetError(FactoriaIDTextBox, "No Puede Borrar Una Factoria Inexistente");
                 return;
             }
             if(repositorio.Eliminar(ID))
@@ -136,7 +137,7 @@ namespace ProyectoFinal.UI.Registro
         {
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear(); 
-            int.TryParse(FactoriaIDnumericUpDown.Text, out int ID);
+            int.TryParse(FactoriaIDTextBox.Text, out int ID);
             Factoria factoria = repositorio.Buscar(ID);
             if (factoria != null)
             {
@@ -149,6 +150,13 @@ namespace ProyectoFinal.UI.Registro
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
+        }
+
+        private void FactoriaIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                BuscarButton_Click(sender, e);
+            Constantes.ValidarSoloNumeros(sender, e);
         }
     }
 }

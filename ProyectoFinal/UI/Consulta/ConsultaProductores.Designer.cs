@@ -52,7 +52,7 @@
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
-            "PesadaDetalleID",
+            "ProductorID",
             "Nombre",
             "Telefono",
             "Cedula"});
@@ -87,9 +87,12 @@
             // 
             this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
+            this.ProductoresdataGridView.MultiSelect = false;
             this.ProductoresdataGridView.Name = "ProductoresdataGridView";
+            this.ProductoresdataGridView.ReadOnly = true;
+            this.ProductoresdataGridView.RowHeadersWidth = 51;
             this.ProductoresdataGridView.RowTemplate.Height = 24;
-            this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 503);
+            this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 557);
             this.ProductoresdataGridView.TabIndex = 8;
             // 
             // CriteriotextBox
@@ -116,7 +119,7 @@
             // 
             // BuscarButton
             // 
-            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.if_search_1730951;
+            this.BuscarButton.Image = global::ProyectoFinal.Properties.Resources.Buscar;
             this.BuscarButton.Location = new System.Drawing.Point(543, 20);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(52, 45);
@@ -177,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 617);
+            this.ClientSize = new System.Drawing.Size(875, 671);
             this.Controls.Add(this.FiltracheckBox);
             this.Controls.Add(this.HastadateTimePicker);
             this.Controls.Add(this.DesdedateTimePicker);

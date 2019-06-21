@@ -88,6 +88,8 @@
     <Compile Include="DAL\Constantes.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Factoria.cs" />
+    <Compile Include="Entidades\IRetorno.cs" />
+    <Compile Include="Entidades\CallerMemberName.cs" />
     <Compile Include="Entidades\Pesadas.cs" />
     <Compile Include="Entidades\PesadasDetalle.cs" />
     <Compile Include="Entidades\Productores.cs" />
@@ -348,32 +350,32 @@
     <None Include="Resources\if_search_173095.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\if_search_1730951.png" />
+    <None Include="Resources\Buscar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\if_floppy_285657.png" />
+    <None Include="Resources\Guardar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\if_1-04_511562.png" />
+    <None Include="Resources\Eliminar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\if_manilla-folder-new_23456.png" />
+    <None Include="Resources\nuevo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconfinder_sign-add_299068.png" />
+    <None Include="Resources\agregar.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconfinder_Login Manager_7261.png" />
+    <None Include="Resources\Login.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_Login_in_85205.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconfinder_006-printer_3925426.png" />
+    <None Include="Resources\Imprimir.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -398,7 +400,7 @@
     <None Include="Resources\iconfinder_exit_3855614.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\iconfinder_Cancel_1493282.png" />
+    <None Include="Resources\Cancelar.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_users_61816.png" />
@@ -411,9 +413,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\invoice.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\ProyectoFinal.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

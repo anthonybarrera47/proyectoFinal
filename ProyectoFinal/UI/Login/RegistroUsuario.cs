@@ -13,27 +13,18 @@ namespace ProyectoFinal.UI.Login
         public RegistroUsuario()
         {
             InitializeComponent();
-            LlenarComboBox();
             AdministradorRadioButton.Checked = true;
+            Limpiar();
         }
-        private void LlenarComboBox()
-        {
-            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            UsuarioIdcomboBox.Items.Clear();
-            foreach(var item in repositorio.GetList(x=>true))
-            {
-                UsuarioIdcomboBox.Items.Add(item.UsuarioID);
-            }
-        }
+       
         private void Limpiar()
         {
-            UsuarioIdcomboBox.Items.Clear();
-            UsuarioIdcomboBox.Text = string.Empty;
+            errorProvider.Clear();
+            UsuarioTextBox.Text = 0.ToString();
             NombreTextBox.Text = string.Empty;
             NombreUserTextBox.Text = string.Empty;
             PasswordTextBox.Text = string.Empty;
-            ConfirmarPasswordTextBox.Text = string.Empty;
-            LlenarComboBox();
+            ConfirmarPasswordTextBox.Text = string.Empty;  
         }
         public String Checke()
         {
@@ -47,16 +38,21 @@ namespace ProyectoFinal.UI.Login
         private Usuarios LlenaClase()
         {
             Usuarios usuario = new Usuarios();
-            if (UsuarioIdcomboBox.Text.Equals(string.Empty))
-                usuario.UsuarioID = 0;
-            else
-                usuario.UsuarioID = Convert.ToInt32(UsuarioIdcomboBox.Text);
+            usuario.UsuarioID = Convert.ToInt32(UsuarioTextBox.Text);
             usuario.UserName = NombreUserTextBox.Text;
             usuario.Nombre = NombreTextBox.Text;
             usuario.Password = Constantes.SHA1(PasswordTextBox.Text);
             usuario.TipoUsuario = Checke();
             usuario.FechaRegistro = FechaRegistrodateTimePicker.Value;
             return usuario;
+        }
+        private void LlenaCampo(Usuarios usuario)
+        {
+            NombreTextBox.Text = usuario.Nombre;
+            NombreUserTextBox.Text = usuario.UserName;
+            PasswordTextBox.Text = usuario.Password;
+            ConfirmarPasswordTextBox.Text = usuario.Password;
+            FechaRegistrodateTimePicker.Value = usuario.FechaRegistro;
         }
         private bool Validar()
         {
@@ -83,7 +79,6 @@ namespace ProyectoFinal.UI.Login
                 errorProvider.SetError(NombreUserTextBox, "Este Campo Esta Vacio o Contiene Espacios En Blancos");
                 paso = false;
             }
-            
             if(String.IsNullOrWhiteSpace(PasswordTextBox.Text)|| PasswordTextBox.Text.Contains(" "))
             {
                 errorProvider.SetError(PasswordTextBox, "Este Campo Esta Vacio o Contiene Espacios En Blancos");
@@ -108,7 +103,9 @@ namespace ProyectoFinal.UI.Login
         private bool ExisteEnLaBaseDeDatos()
         {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
+            if (UsuarioTextBox.Text == string.Empty)
+                return false;   
+            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioTextBox.Text));
             return (usuario != null);
         }
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -119,19 +116,19 @@ namespace ProyectoFinal.UI.Login
             Usuarios usuario;
             bool paso = false;
             usuario = LlenaClase();
-            if (UsuarioIdcomboBox.Text == string.Empty)
+            if (Convert.ToInt32(UsuarioTextBox.Text) == 0)
                 paso = repositorio.Guardar(usuario);
             else
             {
                 if (!ExisteEnLaBaseDeDatos())
                 {
-                    MessageBox.Show("No Puedes Modificar un Usuarios Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No Puedes Modificar un Usuario Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 paso = repositorio.Modificar(usuario);
                 if (paso)
                 {
-                    MessageBox.Show("Productor Modificado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Usuario Modificado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
                     return;
                 }
@@ -139,24 +136,12 @@ namespace ProyectoFinal.UI.Login
             if (paso)
             {
                 MessageBox.Show("Usuarios Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UsuarioIdcomboBox.DataSource = null;
-                LlenarComboBox();
                 Limpiar();
             }
             else
                 MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         //Este Es el Metodo Buscar utilizado manejando un evento de cambio de Index En el ComboBox De los PesadaDetalleID
-        private void UsuarioIdcomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            Usuarios usuario = repositorio.Buscar(Convert.ToInt32(UsuarioIdcomboBox.Text));
-            NombreTextBox.Text = usuario.Nombre;
-            NombreUserTextBox.Text = usuario.UserName;
-            PasswordTextBox.Text = usuario.Password;
-            ConfirmarPasswordTextBox.Text = usuario.Password;
-            FechaRegistrodateTimePicker.Value = usuario.FechaRegistro;
-        }
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
@@ -166,17 +151,44 @@ namespace ProyectoFinal.UI.Login
         {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             errorProvider.Clear();
-            int.TryParse(UsuarioIdcomboBox.Text, out int ID);
+            int.TryParse(UsuarioTextBox.Text, out int ID);
             if (!ExisteEnLaBaseDeDatos())
             {
-                errorProvider.SetError(UsuarioIdcomboBox, "No Puede Borrar Una Factoria Inexistente");
+                errorProvider.SetError(UsuarioTextBox, "No Puede Borrar Un Usuario Inexistente");
                 return;
             }
             if (repositorio.Eliminar(ID))
             {
                 Limpiar();
-                MessageBox.Show("Factoria Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        private void BuscarUsuarios_Click(object sender, EventArgs e)
+        {
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            errorProvider.Clear();
+            int.TryParse(UsuarioTextBox.Text, out int ID);
+            Usuarios usuario = repositorio.Buscar(ID);
+            if (usuario != null)
+            {
+                errorProvider.Clear();
+                LlenaCampo(usuario);
+            }
+            else
+                MessageBox.Show("Usuario no Encontrado!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+
+        private void UsuarioTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                BuscarUsuarios_Click(sender, e);
+            Constantes.ValidarSoloNumeros(sender, e);
+        }
+
+        private void NombreUserTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
         }
     }
 }

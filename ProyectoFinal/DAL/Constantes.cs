@@ -111,5 +111,14 @@ namespace ProyectoFinal.DAL
                 return sb.ToString();
             }
         }
+        public static decimal Truncate(decimal value, int decimalPlaces)
+        {
+            decimal integralValue = Math.Truncate(value);
+            decimal fraction = value - integralValue;
+            int factor = (int)Math.Pow(10, decimalPlaces);
+            decimal truncatedFraction = Math.Truncate(fraction * factor) / factor;
+            decimal result = integralValue + truncatedFraction;
+            return result;
+        }
     }
 }

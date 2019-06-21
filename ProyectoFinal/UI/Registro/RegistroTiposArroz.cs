@@ -1,4 +1,5 @@
 ﻿using ProyectoFinal.BLL;
+using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
 using System;
 using System.Collections.Generic;
@@ -22,15 +23,15 @@ namespace ProyectoFinal.UI.Registro
         private void Limpiar()
         {
             errorProvider.Clear();
-            TipoIDNumericUpdown.Value = 0;
+            TipoIDTextBox.Text = 0.ToString();
             DescripcionTextBox.Text = string.Empty;
-            KilostextBox.Text = "0";
+            KilostextBox.Text = 0.ToString();
             FechadateTimePicker.Value = DateTime.Now;
         }
         private TipoArroz LlenaClase()
         {
             TipoArroz tiposArroz = new TipoArroz();
-            tiposArroz.TipoArrozID = Convert.ToInt32(TipoIDNumericUpdown.Value);
+            tiposArroz.TipoArrozID = Convert.ToInt32(TipoIDTextBox.Text);
             tiposArroz.Descripcion = DescripcionTextBox.Text;
             tiposArroz.Kilos = Convert.ToDecimal(KilostextBox.Text);
             tiposArroz.FechaRegistro = FechadateTimePicker.Value;
@@ -38,7 +39,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private void LlenaCampo(TipoArroz tipoArroz)
         {
-            TipoIDNumericUpdown.Value = tipoArroz.TipoArrozID;
+            TipoIDTextBox.Text = tipoArroz.TipoArrozID.ToString();
             DescripcionTextBox.Text = tipoArroz.Descripcion;
             KilostextBox.Text = Convert.ToString(tipoArroz.Kilos);
             FechadateTimePicker.Value = tipoArroz.FechaRegistro;
@@ -56,7 +57,7 @@ namespace ProyectoFinal.UI.Registro
         private bool ExisteEnLaBaseDeDatos()
         {
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            TipoArroz tiposArroz = repositorio.Buscar(Convert.ToInt32(TipoIDNumericUpdown.Value));
+            TipoArroz tiposArroz = repositorio.Buscar(Convert.ToInt32(TipoIDTextBox.Text));
             return (tiposArroz != null);
         }
         private void NuevoButton_Click(object sender, EventArgs e)
@@ -71,30 +72,30 @@ namespace ProyectoFinal.UI.Registro
             if (!Validar())
                 return;
             tiposArroz = LlenaClase();
-            if (TipoIDNumericUpdown.Value==0)
+            if (Convert.ToInt32(TipoIDTextBox.Text)==0)
                  paso = TipoArrozBLL.Guardar(tiposArroz);
             else
             {
                     if (!ExisteEnLaBaseDeDatos())
                     {
-                        MessageBox.Show("No Puedes Modificar un Tipo De Arroz Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No puedes modificar un tipo de arroz inexistente, verifique los datos", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     paso = repositorio.Modificar(tiposArroz);
                     if(paso)
                     {
-                        MessageBox.Show("Tipo De Arroz Modificada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Tipo de arroz modificada exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                         return;
                     }
             }
             if (paso)
             {
-                MessageBox.Show("Tipo De Arroz Guardado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tipo de arroz guardado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
-                MessageBox.Show("No Se Pudo Guardar!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se oudo guardar!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
@@ -103,22 +104,22 @@ namespace ProyectoFinal.UI.Registro
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
             if (!ExisteEnLaBaseDeDatos())
             {
-                errorProvider.SetError(TipoIDNumericUpdown, "No Puede Borrar Un TIpo De Arroz Inexistente");
+                errorProvider.SetError(TipoIDTextBox, "No puede borrar Un Tipo de arroz inexistente");
                 return;
             }
-            var respuesta = MessageBox.Show("¿Va a Eliminar este TipoUsuario de Arroz", "AgroSoft"
+            var respuesta = MessageBox.Show("¿Va a eliminar este tipo de arroz", "AgroSoft"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(respuesta==DialogResult.Yes)
             {
                 if(KilostextBox.Text != Convert.ToString("0"))
                 {
-                    MessageBox.Show("Este TipoUsuario de Arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Este tipo de arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                if (repositorio.Eliminar(Convert.ToInt32(TipoIDNumericUpdown.Value)))
+                if (repositorio.Eliminar(Convert.ToInt32(TipoIDTextBox.Text)))
                 {
                     Limpiar();
-                    MessageBox.Show("TipoUsuario De Arroz Eliminado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tipo de arroz eliminado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
            
@@ -126,7 +127,7 @@ namespace ProyectoFinal.UI.Registro
          private void BuscarButton_Click(object sender, EventArgs e)
          {
              errorProvider.Clear();
-             int.TryParse(TipoIDNumericUpdown.Text, out int Id);
+             int.TryParse(TipoIDTextBox.Text, out int Id);
              RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
             TipoArroz tiposArroz = repositorio.Buscar(Id);
             if (tiposArroz!=null)
@@ -135,7 +136,14 @@ namespace ProyectoFinal.UI.Registro
                  LlenaCampo(tiposArroz);
              }
              else
-                 MessageBox.Show("TipoUsuario De Arroz Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 MessageBox.Show("Tipo de arroz encontrado!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
+
+        private void TipoIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                BuscarButton_Click(sender, e);
+            Constantes.ValidarSoloNumeros(sender, e);
+        }
     }
 }
