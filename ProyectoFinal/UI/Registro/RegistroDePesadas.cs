@@ -48,6 +48,8 @@ namespace ProyectoFinal.UI.Registro
             PrecioFanegaTextBox.Text = 0.ToString();
             FanegaTextBox.Text = 0.ToString();   
             TotalAPagarTextBox.Text = string.Empty;
+            TotalKGTextBox.Text = string.Empty;
+            NegaTextBox.Text = string.Empty;
             FechaRegistrodateTimePicker.Value = DateTime.Now;
             EliminarDetalleButton.Enabled = false;
             PesadasOriginal.PesadasDetalles = new List<PesadasDetalle>();
@@ -353,8 +355,7 @@ namespace ProyectoFinal.UI.Registro
         {
             t = new Thread(Cargar);
             try
-            {
-                
+            {             
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
             }
@@ -362,6 +363,7 @@ namespace ProyectoFinal.UI.Registro
             { throw; }
             finally
             { 
+               
             }
         }
         public void ActualizarInformacionComboBox(object sender,FormClosedEventArgs e)
@@ -534,6 +536,8 @@ namespace ProyectoFinal.UI.Registro
         }
         private void PesadaIDTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (PesadaIDTextBox.Text.Equals(string.Empty)) 
+                     return;
             if (Convert.ToInt32(PesadaIDTextBox.Text) == 0)
                 ImprimirButton.Visible = false;
         }

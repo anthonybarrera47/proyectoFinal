@@ -53,7 +53,7 @@
             this.FiltrocomboBox.FormattingEnabled = true;
             this.FiltrocomboBox.Items.AddRange(new object[] {
             "Todo",
-            "PesadaDetalleID",
+            "ID",
             "Descripcion",
             "Quintales"});
             this.FiltrocomboBox.Location = new System.Drawing.Point(21, 41);
@@ -112,6 +112,7 @@
             // 
             // TipodataGridView
             // 
+            this.TipodataGridView.AllowUserToAddRows = false;
             this.TipodataGridView.AllowUserToDeleteRows = false;
             this.TipodataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TipodataGridView.Location = new System.Drawing.Point(21, 102);

@@ -85,15 +85,20 @@
             // 
             // ProductoresdataGridView
             // 
+            this.ProductoresdataGridView.AllowUserToAddRows = false;
+            this.ProductoresdataGridView.AllowUserToDeleteRows = false;
             this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductoresdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
             this.ProductoresdataGridView.MultiSelect = false;
             this.ProductoresdataGridView.Name = "ProductoresdataGridView";
             this.ProductoresdataGridView.ReadOnly = true;
             this.ProductoresdataGridView.RowHeadersWidth = 51;
             this.ProductoresdataGridView.RowTemplate.Height = 24;
+            this.ProductoresdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 557);
             this.ProductoresdataGridView.TabIndex = 8;
+            this.ProductoresdataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductoresdataGridView_ColumnHeaderMouseClick);
             // 
             // CriteriotextBox
             // 

@@ -41,7 +41,6 @@
             this.PesadaDetallecrystalReportViewer1.Name = "PesadaDetallecrystalReportViewer1";
             this.PesadaDetallecrystalReportViewer1.Size = new System.Drawing.Size(1002, 730);
             this.PesadaDetallecrystalReportViewer1.TabIndex = 0;
-            this.PesadaDetallecrystalReportViewer1.Load += new System.EventHandler(this.PesadaDetallecrystalReportViewer1_Load);
             // 
             // ReportePesadaDetalles
             // 
@@ -49,8 +48,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 730);
             this.Controls.Add(this.PesadaDetallecrystalReportViewer1);
+            this.MinimizeBox = false;
             this.Name = "ReportePesadaDetalles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportePesadaDetalles";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReportePesadaDetalles_FormClosed);
             this.Load += new System.EventHandler(this.ReportePesadaDetalles_Load);
             this.ResumeLayout(false);

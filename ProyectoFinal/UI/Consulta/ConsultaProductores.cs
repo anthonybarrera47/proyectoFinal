@@ -28,6 +28,7 @@ namespace ProyectoFinal.UI.Consulta
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
             ComprobarLlamado();
+            CargarGrid(ProductoresBLL.GetList(x=>true));
         }
         public void ComprobarLlamado()
         {
@@ -72,19 +73,17 @@ namespace ProyectoFinal.UI.Consulta
                 } 
             }
             if (FiltracheckBox.Checked == true)
-            {
                 ListaProductores = ProductoresBLL.GetList(filtro).Where(x => x.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && x.FechaNacimiento.Date <= HastadateTimePicker.Value.Date).ToList();
-                ProductoresdataGridView.DataSource = null;
-                ProductoresdataGridView.DataSource = ListaProductores;
-            }
             else
-            {
                 ListaProductores = ProductoresBLL.GetList(filtro);
-                ProductoresdataGridView.DataSource = null;
-                ProductoresdataGridView.DataSource = ListaProductores;
-            }
-        }
 
+            CargarGrid(ListaProductores);
+        }
+        private void CargarGrid(List<Productores> lista)
+        {
+            ProductoresdataGridView.DataSource = null;
+            ProductoresdataGridView.DataSource = lista;
+        }
         private bool Validar()
         {
             bool paso = true;
@@ -177,6 +176,11 @@ namespace ProyectoFinal.UI.Consulta
             };
             PContrato.Ejecutar(p);
             this.Close();
+        }
+
+        private void ProductoresdataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            ProductoresdataGridView.Sort(ProductoresdataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
     }
 }

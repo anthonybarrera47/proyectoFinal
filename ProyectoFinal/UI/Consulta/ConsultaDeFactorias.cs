@@ -28,6 +28,7 @@ namespace ProyectoFinal.UI.Consulta
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker1.Enabled = false;
             ComprobarLlamado();
+            CargarGrid(FactoriaBLL.GetList(x => true));
         }
         public void ComprobarLlamado()
         {
@@ -175,10 +176,14 @@ namespace ProyectoFinal.UI.Consulta
                 return;
             int index = e.RowIndex;
             DataGridViewRow row = FactoriasdataGridView.Rows[index];
+            if (row.Cells[0].Value== null)
+                return;
+            int ID = Convert.ToInt32(row.Cells[0].Value);
             Factoria p = new Factoria
             {
-                FactoriaID = Convert.ToInt32(row.Cells[0].Value),
+                FactoriaID = ID
             };
+            
             FFactoria.Ejecutar(p);
             this.Close();
         }

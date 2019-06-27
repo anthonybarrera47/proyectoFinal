@@ -57,19 +57,16 @@ namespace ProyectoFinal.UI.Consulta
                 
             }
             if (FiltracheckBox.Checked == true)
-            {
                 ListaArroz = TipoArrozBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
-                TipodataGridView.DataSource = null;
-                TipodataGridView.DataSource = ListaArroz;
-            }
             else
-            {
                 ListaArroz = TipoArrozBLL.GetList(filtro);
-                TipodataGridView.DataSource = null;
-                TipodataGridView.DataSource = ListaArroz;
-            }
+            CargarGrid(ListaArroz);
         }
-
+        private void CargarGrid(List<TipoArroz> lista)
+        {
+            TipodataGridView.DataSource = null;
+            TipodataGridView.DataSource = ListaArroz;
+        }
         private bool Validar()
         {
             bool paso = true;

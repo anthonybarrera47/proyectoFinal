@@ -55,7 +55,6 @@ namespace ProyectoFinal.UI.Reportes
         {
             Cargar();
         }
-
         private void ReportePesadaDetalles_FormClosed(object sender, FormClosedEventArgs e)
         {
             reporte.Dispose();

@@ -85,6 +85,8 @@
             // 
             // FactoriasdataGridView
             // 
+            this.FactoriasdataGridView.AllowUserToAddRows = false;
+            this.FactoriasdataGridView.AllowUserToDeleteRows = false;
             this.FactoriasdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FactoriasdataGridView.Location = new System.Drawing.Point(15, 104);
             this.FactoriasdataGridView.MultiSelect = false;
