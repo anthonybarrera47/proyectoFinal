@@ -22,6 +22,14 @@ namespace ProyectoFinal.Entidades
         public decimal TotalSacos { get; set; }
         public decimal TotalPagar { get; set; }
         public DateTime FechaRegistro { get; set; }
+        [ForeignKey("ProductorID")]
+        public virtual Productores Productores { get; set; }
+        [ForeignKey("TipoArrozID")]
+        public virtual TipoArroz TipoArroz { get; set; }
+        [ForeignKey("FactoriaID")]
+        public virtual Factoria Factoria { get; set; }
+        [ForeignKey("UsuarioID")]
+        public virtual Usuarios Usuarios { get; set; }
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
 
         public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
