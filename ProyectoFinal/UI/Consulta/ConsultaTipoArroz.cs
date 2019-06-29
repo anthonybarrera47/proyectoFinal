@@ -19,6 +19,7 @@ namespace ProyectoFinal.UI.Consulta
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
+            CargarGrid(TipoArrozBLL.GetList(x => true));
         }
         
         Expression<Func<TipoArroz, bool>> filtro = x => true;

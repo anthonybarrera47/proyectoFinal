@@ -29,6 +29,7 @@ namespace ProyectoFinal.UI.Consulta
             HastadateTimePicker1.Enabled = false;
             ComprobarLlamado();
             CargarGrid(FactoriaBLL.GetList(x => true));
+            CriteriotextBox.Focus();
         }
         public void ComprobarLlamado()
         {

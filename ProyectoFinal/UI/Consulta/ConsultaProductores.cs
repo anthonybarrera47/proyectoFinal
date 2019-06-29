@@ -29,6 +29,7 @@ namespace ProyectoFinal.UI.Consulta
             HastadateTimePicker.Enabled = false;
             ComprobarLlamado();
             CargarGrid(ProductoresBLL.GetList(x=>true));
+            
         }
         public void ComprobarLlamado()
         {
@@ -42,6 +43,7 @@ namespace ProyectoFinal.UI.Consulta
             errorProvider.Clear();
             //var lista = new List<Productores>();
             ListaProductores = new List<Productores>();
+            CriteriotextBox.Focus();
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
