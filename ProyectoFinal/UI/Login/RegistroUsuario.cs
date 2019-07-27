@@ -56,19 +56,7 @@ namespace ProyectoFinal.UI.Login
         }
         private bool Validar()
         {
-            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            List<Usuarios> usuario = new List<Usuarios>();
-            Expression<Func<Usuarios, bool>> filtro = x => true;
-            var username = NombreUserTextBox.Text;
-            filtro = x => x.UserName.Equals(username);
-            usuario = repositorio.GetList(filtro);
-
             bool paso = true;
-            if (usuario.Exists(x=>username.Equals(username)))
-            {
-                errorProvider.SetError(NombreUserTextBox,"Nombre De Usuarios Existente!!");
-                paso = false;
-            }
             if(String.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
                 errorProvider.SetError(NombreTextBox, "Campo Vacio!!");
@@ -96,6 +84,22 @@ namespace ProyectoFinal.UI.Login
             }
             return paso;
         }
+        public bool ValidarUsuario()
+        {
+            bool paso = true;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            List<Usuarios> usuario = new List<Usuarios>();
+            Expression<Func<Usuarios, bool>> filtro = x => true;
+            var username = NombreUserTextBox.Text;
+            filtro = x => x.UserName.Equals(username);
+            usuario = repositorio.GetList(filtro);
+            if (usuario.Exists(x => username.Equals(username)))
+            {
+                errorProvider.SetError(NombreUserTextBox, "Nombre De Usuarios Existente!!");
+                paso = false;
+            }
+            return paso;
+        }
         private void NuevoButton_Click(object sender, EventArgs e)
         {
             Limpiar();
@@ -116,7 +120,11 @@ namespace ProyectoFinal.UI.Login
             bool paso = false;
             usuario = LlenaClase();
             if (Convert.ToInt32(UsuarioTextBox.Text) == 0)
+            {
+                if (!ValidarUsuario())
+                    return;
                 paso = repositorio.Guardar(usuario);
+            }   
             else
             {
                 if (!ExisteEnLaBaseDeDatos())
@@ -124,7 +132,16 @@ namespace ProyectoFinal.UI.Login
                     MessageBox.Show("No Puedes Modificar un Usuario Inexistente, Verifique Los Datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                paso = repositorio.Modificar(usuario);
+                RepositorioBase<Usuarios> db = new RepositorioBase<Usuarios>();
+                Usuarios OldUser = db.Buscar(usuario.UsuarioID);
+                if(OldUser.UserName.Equals(usuario.UserName))
+                    paso = repositorio.Modificar(usuario);
+                else
+                {
+                    if (!ValidarUsuario())
+                        return;
+                    paso = repositorio.Modificar(usuario);
+                }
                 if (paso)
                 {
                     MessageBox.Show("Usuario Modificado Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);

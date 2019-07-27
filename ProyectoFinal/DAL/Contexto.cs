@@ -16,7 +16,6 @@ namespace ProyectoFinal.DAL
         public DbSet<Pesadas> Pesadas { get; set; }
         public DbSet<Usuarios> Usuario { get; set; }
         public DbSet<PesadasDetalle> PesadaDetalle { get; set; }
-
         public Contexto() : base("ConStr")
         { }
     }

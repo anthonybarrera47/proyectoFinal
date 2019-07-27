@@ -42,6 +42,8 @@
             this.DesdedateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TotalTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -181,11 +183,29 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Desde";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 671);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 17);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Total";
+            // 
+            // TotalTextBox
+            // 
+            this.TotalTextBox.Location = new System.Drawing.Point(67, 666);
+            this.TotalTextBox.Name = "TotalTextBox";
+            this.TotalTextBox.Size = new System.Drawing.Size(100, 22);
+            this.TotalTextBox.TabIndex = 20;
+            // 
             // ConsultaProductores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 671);
+            this.ClientSize = new System.Drawing.Size(875, 721);
+            this.Controls.Add(this.TotalTextBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.FiltracheckBox);
             this.Controls.Add(this.HastadateTimePicker);
             this.Controls.Add(this.DesdedateTimePicker);
@@ -224,5 +244,7 @@
         private System.Windows.Forms.DateTimePicker DesdedateTimePicker;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TotalTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }

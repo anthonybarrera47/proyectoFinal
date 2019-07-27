@@ -13,7 +13,7 @@ namespace ProyectoFinal.DAL
         public const string user = "U";
 
         //Metodo Para Utilizar Expresiones Regulares
-        public static bool ComprobarRegex(string expressionRegular,string cadena)
+        public static bool ComprobarRegex(string expressionRegular, string cadena)
         {
             Regex regex = new Regex(expressionRegular);
             bool result = regex.IsMatch(cadena);
@@ -40,7 +40,7 @@ namespace ProyectoFinal.DAL
             }
         }
         //Este metodo Valida El TextBox para que este solo acepte numeros enteros efectivo a la hora de consultas por PesadaDetalleID.
-        public static void ValidarSoloNumeros(object sender,KeyPressEventArgs e)
+        public static void ValidarSoloNumeros(object sender, KeyPressEventArgs e)
         {
             //Para obligar a que sólo se introduzcan números
             if (Char.IsDigit(e.KeyChar))
@@ -57,14 +57,14 @@ namespace ProyectoFinal.DAL
                 //el resto de teclas pulsadas se desactivan
                 e.Handled = true;
             }
-            
+
             return;
         }
-        public static void ValidarNoEspaciosEnBlancos(object sender,KeyPressEventArgs e)
+        public static void ValidarNoEspaciosEnBlancos(object sender, KeyPressEventArgs e)
         {
             e.Handled = e.KeyChar == Convert.ToChar(Keys.Space);
         }
-        public static void ValidarNumerosDecimales(object sender,KeyPressEventArgs e,String cadena)
+        public static void ValidarNumerosDecimales(object sender, KeyPressEventArgs e, String cadena)
         {
             if (e.KeyChar == 8)
             {
@@ -90,13 +90,15 @@ namespace ProyectoFinal.DAL
                 e.Handled = (IsDec) ? true : false;
             else
                 e.Handled = true;
+            
+
         }
         public static bool ValidarEspaciosEnBlancos(String cadena)
         {
             bool paso = true;
-            for(int i=0;i<cadena.Length;i++)
+            for (int i = 0; i < cadena.Length; i++)
             {
-                if (cadena[i]==' ')
+                if (cadena[i] == ' ')
                     paso = false;
             }
             return paso;

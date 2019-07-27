@@ -377,7 +377,7 @@ namespace ProyectoFinal.UI.Registro
             Pesadas pesadas = PesadasBLL.Buscar(ID);
             if (pesadas != null)
             {
-                LimpiarProvider();
+                              LimpiarProvider();
                 LlenaCampo(pesadas);
             }
             else
@@ -419,8 +419,8 @@ namespace ProyectoFinal.UI.Registro
                 {
                     if (item.PesadaDetalleID == (int)IDDetalle.Value)
                     {
-                        CantidadSacosTextBox.Text = item.CantidadDeSacos.ToString();
-                        KilosPesadosTextBox.Text = item.Kilos.ToString();
+                        CantidadSacosTextBox.Text = Convert.ToInt32(item.CantidadDeSacos).ToString();
+                        KilosPesadosTextBox.Text = Convert.ToInt32(item.Kilos).ToString();
                         AgregarButton.Enabled = true;
                         TipoArrozIdComboBox.SelectedIndex = item.TipoArrozID-1;
                         return;
@@ -514,9 +514,10 @@ namespace ProyectoFinal.UI.Registro
         }
         private void PesadaIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Constantes.ValidarSoloNumeros(sender, e);
             if ((int)e.KeyChar == (int)Keys.Enter)
                 BuscarPesadas_Click(sender,e);
-            Constantes.ValidarSoloNumeros(sender, e);
+            
         }
         private void CantidadSacosTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {

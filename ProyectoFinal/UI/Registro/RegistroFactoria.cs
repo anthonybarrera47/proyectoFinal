@@ -32,7 +32,7 @@ namespace ProyectoFinal.UI.Registro
         }
         private Factoria LlenaClase()
         {
-            Factoria factoria = new Factoria();       
+            Factoria factoria = new Factoria();
             factoria.FactoriaID = 0;
             factoria.Nombre = NombreTextBox.Text;
             factoria.Direccion = DireccionTextBox.Text;
@@ -66,10 +66,14 @@ namespace ProyectoFinal.UI.Registro
                 ErrorProvider.SetError(TelefonoTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if(!Constantes.ValidarEspaciosEnBlancos(TelefonoTextBox.Text))
+            if (!Constantes.ValidarEspaciosEnBlancos(TelefonoTextBox.Text))
             {
                 ErrorProvider.SetError(TelefonoTextBox, "Este Campo No puede contener Espacios en blancos!!");
                 paso = false;
+            }
+            if (String.IsNullOrEmpty(FactoriaIDTextBox.Text))
+            {
+                FactoriaIDTextBox.Text = "0";
             }
             return paso;
         }
@@ -91,8 +95,10 @@ namespace ProyectoFinal.UI.Registro
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             bool paso;
             factoria = LlenaClase();
-            if (Convert.ToInt32(FactoriaIDTextBox.Text)==0)
-                paso = repositorio.Guardar(factoria);    
+
+            factoria.FactoriaID = 0;
+            if (Convert.ToInt32(FactoriaIDTextBox.Text) == 0)
+                paso = repositorio.Guardar(factoria);
             else
             {
                 if (!ExisteEnLaBaseDeDatos())
@@ -127,7 +133,7 @@ namespace ProyectoFinal.UI.Registro
                 ErrorProvider.SetError(FactoriaIDTextBox, "No Puede Borrar Una Factoria Inexistente");
                 return;
             }
-            if(repositorio.Eliminar(ID))
+            if (repositorio.Eliminar(ID))
             {
                 Limpiar();
                 MessageBox.Show("Factoria Eliminada Exitosamente!!", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -136,7 +142,7 @@ namespace ProyectoFinal.UI.Registro
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
-            ErrorProvider.Clear(); 
+            ErrorProvider.Clear();
             int.TryParse(FactoriaIDTextBox.Text, out int ID);
             Factoria factoria = repositorio.Buscar(ID);
             if (factoria != null)

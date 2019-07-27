@@ -29,12 +29,11 @@ namespace ProyectoFinal.UI.Login
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             if (!Validar())
                 return;
-            Expression<Func<Usuarios, bool>> filtro = x => true;
-            List<Usuarios> usuario = new List<Usuarios>();
-            var username = UserTextBox.Text;
-            var password = PassWordTextBox.Text;
+            Expression<Func<Usuarios, bool>> filtro = x => true;   
+            string username = UserTextBox.Text;
+            string password = PassWordTextBox.Text;
             filtro = x => x.UserName.Equals(username);
-            usuario = repositorio.GetList(filtro);
+            List<Usuarios> usuario = repositorio.GetList(filtro);
             Usuarios tiposUsuario = new Usuarios();
             if(usuario.Count > 0)
             {
@@ -69,7 +68,7 @@ namespace ProyectoFinal.UI.Login
                     UserName = "root",
                     Password = Constantes.SHA1("root1234"),
                     TipoUsuario = "A",
-                    FechaRegistro = DateTime.Now
+                    FechaRegistro = DateTime.Now.Date
                 });;
                 MessageBox.Show("Al parecer es tu primera vez ejecutando el programa," +
                     "El Username es *root* y el Password *root1234*","AgroSoft",MessageBoxButtons.OK,MessageBoxIcon.Information);

@@ -84,6 +84,7 @@ namespace ProyectoFinal.UI.Consulta
         private void CargarGrid(List<Productores> lista)
         {
             ProductoresdataGridView.DataSource = null;
+            TotalTextBox.Text = lista.Count.ToString();
             ProductoresdataGridView.DataSource = lista;
         }
         private bool Validar()
