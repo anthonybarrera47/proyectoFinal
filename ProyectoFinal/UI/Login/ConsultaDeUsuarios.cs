@@ -90,7 +90,19 @@ namespace ProyectoFinal.UI.Login
         private void CargarGrid(List<Usuarios> lista)
         {
             UsuariosdataGridView.DataSource = null;
-            UsuariosdataGridView.DataSource = lista;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("UsuarioID", typeof(int));
+            dt.Columns.Add("Nombre de usuario", typeof(string));
+            dt.Columns.Add("Nombre", typeof(string));
+            dt.Columns.Add("Tipo de Usuario", typeof(string));
+            dt.Columns.Add("Fecha de registro", typeof(DateTime));
+            foreach(var item in lista)
+            {
+                dt.Rows.Add(item.UsuarioID, item.UserName, item.Nombre, item.TipoUsuario, item.FechaRegistro);
+            }
+            UsuariosdataGridView.DataSource = dt;
+
+            TotalTextBox.Text = lista.Count.ToString();
         }
         private bool Validar()
         {

@@ -4,6 +4,7 @@ using ProyectoFinal.Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
@@ -77,7 +78,16 @@ namespace ProyectoFinal.UI.Consulta
         private void CargarGrid(List<TipoArroz> lista)
         {
             TipodataGridView.DataSource = null;
-            TipodataGridView.DataSource = lista;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("TipoArrozID", typeof(int));
+            dt.Columns.Add("Descripcion", typeof(string));
+            dt.Columns.Add("Kilos", typeof(decimal));
+            dt.Columns.Add("Fecha de registro", typeof(DateTime));
+            foreach(var item in lista)
+            {
+                dt.Rows.Add(item.TipoArrozID, item.Descripcion, item.Kilos, item.FechaRegistro);
+            }
+            TipodataGridView.DataSource = dt;
             TotalTextBox.Text = lista.Count.ToString();
             decimal suma = 0;
             foreach(var item in lista)

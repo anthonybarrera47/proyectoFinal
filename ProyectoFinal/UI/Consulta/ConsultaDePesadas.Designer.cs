@@ -96,6 +96,7 @@
             this.FactoriasdataGridView.ReadOnly = true;
             this.FactoriasdataGridView.RowHeadersWidth = 51;
             this.FactoriasdataGridView.RowTemplate.Height = 24;
+            this.FactoriasdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.FactoriasdataGridView.Size = new System.Drawing.Size(847, 503);
             this.FactoriasdataGridView.TabIndex = 8;
             // 

@@ -124,6 +124,7 @@
             this.TipodataGridView.ReadOnly = true;
             this.TipodataGridView.RowHeadersWidth = 51;
             this.TipodataGridView.RowTemplate.Height = 24;
+            this.TipodataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TipodataGridView.Size = new System.Drawing.Size(847, 503);
             this.TipodataGridView.TabIndex = 8;
             // 

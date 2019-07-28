@@ -28,13 +28,13 @@ namespace ProyectoFinal.UI.Consulta
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
             ComprobarLlamado();
-            CargarGrid(ProductoresBLL.GetList(x=>true));
-            
+            CargarGrid(ProductoresBLL.GetList(x => true));
+
         }
         public void ComprobarLlamado()
         {
             if (Llamado == null)
-                return; 
+                return;
             if (Llamado.Equals("BuscarProductor_Click") || Llamado.Equals("BuscaProductores_Click"))
             {
                 ProductoresdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
@@ -42,7 +42,7 @@ namespace ProyectoFinal.UI.Consulta
             }
             if (Llamado.Equals("BuscarProductor_Click"))
                 ImprimirButton.Visible = true;
-                
+
         }
         private void Seleccion()
         {
@@ -78,7 +78,7 @@ namespace ProyectoFinal.UI.Consulta
                             return;
                         filtro = x => x.Cedula.Contains(CriteriotextBox.Text);
                         break;
-                } 
+                }
             }
             if (FiltracheckBox.Checked == true)
                 ListaProductores = ProductoresBLL.GetList(filtro).Where(x => x.FechaNacimiento.Date >= DesdedateTimePicker.Value.Date && x.FechaNacimiento.Date <= HastadateTimePicker.Value.Date).ToList();
@@ -89,8 +89,19 @@ namespace ProyectoFinal.UI.Consulta
         }
         private void CargarGrid(List<Productores> lista)
         {
-            ProductoresdataGridView.DataSource = null; 
-            ProductoresdataGridView.DataSource = lista;
+            ProductoresdataGridView.DataSource = null;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ProductorID", typeof(int));
+            dt.Columns.Add("Nombre", typeof(string));
+            dt.Columns.Add("Telefono", typeof(string));
+            dt.Columns.Add("Cedula", typeof(string));
+            dt.Columns.Add("Fecha de Nacimiento", typeof(DateTime));
+            dt.Columns.Add("Fecha de Registro", typeof(DateTime));
+            foreach(var item in lista)
+            {
+                dt.Rows.Add(item.ProductorID, item.Nombre, item.Telefono, item.Cedula, item.FechaNacimiento, item.FechaRegistro);
+            }
+            ProductoresdataGridView.DataSource = dt;
             TotalTextBox.Text = lista.Count.ToString();
         }
         private bool Validar()
@@ -125,11 +136,11 @@ namespace ProyectoFinal.UI.Consulta
                 //En caso que fuesemos a buscar por Nombres entonces si podremos Digitar Letras
                 Constantes.ValidarNombreTextBox(sender, e);
             }
-            if(FiltrocomboBox.SelectedIndex == 3)
+            if (FiltrocomboBox.SelectedIndex == 3)
             {
                 CriteriotextBox.MaxLength = 12;
             }
-            if(FiltrocomboBox.SelectedIndex == 4)
+            if (FiltrocomboBox.SelectedIndex == 4)
             {
                 CriteriotextBox.MaxLength = 13;
             }
@@ -181,7 +192,7 @@ namespace ProyectoFinal.UI.Consulta
             DataGridViewRow row = ProductoresdataGridView.Rows[index];
             Productores p = new Productores
             {
-                ProductorID = Convert.ToInt32(row.Cells[0].Value), 
+                ProductorID = Convert.ToInt32(row.Cells[0].Value),
             };
             PContrato.Ejecutar(p);
             this.Close();

@@ -43,6 +43,8 @@
             this.ImprimirButton = new System.Windows.Forms.Button();
             this.BuscarButton = new System.Windows.Forms.Button();
             this.FiltracheckBox = new System.Windows.Forms.CheckBox();
+            this.TotalTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.UsuariosdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -113,6 +115,7 @@
             // 
             // UsuariosdataGridView
             // 
+            this.UsuariosdataGridView.AllowUserToAddRows = false;
             this.UsuariosdataGridView.AllowUserToDeleteRows = false;
             this.UsuariosdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UsuariosdataGridView.Location = new System.Drawing.Point(21, 102);
@@ -120,6 +123,7 @@
             this.UsuariosdataGridView.ReadOnly = true;
             this.UsuariosdataGridView.RowHeadersWidth = 51;
             this.UsuariosdataGridView.RowTemplate.Height = 24;
+            this.UsuariosdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.UsuariosdataGridView.Size = new System.Drawing.Size(847, 503);
             this.UsuariosdataGridView.TabIndex = 8;
             this.UsuariosdataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsuariosdataGridView_CellContentDoubleClick);
@@ -178,11 +182,33 @@
             this.FiltracheckBox.UseVisualStyleBackColor = true;
             this.FiltracheckBox.CheckedChanged += new System.EventHandler(this.FiltracheckBox_CheckedChanged);
             // 
+            // TotalTextBox
+            // 
+            this.TotalTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TotalTextBox.Enabled = false;
+            this.TotalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTextBox.Location = new System.Drawing.Point(87, 611);
+            this.TotalTextBox.Name = "TotalTextBox";
+            this.TotalTextBox.Size = new System.Drawing.Size(100, 28);
+            this.TotalTextBox.TabIndex = 26;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 613);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 24);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Total";
+            // 
             // ConsultaDeUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 617);
+            this.ClientSize = new System.Drawing.Size(875, 640);
+            this.Controls.Add(this.TotalTextBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.FiltracheckBox);
             this.Controls.Add(this.ImprimirButton);
             this.Controls.Add(this.HastadateTimePicker);
@@ -222,5 +248,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Button ImprimirButton;
         private System.Windows.Forms.CheckBox FiltracheckBox;
+        private System.Windows.Forms.TextBox TotalTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }
