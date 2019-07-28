@@ -28,7 +28,7 @@ namespace ProyectoFinal.UI.Consulta
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
             ComprobarLlamado();
-            CargarGrid(ProductoresBLL.GetList(x => true));
+            Seleccion();
 
         }
         public void ComprobarLlamado()

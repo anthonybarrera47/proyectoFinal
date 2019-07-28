@@ -29,8 +29,13 @@ namespace ProyectoFinal.UI.Consulta
         {
             errorProvider.Clear();
             ListaPesadas = new List<Pesadas>();
-            int ID = Convert.ToInt32(CriteriotextBox.Text);
-            decimal decimales = Convert.ToDecimal(CriteriotextBox.Text);
+            int ID = 0;
+            decimal decimales = 0;
+            if (FiltrocomboBox.SelectedIndex > 0)
+            {
+                ID = (CriteriotextBox.Text).ToInt();
+                decimales = (CriteriotextBox.Text).ToDecimal();
+            }
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
@@ -96,6 +101,7 @@ namespace ProyectoFinal.UI.Consulta
         {
             FactoriasdataGridView.DataSource = null;
             FactoriasdataGridView.DataSource = ListaPesadas;
+
             TotalTextBox.Text = pesadas.Count.ToString();
         }
         private bool Validar()

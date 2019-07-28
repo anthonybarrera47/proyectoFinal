@@ -25,8 +25,7 @@ namespace ProyectoFinal.UI.Login
             FiltrocomboBox.SelectedIndex = 0;
             DeshabilitarTimePicker();
             ComprobarLLamado();
-            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            CargarGrid(repositorio.GetList(x => true));
+            Seleccion();
         }
         private void ComprobarLLamado()
         {
@@ -41,6 +40,7 @@ namespace ProyectoFinal.UI.Login
                 ImprimirButton.Visible = true;
         }
         List<Usuarios> ListaUsuarios;
+        DataTable data;
         Expression<Func<Usuarios, bool>> filtro = x => true;
         private void Seleccion()
         {
@@ -92,7 +92,7 @@ namespace ProyectoFinal.UI.Login
             UsuariosdataGridView.DataSource = null;
             DataTable dt = new DataTable();
             dt.Columns.Add("UsuarioID", typeof(int));
-            dt.Columns.Add("Nombre de usuario", typeof(string));
+            dt.Columns.Add("UserName", typeof(string));
             dt.Columns.Add("Nombre", typeof(string));
             dt.Columns.Add("Tipo de Usuario", typeof(string));
             dt.Columns.Add("Fecha de registro", typeof(DateTime));
@@ -101,7 +101,8 @@ namespace ProyectoFinal.UI.Login
                 dt.Rows.Add(item.UsuarioID, item.UserName, item.Nombre, item.TipoUsuario, item.FechaRegistro);
             }
             UsuariosdataGridView.DataSource = dt;
-
+            data = new DataTable();
+            data = dt;
             TotalTextBox.Text = lista.Count.ToString();
         }
         private bool Validar()
@@ -146,10 +147,9 @@ namespace ProyectoFinal.UI.Login
             else
                 errorProvider.Clear();
         }
-
         private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
-            ReporteDeUsuario reporte = new ReporteDeUsuario(ListaUsuarios);
+            ReporteDeUsuario reporte = new ReporteDeUsuario(data);
             reporte.Show();
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)

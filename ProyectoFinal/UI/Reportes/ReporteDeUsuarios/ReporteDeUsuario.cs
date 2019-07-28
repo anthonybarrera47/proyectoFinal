@@ -13,8 +13,8 @@ namespace ProyectoFinal.UI.Reportes.ReporteDeUsuarios
 {
     public partial class ReporteDeUsuario : Form
     {
-        List<Usuarios> data = new List<Usuarios>();
-        public ReporteDeUsuario(List<Usuarios> Lista)
+        DataTable data = new DataTable();
+        public ReporteDeUsuario(DataTable Lista)
         {
             InitializeComponent();
             data = Lista;

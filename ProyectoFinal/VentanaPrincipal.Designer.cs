@@ -50,6 +50,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.NombretoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.consultarDePesadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBar.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +110,8 @@
             this.ConsultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ConsultarProductoresToolStripMenuItem,
             this.consultaFactoriasToolStripMenuItem,
-            this.consultaTipoArrozToolStripMenuItem});
+            this.consultaTipoArrozToolStripMenuItem,
+            this.consultarDePesadasToolStripMenuItem});
             this.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem";
             resources.ApplyResources(this.ConsultasToolStripMenuItem, "ConsultasToolStripMenuItem");
             // 
@@ -212,6 +214,13 @@
             this.NombretoolStripStatusLabel.Name = "NombretoolStripStatusLabel";
             resources.ApplyResources(this.NombretoolStripStatusLabel, "NombretoolStripStatusLabel");
             // 
+            // consultarDePesadasToolStripMenuItem
+            // 
+            this.consultarDePesadasToolStripMenuItem.Image = global::ProyectoFinal.Properties.Resources.invoice;
+            this.consultarDePesadasToolStripMenuItem.Name = "consultarDePesadasToolStripMenuItem";
+            resources.ApplyResources(this.consultarDePesadasToolStripMenuItem, "consultarDePesadasToolStripMenuItem");
+            this.consultarDePesadasToolStripMenuItem.Click += new System.EventHandler(this.ConsultarDePesadasToolStripMenuItem_Click);
+            // 
             // VentanaPrincipal
             // 
             resources.ApplyResources(this, "$this");
@@ -257,6 +266,7 @@
         private System.Windows.Forms.ToolStripMenuItem consultaTipoArrozToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informacionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarDePesadasToolStripMenuItem;
     }
 }
 

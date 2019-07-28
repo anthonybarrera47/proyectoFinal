@@ -152,22 +152,28 @@
     <value>Registro</value>
   </data>
   <data name="ConsultarProductoresToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 26</value>
+    <value>244, 26</value>
   </data>
   <data name="ConsultarProductoresToolStripMenuItem.Text" xml:space="preserve">
     <value>Consultar Productores</value>
   </data>
   <data name="consultaFactoriasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 26</value>
+    <value>244, 26</value>
   </data>
   <data name="consultaFactoriasToolStripMenuItem.Text" xml:space="preserve">
     <value>Consulta Factorias</value>
   </data>
   <data name="consultaTipoArrozToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 26</value>
+    <value>244, 26</value>
   </data>
   <data name="consultaTipoArrozToolStripMenuItem.Text" xml:space="preserve">
-    <value>Consulta TipoArroz</value>
+    <value>Consulta Tipo de Arroz</value>
+  </data>
+  <data name="consultarDePesadasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 26</value>
+  </data>
+  <data name="consultarDePesadasToolStripMenuItem.Text" xml:space="preserve">
+    <value>Consultar de Pesadas</value>
   </data>
   <data name="ConsultasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 24</value>
@@ -957,6 +963,12 @@
   </data>
   <data name="&gt;&gt;NombretoolStripStatusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;consultarDePesadasToolStripMenuItem.Name" xml:space="preserve">
+    <value>consultarDePesadasToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;consultarDePesadasToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>VentanaPrincipal</value>

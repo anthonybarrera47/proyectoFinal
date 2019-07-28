@@ -24,7 +24,7 @@ namespace ProyectoFinal.UI.Consulta
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
-            CargarGrid(TipoArrozBLL.GetList(x => true));
+            Seleccion();
         }  
         private void ComprobarLlamado()
         {
@@ -138,7 +138,7 @@ namespace ProyectoFinal.UI.Consulta
         {
              ReportesDeTipoArroz reporte = new ReportesDeTipoArroz(ListaArroz);
              reporte.Show();
-            reporte.Dispose();
+
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {

@@ -28,7 +28,7 @@ namespace ProyectoFinal.UI.Consulta
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker1.Enabled = false;
             ComprobarLlamado();
-            CargarGrid(FactoriaBLL.GetList(x => true));
+            Seleccion();
             CriteriotextBox.Focus();
         }
         public void ComprobarLlamado()
@@ -140,7 +140,6 @@ namespace ProyectoFinal.UI.Consulta
         {
             ReportesDeFactoria reporte = new ReportesDeFactoria(ListaFactorias);
             reporte.Show();
-            reporte.Dispose();
         }
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

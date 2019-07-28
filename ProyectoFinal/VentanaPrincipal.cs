@@ -18,6 +18,7 @@ namespace ProyectoFinal
         {
             UsuariosToolStripMenuItem.Visible = tipousuario.Equals(Constantes.admi);
             NombretoolStripStatusLabel.Text =PesadasBLL.GetUsuario().Nombre;
+            consultarDePesadasToolStripMenuItem.Visible = false;
         }
         public VentanaPrincipal()
         {
@@ -138,6 +139,14 @@ namespace ProyectoFinal
             MessageBox.Show("Este Es un proyecto creado por Anthony Manuel Barrera Hildago " +
                 "Estudiante de la carrera de Ingenieria En Sistema en la" +
                 " Universidad Catolica Nordestana", "INFORMACION DEL CREADOR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void ConsultarDePesadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultaDePesadas cConsultaPesadas = new ConsultaDePesadas
+            {
+                MdiParent = this
+            };
+            //cConsultaPesadas.Show();
         }
     }
 }
