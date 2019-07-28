@@ -88,19 +88,19 @@
             // ProductoresdataGridView
             // 
             this.ProductoresdataGridView.AllowUserToAddRows = false;
-            this.ProductoresdataGridView.AllowUserToDeleteRows = false;
+            this.ProductoresdataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ProductoresdataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ProductoresdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductoresdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ProductoresdataGridView.Location = new System.Drawing.Point(21, 102);
             this.ProductoresdataGridView.MultiSelect = false;
             this.ProductoresdataGridView.Name = "ProductoresdataGridView";
             this.ProductoresdataGridView.ReadOnly = true;
+            this.ProductoresdataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ProductoresdataGridView.RowHeadersWidth = 51;
             this.ProductoresdataGridView.RowTemplate.Height = 24;
             this.ProductoresdataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductoresdataGridView.Size = new System.Drawing.Size(847, 557);
             this.ProductoresdataGridView.TabIndex = 8;
-            this.ProductoresdataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductoresdataGridView_ColumnHeaderMouseClick);
             // 
             // CriteriotextBox
             // 
@@ -186,24 +186,28 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 671);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 667);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 17);
+            this.label5.Size = new System.Drawing.Size(56, 24);
             this.label5.TabIndex = 19;
             this.label5.Text = "Total";
             // 
             // TotalTextBox
             // 
-            this.TotalTextBox.Location = new System.Drawing.Point(67, 666);
+            this.TotalTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TotalTextBox.Enabled = false;
+            this.TotalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTextBox.Location = new System.Drawing.Point(83, 665);
             this.TotalTextBox.Name = "TotalTextBox";
-            this.TotalTextBox.Size = new System.Drawing.Size(100, 22);
+            this.TotalTextBox.Size = new System.Drawing.Size(100, 28);
             this.TotalTextBox.TabIndex = 20;
             // 
             // ConsultaProductores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 721);
+            this.ClientSize = new System.Drawing.Size(875, 695);
             this.Controls.Add(this.TotalTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.FiltracheckBox);

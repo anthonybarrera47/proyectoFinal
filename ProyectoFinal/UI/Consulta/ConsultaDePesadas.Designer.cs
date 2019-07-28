@@ -42,6 +42,8 @@
             this.DesdedateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.TotalTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FactoriasdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +94,7 @@
             this.FactoriasdataGridView.Location = new System.Drawing.Point(15, 104);
             this.FactoriasdataGridView.Name = "FactoriasdataGridView";
             this.FactoriasdataGridView.ReadOnly = true;
+            this.FactoriasdataGridView.RowHeadersWidth = 51;
             this.FactoriasdataGridView.RowTemplate.Height = 24;
             this.FactoriasdataGridView.Size = new System.Drawing.Size(847, 503);
             this.FactoriasdataGridView.TabIndex = 8;
@@ -179,11 +182,33 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "Desde";
             // 
+            // TotalTextBox
+            // 
+            this.TotalTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TotalTextBox.Enabled = false;
+            this.TotalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTextBox.Location = new System.Drawing.Point(73, 613);
+            this.TotalTextBox.Name = "TotalTextBox";
+            this.TotalTextBox.Size = new System.Drawing.Size(100, 28);
+            this.TotalTextBox.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 615);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 24);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Total";
+            // 
             // ConsultaDePesadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 617);
+            this.ClientSize = new System.Drawing.Size(875, 648);
+            this.Controls.Add(this.TotalTextBox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.FiltracheckBox);
             this.Controls.Add(this.HastadateTimePicker1);
             this.Controls.Add(this.DesdedateTimePicker);
@@ -222,5 +247,7 @@
         private System.Windows.Forms.DateTimePicker DesdedateTimePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TotalTextBox;
+        private System.Windows.Forms.Label label3;
     }
 }

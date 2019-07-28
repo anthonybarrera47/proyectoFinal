@@ -197,6 +197,7 @@
             // 
             // FactoriaIDTextBox
             // 
+            this.FactoriaIDTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.FactoriaIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FactoriaIDTextBox.Location = new System.Drawing.Point(113, 19);
             this.FactoriaIDTextBox.MaxLength = 9;

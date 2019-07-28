@@ -43,6 +43,10 @@
             this.ImprimirButton = new System.Windows.Forms.Button();
             this.BuscarButton = new System.Windows.Forms.Button();
             this.FiltracheckBox = new System.Windows.Forms.CheckBox();
+            this.TotalTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TotalKGTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.TipodataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -122,7 +126,6 @@
             this.TipodataGridView.RowTemplate.Height = 24;
             this.TipodataGridView.Size = new System.Drawing.Size(847, 503);
             this.TipodataGridView.TabIndex = 8;
-            this.TipodataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ProductoresdataGridView_ColumnHeaderMouseClick);
             // 
             // CriteriotextBox
             // 
@@ -177,11 +180,55 @@
             this.FiltracheckBox.UseVisualStyleBackColor = true;
             this.FiltracheckBox.CheckedChanged += new System.EventHandler(this.FiltracheckBox_CheckedChanged);
             // 
+            // TotalTextBox
+            // 
+            this.TotalTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TotalTextBox.Enabled = false;
+            this.TotalTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalTextBox.Location = new System.Drawing.Point(83, 611);
+            this.TotalTextBox.Name = "TotalTextBox";
+            this.TotalTextBox.Size = new System.Drawing.Size(100, 28);
+            this.TotalTextBox.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 613);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 24);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Total";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(620, 612);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(137, 24);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Total de Kilos";
+            // 
+            // TotalKGTextBox
+            // 
+            this.TotalKGTextBox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.TotalKGTextBox.Enabled = false;
+            this.TotalKGTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalKGTextBox.Location = new System.Drawing.Point(763, 609);
+            this.TotalKGTextBox.Name = "TotalKGTextBox";
+            this.TotalKGTextBox.Size = new System.Drawing.Size(100, 28);
+            this.TotalKGTextBox.TabIndex = 22;
+            // 
             // ConsultaTipoArroz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 617);
+            this.ClientSize = new System.Drawing.Size(875, 643);
+            this.Controls.Add(this.TotalKGTextBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TotalTextBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.FiltracheckBox);
             this.Controls.Add(this.ImprimirButton);
             this.Controls.Add(this.HastadateTimePicker);
@@ -221,5 +268,9 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Button ImprimirButton;
         private System.Windows.Forms.CheckBox FiltracheckBox;
+        private System.Windows.Forms.TextBox TotalTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TotalKGTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }

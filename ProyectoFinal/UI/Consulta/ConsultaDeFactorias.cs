@@ -18,11 +18,11 @@ namespace ProyectoFinal.UI.Consulta
     public partial class ConsultaDeFactorias : Form
     {
         List<Factoria> ListaFactorias;
-        public static String Llamado;
+        public static String Llamado = string.Empty;
         public IRetorno<Factoria> FFactoria { get; set; }
         Expression<Func<Factoria, bool>> filtro = x => true;
         public ConsultaDeFactorias()
-        {
+        {    
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
@@ -34,9 +34,14 @@ namespace ProyectoFinal.UI.Consulta
         public void ComprobarLlamado()
         {
             if (Llamado == null)
-                return;
-            if (Llamado.Equals("BuscarFactoria_Click"))
-                FactoriasdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
+                return; 
+            if (Llamado.Equals("BuscarFactoria_Click")|| Llamado.Equals("BuscarButton_Click"))
+            {
+                ImprimirButton.Visible = false;
+                FactoriasdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;       
+            }
+            if(Llamado.Equals("ConsultaFactoriasToolStripMenuItem_Click"))
+                ImprimirButton.Visible = true;
         }
        
         private void Seleccion()
@@ -93,6 +98,7 @@ namespace ProyectoFinal.UI.Consulta
                 dt.Rows.Add(item.FactoriaID, item.Nombre, item.Direccion, item.Telefono, item.FechaRegistro);
             }
             FactoriasdataGridView.DataSource = dt;
+            TotalTextBox.Text = lista.Count.ToString();
         }
         private bool Validar()
         {
@@ -134,6 +140,7 @@ namespace ProyectoFinal.UI.Consulta
         {
             ReportesDeFactoria reporte = new ReportesDeFactoria(ListaFactorias);
             reporte.Show();
+            reporte.Dispose();
         }
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

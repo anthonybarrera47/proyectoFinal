@@ -192,6 +192,7 @@
             this.BuscaProductores.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.BuscaProductores.TabIndex = 64;
             this.BuscaProductores.TabStop = false;
+            this.BuscaProductores.Click += new System.EventHandler(this.BuscaProductores_Click);
             // 
             // ProductorIDTextBox
             // 

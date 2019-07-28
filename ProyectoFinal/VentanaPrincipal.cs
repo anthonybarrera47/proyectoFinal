@@ -1,5 +1,6 @@
 ﻿using ProyectoFinal.BLL;
 using ProyectoFinal.DAL;
+using ProyectoFinal.Entidades;
 using ProyectoFinal.UI.Consulta;
 using ProyectoFinal.UI.Login;
 using ProyectoFinal.UI.Registro;
@@ -15,7 +16,7 @@ namespace ProyectoFinal
 
         public void Comprobar()
         {
-            UsuariosToolStripMenuItem.Visible = tipousuario.Equals(Constantes.admi);
+            //UsuariosToolStripMenuItem.Visible = tipousuario.Equals(Constantes.admi);
             NombretoolStripStatusLabel.Text =PesadasBLL.GetUsuario().Nombre;
         }
         public VentanaPrincipal()
@@ -60,6 +61,9 @@ namespace ProyectoFinal
         }
         private void ConsultarProductoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaProductores.Llamado = cmd.Nombre; 
             ConsultaProductores consultaProductores = new ConsultaProductores
             {
                 MdiParent = this
@@ -84,6 +88,9 @@ namespace ProyectoFinal
         }
         private void ConsultaUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaDeUsuarios.Llamado = cmd.Nombre;
             ConsultaDeUsuarios consulta = new ConsultaDeUsuarios
             {
                 MdiParent = this
@@ -104,6 +111,9 @@ namespace ProyectoFinal
 
         private void ConsultaFactoriasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaDeFactorias.Llamado = cmd.Nombre;
             ConsultaDeFactorias consulta = new ConsultaDeFactorias()
             {
                 MdiParent = this
@@ -113,6 +123,9 @@ namespace ProyectoFinal
 
         private void ConsultaTipoArrozToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaTipoArroz.Llamado = cmd.Nombre;
             ConsultaTipoArroz consulta = new ConsultaTipoArroz()
             {
                 MdiParent = this

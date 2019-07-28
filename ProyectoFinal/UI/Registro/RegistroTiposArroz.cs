@@ -1,6 +1,7 @@
 ﻿using ProyectoFinal.BLL;
 using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Consulta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Registro
 {
-    public partial class RegistroTiposArroz : Form
+    public partial class RegistroTiposArroz : Form, IRetorno<TipoArroz>
     {
         public RegistroTiposArroz()
         {
@@ -47,7 +48,7 @@ namespace ProyectoFinal.UI.Registro
         private bool Validar()
         {
             bool paso = true;
-            if(String.IsNullOrWhiteSpace(DescripcionTextBox.Text))
+            if (String.IsNullOrWhiteSpace(DescripcionTextBox.Text))
             {
                 errorProvider.SetError(DescripcionTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
@@ -72,22 +73,22 @@ namespace ProyectoFinal.UI.Registro
             if (!Validar())
                 return;
             tiposArroz = LlenaClase();
-            if (Convert.ToInt32(TipoIDTextBox.Text)==0)
-                 paso = TipoArrozBLL.Guardar(tiposArroz);
+            if (Convert.ToInt32(TipoIDTextBox.Text) == 0)
+                paso = TipoArrozBLL.Guardar(tiposArroz);
             else
             {
-                    if (!ExisteEnLaBaseDeDatos())
-                    {
-                        MessageBox.Show("No puedes modificar un tipo de arroz inexistente, verifique los datos", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    paso = repositorio.Modificar(tiposArroz);
-                    if(paso)
-                    {
-                        MessageBox.Show("Tipo de arroz modificada exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                        return;
-                    }
+                if (!ExisteEnLaBaseDeDatos())
+                {
+                    MessageBox.Show("No puedes modificar un tipo de arroz inexistente, verifique los datos", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                paso = repositorio.Modificar(tiposArroz);
+                if (paso)
+                {
+                    MessageBox.Show("Tipo de arroz modificada exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                    return;
+                }
             }
             if (paso)
             {
@@ -109,9 +110,9 @@ namespace ProyectoFinal.UI.Registro
             }
             var respuesta = MessageBox.Show("¿Va a eliminar este tipo de arroz", "AgroSoft"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(respuesta==DialogResult.Yes)
+            if (respuesta == DialogResult.Yes)
             {
-                if(KilostextBox.Text != Convert.ToString("0"))
+                if (KilostextBox.Text != Convert.ToString("0"))
                 {
                     MessageBox.Show("Este tipo de arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -122,27 +123,44 @@ namespace ProyectoFinal.UI.Registro
                     MessageBox.Show("Tipo de arroz eliminado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-           
-        }
-         private void BuscarButton_Click(object sender, EventArgs e)
-         {
-             errorProvider.Clear();
-             int.TryParse(TipoIDTextBox.Text, out int Id);
-             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            TipoArroz tiposArroz = repositorio.Buscar(Id);
-            if (tiposArroz!=null)
-             { 
-                 errorProvider.Clear();
-                 LlenaCampo(tiposArroz);
-             }
-             else
-                 MessageBox.Show("Tipo de arroz encontrado!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-         }
 
+        }
+        private void BuscarButton_Click(object sender, EventArgs e)
+        {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaTipoArroz.Llamado = cmd.Nombre;
+            ConsultaTipoArroz cConsultaTipoArroz = new ConsultaTipoArroz
+            {
+                TContrato = this
+            };
+            cConsultaTipoArroz.ShowDialog();
+            cConsultaTipoArroz.Dispose();
+        }
+        public void Ejecutar(TipoArroz template)
+        {
+            if (template.TipoArrozID == 0)
+                return;
+            LlenaCampo(TipoArrozBLL.Buscar(template.TipoArrozID));
+        }
+        private void Buscar()
+        {
+            errorProvider.Clear();
+            int.TryParse(TipoIDTextBox.Text, out int Id);
+            RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
+            TipoArroz tiposArroz = repositorio.Buscar(Id);
+            if (tiposArroz != null)
+            {
+                errorProvider.Clear();
+                LlenaCampo(tiposArroz);
+            }
+            else
+                MessageBox.Show("Tipo de arroz encontrado!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         private void TipoIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
-                BuscarButton_Click(sender, e);
+                Buscar();
             Constantes.ValidarSoloNumeros(sender, e);
         }
     }

@@ -118,9 +118,11 @@
             this.UsuariosdataGridView.Location = new System.Drawing.Point(21, 102);
             this.UsuariosdataGridView.Name = "UsuariosdataGridView";
             this.UsuariosdataGridView.ReadOnly = true;
+            this.UsuariosdataGridView.RowHeadersWidth = 51;
             this.UsuariosdataGridView.RowTemplate.Height = 24;
             this.UsuariosdataGridView.Size = new System.Drawing.Size(847, 503);
             this.UsuariosdataGridView.TabIndex = 8;
+            this.UsuariosdataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsuariosdataGridView_CellContentDoubleClick);
             // 
             // CriteriotextBox
             // 

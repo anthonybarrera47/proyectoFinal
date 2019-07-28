@@ -332,14 +332,18 @@
             // 
             // DetalledataGridView
             // 
+            this.DetalledataGridView.AllowUserToAddRows = false;
             this.DetalledataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DetalledataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.DetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DetalledataGridView.Location = new System.Drawing.Point(16, 82);
             this.DetalledataGridView.MultiSelect = false;
             this.DetalledataGridView.Name = "DetalledataGridView";
             this.DetalledataGridView.ReadOnly = true;
-            this.DetalledataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.DetalledataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.DetalledataGridView.RowHeadersWidth = 51;
             this.DetalledataGridView.RowTemplate.Height = 24;
+            this.DetalledataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DetalledataGridView.Size = new System.Drawing.Size(848, 500);
             this.DetalledataGridView.TabIndex = 36;
             this.DetalledataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DetalledataGridView_CellClick);

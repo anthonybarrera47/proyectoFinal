@@ -56,7 +56,7 @@ namespace ProyectoFinal.UI.Consulta
                         break;
                     case 4://Telefono
                         if (!Validar())
-                            return;    
+                            return;
                         filtro = x => x.FactoriaID == ID;
                         break;
                     case 5:
@@ -87,17 +87,16 @@ namespace ProyectoFinal.UI.Consulta
                 }
             }
             if (FiltracheckBox.Checked == true)
-            {
                 ListaPesadas = PesadasBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();
-                FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaPesadas;
-            }
             else
-            {
                 ListaPesadas = PesadasBLL.GetList(filtro);
-                FactoriasdataGridView.DataSource = null;
-                FactoriasdataGridView.DataSource = ListaPesadas;
-            }
+            CargarGrid(ListaPesadas);
+        }
+        private void CargarGrid(List<Pesadas> pesadas)
+        {
+            FactoriasdataGridView.DataSource = null;
+            FactoriasdataGridView.DataSource = ListaPesadas;
+            TotalTextBox.Text = pesadas.Count.ToString();
         }
         private bool Validar()
         {
@@ -125,7 +124,7 @@ namespace ProyectoFinal.UI.Consulta
                 Constantes.ValidarSoloNumeros(sender, e);
                 CriteriotextBox.MaxLength = 9;
             }
-            if (FiltrocomboBox.SelectedIndex == 6 || FiltrocomboBox.SelectedIndex == 7 || FiltrocomboBox.SelectedIndex == 8 ||FiltrocomboBox.SelectedIndex == 9)
+            if (FiltrocomboBox.SelectedIndex == 6 || FiltrocomboBox.SelectedIndex == 7 || FiltrocomboBox.SelectedIndex == 8 || FiltrocomboBox.SelectedIndex == 9)
             {
                 Constantes.ValidarNumerosDecimales(sender, e, CriteriotextBox.Text);
                 CriteriotextBox.MaxLength = 20;

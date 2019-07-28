@@ -11,10 +11,11 @@ using System.Windows.Forms;
 using ProyectoFinal.BLL;
 using System.Text.RegularExpressions;
 using ProyectoFinal.DAL;
+using ProyectoFinal.UI.Consulta;
 
 namespace ProyectoFinal.UI.Registro
 {
-    public partial class RegistroFactoria : Form
+    public partial class RegistroFactoria : Form,IRetorno<Factoria>
     {
         public RegistroFactoria()
         {
@@ -141,6 +142,18 @@ namespace ProyectoFinal.UI.Registro
         }
         private void BuscarButton_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaDeFactorias.Llamado = cmd.Nombre;
+            ConsultaDeFactorias cConsultaFactorias = new ConsultaDeFactorias
+            {
+                FFactoria = this
+            };
+            cConsultaFactorias.ShowDialog();
+            cConsultaFactorias.Dispose();     
+        }
+        private void Buscar()
+        {
             RepositorioBase<Factoria> repositorio = new RepositorioBase<Factoria>();
             ErrorProvider.Clear();
             int.TryParse(FactoriaIDTextBox.Text, out int ID);
@@ -156,12 +169,17 @@ namespace ProyectoFinal.UI.Registro
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
+        }    
+        public void Ejecutar(Factoria template)
+        {
+            if (template.FactoriaID == 0)
+                return;
+            LlenaCampo(FactoriaBLL.Buscar(template.FactoriaID));
         }
-
         private void FactoriaIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
-                BuscarButton_Click(sender, e);
+                Buscar();
             Constantes.ValidarSoloNumeros(sender, e);
         }
     }

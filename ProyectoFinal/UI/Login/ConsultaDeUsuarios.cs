@@ -17,12 +17,28 @@ namespace ProyectoFinal.UI.Login
 {
     public partial class ConsultaDeUsuarios : Form
     {
+        public static string Llamado;
+        public IRetorno<Usuarios> UContrato { get; set; }
         public ConsultaDeUsuarios()
         {
             InitializeComponent();
             FiltrocomboBox.SelectedIndex = 0;
-            DesdedateTimePicker.Enabled = false;
-            HastadateTimePicker.Enabled = false;
+            DeshabilitarTimePicker();
+            ComprobarLLamado();
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            CargarGrid(repositorio.GetList(x => true));
+        }
+        private void ComprobarLLamado()
+        {
+            if (Llamado == null)
+                return;
+            if (Llamado.Equals("BuscarUsuarios_Click"))
+            {
+                ImprimirButton.Visible = false;
+                UsuariosdataGridView.CellDoubleClick += UsuariosdataGridView_CellContentDoubleClick;
+            }
+            if (Llamado.Equals("ConsultaUsuariosToolStripMenuItem_Click"))
+                ImprimirButton.Visible = true;
         }
         List<Usuarios> ListaUsuarios;
         Expression<Func<Usuarios, bool>> filtro = x => true;
@@ -64,18 +80,18 @@ namespace ProyectoFinal.UI.Login
             }
             if (FiltracheckBox.Checked == true)
             {
-                ListaUsuarios = repositorio.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
-                UsuariosdataGridView.DataSource = null;
-                UsuariosdataGridView.DataSource = ListaUsuarios;
+                ListaUsuarios = repositorio.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList(); 
             }
             else
-            {
-                ListaUsuarios = repositorio.GetList(filtro);
-                UsuariosdataGridView.DataSource = null;
-                UsuariosdataGridView.DataSource = ListaUsuarios;
-            }    
-        }
+                ListaUsuarios = repositorio.GetList(filtro).ToList();
 
+            CargarGrid(ListaUsuarios);
+        }
+        private void CargarGrid(List<Usuarios> lista)
+        {
+            UsuariosdataGridView.DataSource = null;
+            UsuariosdataGridView.DataSource = lista;
+        }
         private bool Validar()
         {
             bool paso = true;
@@ -88,12 +104,10 @@ namespace ProyectoFinal.UI.Login
             }
             return paso;
         }
-
         private void BuscarButton_Click_1(object sender, EventArgs e)
         {
             Seleccion();
         }
-
         private void CriteriotextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == (int)Keys.Enter)
@@ -130,31 +144,31 @@ namespace ProyectoFinal.UI.Login
         {
             CriteriotextBox.Text = string.Empty;
         }
-
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
         }
-
         private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (FiltracheckBox.Checked == true)
-            {
-                DesdedateTimePicker.Enabled = true;
-                HastadateTimePicker.Enabled = true;
-            }
+                HabilitarTimePicker();
             else
-            {
-                DesdedateTimePicker.Enabled = false;
-                HastadateTimePicker.Enabled = false;
-            }
+                DeshabilitarTimePicker();      
         }
-
+        private void HabilitarTimePicker()
+        {
+            DesdedateTimePicker.Enabled = true;
+            HastadateTimePicker.Enabled = true;
+        }
+        private void DeshabilitarTimePicker()
+        {
+            DesdedateTimePicker.Enabled = false;
+            HastadateTimePicker.Enabled = false;
+        }
         private void DesdedateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             ValidarFecha();
         }
-
         private void HastadateTimePicker_ValueChanged_1(object sender, EventArgs e)
         {
             ValidarFecha();
@@ -169,6 +183,22 @@ namespace ProyectoFinal.UI.Login
                 errorProvider.SetError(DesdedateTimePicker, "La FechaRegistro del campo Desde no puede ser mayor que la del Campo Hasta");
             else
                 errorProvider.Clear();
+        }
+        private void UsuariosdataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!(e.RowIndex > -1))
+                return;
+            int index = e.RowIndex;
+            DataGridViewRow row = UsuariosdataGridView.Rows[index];
+            if (row.Cells[0].Value == null)
+                return;
+            int ID = (row.Cells[0].Value).ToInt();
+            Usuarios p = new Usuarios
+            {
+                UsuarioID = ID
+            };
+            UContrato.Ejecutar(p);
+            this.Close();
         }
     }
 }

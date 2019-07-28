@@ -34,9 +34,15 @@ namespace ProyectoFinal.UI.Consulta
         public void ComprobarLlamado()
         {
             if (Llamado == null)
-                return;
-            if (Llamado.Equals("BuscarProductor_Click"))
+                return; 
+            if (Llamado.Equals("BuscarProductor_Click") || Llamado.Equals("BuscaProductores_Click"))
+            {
                 ProductoresdataGridView.CellDoubleClick += DataGridView_CellDoubleClick;
+                ImprimirButton.Visible = false;
+            }
+            if (Llamado.Equals("BuscarProductor_Click"))
+                ImprimirButton.Visible = true;
+                
         }
         private void Seleccion()
         {
@@ -83,9 +89,9 @@ namespace ProyectoFinal.UI.Consulta
         }
         private void CargarGrid(List<Productores> lista)
         {
-            ProductoresdataGridView.DataSource = null;
-            TotalTextBox.Text = lista.Count.ToString();
+            ProductoresdataGridView.DataSource = null; 
             ProductoresdataGridView.DataSource = lista;
+            TotalTextBox.Text = lista.Count.ToString();
         }
         private bool Validar()
         {
@@ -179,11 +185,6 @@ namespace ProyectoFinal.UI.Consulta
             };
             PContrato.Ejecutar(p);
             this.Close();
-        }
-
-        private void ProductoresdataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            ProductoresdataGridView.Sort(ProductoresdataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
     }
 }

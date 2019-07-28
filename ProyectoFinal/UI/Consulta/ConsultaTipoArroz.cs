@@ -12,22 +12,35 @@ namespace ProyectoFinal.UI.Consulta
 {
     public partial class ConsultaTipoArroz : Form
     {
+        public static string Llamado;
+        Expression<Func<TipoArroz, bool>> filtro = x => true;
         List<TipoArroz> ListaArroz;
+        public IRetorno<TipoArroz> TContrato { get; set; }
         public ConsultaTipoArroz()
         {
             InitializeComponent();
+            ComprobarLlamado();
             FiltrocomboBox.SelectedIndex = 0;
             DesdedateTimePicker.Enabled = false;
             HastadateTimePicker.Enabled = false;
             CargarGrid(TipoArrozBLL.GetList(x => true));
+        }  
+        private void ComprobarLlamado()
+        {
+            if (Llamado == null)
+                return;
+            if (Llamado.Equals("BuscarButton_Click"))
+            {
+                ImprimirButton.Visible = false;
+                TipodataGridView.CellDoubleClick += TipodataGridView_CellContentDoubleClick;
+            }          
+            if (Llamado.Equals("ConsultaTipoArrozToolStripMenuItem_Click"))
+                ImprimirButton.Visible = true;
         }
-        
-        Expression<Func<TipoArroz, bool>> filtro = x => true;
         private void Seleccion()
         {
             errorProvider.Clear();
             ListaArroz = new List<TipoArroz>();
-
             if (CriteriotextBox.Text.Trim().Length >= 0)
             {
                 switch (FiltrocomboBox.SelectedIndex)
@@ -53,9 +66,7 @@ namespace ProyectoFinal.UI.Consulta
                         decimal kilos = Convert.ToDecimal(CriteriotextBox.Text);
                         filtro = x => x.Kilos==kilos;
                         break;
-
-                }
-                
+                }  
             }
             if (FiltracheckBox.Checked == true)
                 ListaArroz = TipoArrozBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
@@ -66,7 +77,14 @@ namespace ProyectoFinal.UI.Consulta
         private void CargarGrid(List<TipoArroz> lista)
         {
             TipodataGridView.DataSource = null;
-            TipodataGridView.DataSource = ListaArroz;
+            TipodataGridView.DataSource = lista;
+            TotalTextBox.Text = lista.Count.ToString();
+            decimal suma = 0;
+            foreach(var item in lista)
+            {
+                suma += item.Kilos;
+            }
+            TotalKGTextBox.Text = suma.ToString();
         }
         private bool Validar()
         {
@@ -110,12 +128,12 @@ namespace ProyectoFinal.UI.Consulta
         {
              ReportesDeTipoArroz reporte = new ReportesDeTipoArroz(ListaArroz);
              reporte.Show();
+            reporte.Dispose();
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             CriteriotextBox.Text = string.Empty;
         }
-
         private void FiltracheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if(FiltracheckBox.Checked==true)
@@ -129,52 +147,18 @@ namespace ProyectoFinal.UI.Consulta
                 HastadateTimePicker.Enabled = false;
             }
         }
-        bool direccion = false;
-        private void ProductoresdataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void TipodataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var bs = new BindingSource();
-            var lista = ListaArroz;
-            if (TipodataGridView.Columns[e.ColumnIndex].Name == "TipoArrozID")
+            if (!(e.RowIndex > -1))
+                return;
+            int index = e.RowIndex;
+            DataGridViewRow row = TipodataGridView.Rows[index];
+            TipoArroz tipoArroz = new TipoArroz
             {
-                if (!direccion)
-                {
-                    lista = (ListaArroz.OrderBy(x => x.TipoArrozID)).ToList();
-                    direccion = true;
-                }
-                else
-                {
-                    lista = (ListaArroz.OrderByDescending(x => x.TipoArrozID)).ToList();
-                    direccion = false;
-                }   
-            }
-            if (TipodataGridView.Columns[e.ColumnIndex].Name == "Descripcion")
-            {
-                if (!direccion)
-                {
-                    lista = (ListaArroz.OrderBy(x => x.Descripcion)).ToList();
-                    direccion = true;
-                }
-                else
-                {
-                    lista = (ListaArroz.OrderByDescending(x => x.Descripcion)).ToList();
-                    direccion = false;
-                }
-            }
-            if (TipodataGridView.Columns[e.ColumnIndex].Name == "Kilos")
-            {
-                if (!direccion)
-                {
-                    lista = (ListaArroz.OrderBy(x => x.Kilos)).ToList();
-                    direccion = true;
-                }
-                else
-                {
-                    lista = (ListaArroz.OrderByDescending(x => x.Kilos)).ToList();
-                    direccion = false;
-                }
-            }
-            bs.DataSource = lista;
-            TipodataGridView.DataSource = bs;
+                TipoArrozID = (row.Cells[0].Value).ToInt(),
+            };
+            TContrato.Ejecutar(tipoArroz);
+            this.Close();
         }
     }
 }

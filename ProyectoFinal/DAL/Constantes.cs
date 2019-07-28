@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ProyectoFinal.DAL
 {
-    public class Constantes
+    public static class Constantes
     {
         public const string admi = "A";
         public const string user = "U";
@@ -125,6 +125,14 @@ namespace ProyectoFinal.DAL
             decimal truncatedFraction = Math.Truncate(fraction * factor) / factor;
             decimal result = integralValue + truncatedFraction;
             return result;
+        }
+        public static int ToInt(this object obj)
+        {
+            return Convert.ToInt32(obj);
+        }
+        public static decimal ToDecimal(this object obj)
+        {
+            return Convert.ToDecimal(obj);
         }
     }
 }

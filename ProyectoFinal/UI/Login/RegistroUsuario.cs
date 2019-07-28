@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Login
 {
-    public partial class RegistroUsuario : Form
+    public partial class RegistroUsuario : Form,IRetorno<Usuarios>
     {
         public RegistroUsuario()
         {
@@ -53,6 +53,10 @@ namespace ProyectoFinal.UI.Login
             PasswordTextBox.Text = usuario.Password;
             ConfirmarPasswordTextBox.Text = usuario.Password;
             FechaRegistrodateTimePicker.Value = usuario.FechaRegistro;
+            if (usuario.TipoUsuario == "U")
+                UsuarioradioButton2.Checked=true;
+            else
+                AdministradorRadioButton.Checked = true;
         }
         private bool Validar()
         {
@@ -162,7 +166,6 @@ namespace ProyectoFinal.UI.Login
         {
             Constantes.ValidarNombreTextBox(sender, e);
         }
-
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
@@ -181,6 +184,16 @@ namespace ProyectoFinal.UI.Login
         }
         private void BuscarUsuarios_Click(object sender, EventArgs e)
         {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaDeUsuarios.Llamado = cmd.Nombre;
+            ConsultaDeUsuarios cConsultaDeUsuarios = new ConsultaDeUsuarios();
+            cConsultaDeUsuarios.UContrato = this;
+            cConsultaDeUsuarios.ShowDialog();
+            cConsultaDeUsuarios.Dispose();
+        }
+        private void Buscar()
+        {
             RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
             errorProvider.Clear();
             int.TryParse(UsuarioTextBox.Text, out int ID);
@@ -192,19 +205,23 @@ namespace ProyectoFinal.UI.Login
             }
             else
                 MessageBox.Show("Usuario no Encontrado!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
         }
-
         private void UsuarioTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-                BuscarUsuarios_Click(sender, e);
             Constantes.ValidarSoloNumeros(sender, e);
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                Buscar();          
         }
-
         private void NombreUserTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNoEspaciosEnBlancos(sender, e);
+        }
+        public void Ejecutar(Usuarios template)
+        {
+            if (template.UsuarioID == 0)
+                return;
+            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
+            LlenaCampo(repositorio.Buscar(template.UsuarioID));
         }
     }
 }

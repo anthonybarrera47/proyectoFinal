@@ -1,6 +1,7 @@
 ﻿using ProyectoFinal.BLL;
 using ProyectoFinal.DAL;
 using ProyectoFinal.Entidades;
+using ProyectoFinal.UI.Consulta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace ProyectoFinal.UI.Registro
 {
-    public partial class RegistroProductores : Form
+    public partial class RegistroProductores : Form, IRetorno<Productores>
     {
         public RegistroProductores()
         {
@@ -57,7 +58,7 @@ namespace ProyectoFinal.UI.Registro
             bool paso = true;
             errorProvider.Clear();
             //Regex nombre = new Regex(@"[a-zA-ZñÑ\s]{2,50}");  
-            if (String.IsNullOrWhiteSpace(NombreTextBox.Text) )
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
                 errorProvider.SetError(NombreTextBox, "Este Campo No puede Estar Vacio , Ni Debe Contener caracteres!!");
                 paso = false;
@@ -67,17 +68,17 @@ namespace ProyectoFinal.UI.Registro
                 errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-", "")) || CedulaMasketTextBox.TextLength !=13)
+            if (String.IsNullOrWhiteSpace(CedulaMasketTextBox.Text.Replace("-", "")) || CedulaMasketTextBox.TextLength != 13)
             {
                 errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Estar Vacio!!");
                 paso = false;
             }
-            if(Constantes.ValidarEspaciosEnBlancos(TelefonomaskedTextBox.Text)==false)
+            if (Constantes.ValidarEspaciosEnBlancos(TelefonomaskedTextBox.Text) == false)
             {
                 errorProvider.SetError(TelefonomaskedTextBox, "Este Campo No puede Tener Espacios En Blancos!!");
                 paso = false;
             }
-            if(Constantes.ValidarEspaciosEnBlancos(CedulaMasketTextBox.Text)==false)
+            if (Constantes.ValidarEspaciosEnBlancos(CedulaMasketTextBox.Text) == false)
             {
                 errorProvider.SetError(CedulaMasketTextBox, "Este Campo No puede Tener Espacios En Blancos!!");
                 paso = false;
@@ -94,7 +95,7 @@ namespace ProyectoFinal.UI.Registro
                 return;
             Productores productores = LlenaClase();
             bool paso = false;
-            if (Convert.ToInt32(ProductorIDTextBox.Text)==0)
+            if (Convert.ToInt32(ProductorIDTextBox.Text) == 0)
                 paso = ProductoresBLL.Guardar(productores);
             else
             {
@@ -123,7 +124,7 @@ namespace ProyectoFinal.UI.Registro
         {
             errorProvider.Clear();
             int.TryParse(ProductorIDTextBox.Text, out int id);
-            if(!ExisteEnLaBaseDeDatos())
+            if (!ExisteEnLaBaseDeDatos())
             {
                 MessageBox.Show("Debes buscar un Productor Antes de eliminar", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -144,7 +145,7 @@ namespace ProyectoFinal.UI.Registro
         {
             Constantes.ValidarNombreTextBox(sender, e);
         }
-        private void BuscarButton_Click(object sender, EventArgs e)
+        private void Buscar()
         {
             errorProvider.Clear();
             int.TryParse(ProductorIDTextBox.Text, out int ID);
@@ -152,17 +153,35 @@ namespace ProyectoFinal.UI.Registro
             if (productores != null)
             {
                 errorProvider.Clear();
-                LlenaCampo(productores); 
+                LlenaCampo(productores);
             }
             else
                 MessageBox.Show("Productor no Encontrado!!", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
         private void ProductorIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-                BuscarButton_Click(sender, e);
             Constantes.ValidarSoloNumeros(sender, e);
+            if ((int)e.KeyChar == (int)Keys.Enter)
+                Buscar();
         }
+
+        public void Ejecutar(Productores template)
+        {
+            if (template.ProductorID == 0)
+                return;
+            LlenaCampo(ProductoresBLL.Buscar(template.ProductorID));
+        }
+
+        private void BuscaProductores_Click(object sender, EventArgs e)
+        {
+            var cmd = new CallerMemberName();
+            cmd.UsingCallerMemberName();
+            ConsultaProductores.Llamado = cmd.Nombre;
+            ConsultaProductores cProductores = new ConsultaProductores();
+            cProductores.PContrato = this;
+            cProductores.ShowDialog();
+            cProductores.Dispose();
+        }
+        
     }
 }

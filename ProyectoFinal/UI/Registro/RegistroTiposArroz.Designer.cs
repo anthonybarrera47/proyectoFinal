@@ -167,6 +167,7 @@
             // 
             // TipoIDTextBox
             // 
+            this.TipoIDTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.TipoIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TipoIDTextBox.Location = new System.Drawing.Point(115, 12);
             this.TipoIDTextBox.Name = "TipoIDTextBox";
