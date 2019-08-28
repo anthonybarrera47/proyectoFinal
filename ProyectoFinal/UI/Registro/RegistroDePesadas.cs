@@ -88,10 +88,10 @@ namespace ProyectoFinal.UI.Registro
             PesadasDetalle pDetalle = new PesadasDetalle
             {
                 PesadasID = (PesadaIDTextBox.Text).ToInt(),
-                PesadaDetalleID = (int)IDDetalle.Value,
+                PesadaDetalleID =IDDetalle.Value.ToInt(),
                 Kilos = (KilosPesadosTextBox.Text).ToDecimal(),
                 CantidadDeSacos = (CantidadSacosTextBox.Text).ToDecimal(),
-                TipoArrozID = (int)TipoArrozIdComboBox.SelectedValue
+                TipoArrozID = TipoArrozIdComboBox.SelectedValue.ToInt()
             };
             return pDetalle;
         }
@@ -341,8 +341,7 @@ namespace ProyectoFinal.UI.Registro
 
         private void Cargar()
         {
-            Pesadas pesadas = new Pesadas();
-            pesadas = PesadasBLL.Buscar(PesadaIDTextBox.Text.ToInt());
+            Pesadas pesadas = PesadasBLL.Buscar(PesadaIDTextBox.Text.ToInt());new Pesadas();
             ReportePesadaDetalles reporte = new ReportePesadaDetalles(pesadas, pesadas.PesadasDetalles, PesadasBLL.GetUsuario().Nombre);
             reporte.ShowDialog();
             reporte.Dispose();
@@ -358,9 +357,7 @@ namespace ProyectoFinal.UI.Registro
             catch (Exception)
             { throw; }
             finally
-            {
-
-            }
+            {}
         }
         public void ActualizarInformacionComboBox(object sender, FormClosedEventArgs e)
         {

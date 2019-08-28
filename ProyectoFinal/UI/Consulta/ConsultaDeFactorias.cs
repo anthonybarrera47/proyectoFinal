@@ -88,7 +88,7 @@ namespace ProyectoFinal.UI.Consulta
         {
             FactoriasdataGridView.DataSource = null;
             DataTable dt = new DataTable();
-            dt.Columns.Add("ID", typeof(int));
+            dt.Columns.Add("ID",typeof(int));
             dt.Columns.Add("Nombre", typeof(string));
             dt.Columns.Add("Direccion", typeof(string));
             dt.Columns.Add("Telefono", typeof(string));

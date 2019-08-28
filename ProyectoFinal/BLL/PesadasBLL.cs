@@ -12,7 +12,7 @@ namespace ProyectoFinal.BLL
 {
     public class PesadasBLL
     {
-        private static Usuarios Usuario = new Usuarios();
+        private static readonly Usuarios Usuario = new Usuarios();
 
         public static bool Guardar(Pesadas pesadas)
         {
@@ -24,22 +24,6 @@ namespace ProyectoFinal.BLL
                     paso =(db.SaveChanges() > 0);
             }catch(Exception)
             { throw;}
-            finally
-            { db.Dispose(); }
-            return paso;
-        }
-        public static bool GuardarDetalle(PesadasDetalle pesadasDetalle)
-        {
-            bool paso = false;
-            Contexto db = new Contexto();
-            try
-            {
-                if(db.PesadaDetalle.Add(pesadasDetalle)!=null)
-                {
-                    paso = db.SaveChanges() >0 ;
-                }
-            }catch(Exception)
-            { throw; }
             finally
             { db.Dispose(); }
             return paso;
@@ -152,15 +136,6 @@ namespace ProyectoFinal.BLL
                 TipoArrozBLL.Modificar(kilaje);
             }
         }
-        public static void DescontarKilaje(List<PesadasDetalle> detalle)
-        {
-            foreach(var item in detalle)
-            {
-                var kilaje = TipoArrozBLL.Buscar(item.TipoArrozID);
-                kilaje.Kilos -= item.Kilos;
-                TipoArrozBLL.Modificar(kilaje);
-            }
-        }
         public static void ArreglarDetalle(Pesadas pesada)
         {
             foreach(var item in pesada.PesadasDetalles)
@@ -169,18 +144,6 @@ namespace ProyectoFinal.BLL
                 tipoArroz.Kilos -= item.Kilos;
                 TipoArrozBLL.Modificar(tipoArroz);
             }
-        }
-        public static List<PesadasDetalle> Editar(List<PesadasDetalle> list,PesadasDetalle detalle)
-        {
-            foreach(var item in list)
-            {
-                if (item.PesadaDetalleID == detalle.PesadaDetalleID)
-                {
-                    item.Kilos = detalle.Kilos;
-                    item.CantidadDeSacos = detalle.CantidadDeSacos;
-                }   
-            }
-            return list;
         }
         public static void UsuarioParaLogin(String Nombre,int id)
         {
