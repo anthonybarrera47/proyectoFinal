@@ -1,4 +1,4 @@
-﻿using ProyectoFinal.Entidades;
+﻿using Entidades;
 using ProyectoFinal.UI.Reportes.ReporteProductor;
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,12 @@ namespace ProyectoFinal.UI.Reportes
 {
     public partial class ReporteDeProductor : Form
     {
-        List<Productores> data = new List<Productores>();
+        readonly List<Productores> data = new List<Productores>();
         public ReporteDeProductor(List<Productores> lista)
         {
             InitializeComponent();
             data = lista;
         }
-
         private void ProductorescrystalReportViewer1_Load(object sender, EventArgs e)
         {
             ReporteDeProductores reporteDeProductores = new ReporteDeProductores();
@@ -22,10 +21,14 @@ namespace ProyectoFinal.UI.Reportes
             ProductorescrystalReportViewer1.ReportSource = reporteDeProductores;
             ProductorescrystalReportViewer1.Refresh();
         }
-
         private void ReporteDeProductor_Load(object sender, EventArgs e)
         {
             ProductorescrystalReportViewer1_Load(sender, e);
+        }
+
+        private void ReporteDeProductor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

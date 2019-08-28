@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
@@ -183,6 +183,10 @@ namespace ProyectoFinal.UI.Consulta
                 DesdedateTimePicker.Enabled = false;
                 HastadateTimePicker1.Enabled = false;
             }
+        }
+        private void ConsultaDePesadas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

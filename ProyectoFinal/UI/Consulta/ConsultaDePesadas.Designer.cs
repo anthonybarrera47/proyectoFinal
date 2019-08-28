@@ -226,6 +226,7 @@
             this.MaximizeBox = false;
             this.Name = "ConsultaDePesadas";
             this.Text = "Consulta De Pesadas | AgroSoft";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConsultaDePesadas_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.FactoriasdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

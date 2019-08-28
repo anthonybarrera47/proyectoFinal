@@ -226,6 +226,7 @@
             this.MaximizeBox = false;
             this.Name = "ConsultaProductores";
             this.Text = "Consulta De Productores";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConsultaProductores_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.ProductoresdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

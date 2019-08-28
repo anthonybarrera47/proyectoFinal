@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.Entidades
+namespace Entidades
 {
     public class Pesadas
     {
@@ -31,7 +31,6 @@ namespace ProyectoFinal.Entidades
         [ForeignKey("UsuarioID")]
         public virtual Usuarios Usuarios { get; set; }
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
-
         public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
             ,decimal TotalKiloGramos,decimal TotalSacos,decimal TotalPagar,List<PesadasDetalle> pesadasDetalles)
         {

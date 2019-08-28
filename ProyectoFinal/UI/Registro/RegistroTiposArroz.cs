@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Consulta;
 using System;
 using System.Collections.Generic;
@@ -31,11 +31,13 @@ namespace ProyectoFinal.UI.Registro
         }
         private TipoArroz LlenaClase()
         {
-            TipoArroz tiposArroz = new TipoArroz();
-            tiposArroz.TipoArrozID = Convert.ToInt32(TipoIDTextBox.Text);
-            tiposArroz.Descripcion = DescripcionTextBox.Text;
-            tiposArroz.Kilos = Convert.ToDecimal(KilostextBox.Text);
-            tiposArroz.FechaRegistro = FechadateTimePicker.Value;
+            TipoArroz tiposArroz = new TipoArroz
+            {
+                TipoArrozID = (TipoIDTextBox.Text).ToInt(),
+                Descripcion = DescripcionTextBox.Text,
+                Kilos = (KilostextBox.Text).ToDecimal(),
+                FechaRegistro = FechadateTimePicker.Value
+            };
             return tiposArroz;
         }
         private void LlenaCampo(TipoArroz tipoArroz)
@@ -58,8 +60,17 @@ namespace ProyectoFinal.UI.Registro
         private bool ExisteEnLaBaseDeDatos()
         {
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            TipoArroz tiposArroz = repositorio.Buscar(Convert.ToInt32(TipoIDTextBox.Text));
+            TipoArroz tiposArroz;
+            try
+            {
+                tiposArroz = repositorio.Buscar(TipoIDTextBox.Text.ToInt());
+            }
+            catch (Exception)
+            { throw; }
+            finally
+            { repositorio.Dispose(); }
             return (tiposArroz != null);
+
         }
         private void NuevoButton_Click(object sender, EventArgs e)
         {
@@ -68,61 +79,79 @@ namespace ProyectoFinal.UI.Registro
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            TipoArroz tiposArroz;
-            bool paso = false;
-            if (!Validar())
-                return;
-            tiposArroz = LlenaClase();
-            if (Convert.ToInt32(TipoIDTextBox.Text) == 0)
-                paso = TipoArrozBLL.Guardar(tiposArroz);
-            else
+            try
             {
-                if (!ExisteEnLaBaseDeDatos())
-                {
-                    MessageBox.Show("No puedes modificar un tipo de arroz inexistente, verifique los datos", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                TipoArroz tiposArroz;
+                bool paso = false;
+                if (!Validar())
                     return;
+                tiposArroz = LlenaClase();
+                if (Convert.ToInt32(TipoIDTextBox.Text) == 0)
+                    paso = TipoArrozBLL.Guardar(tiposArroz);
+                else
+                {
+                    if (!ExisteEnLaBaseDeDatos())
+                    {
+                        MessageBox.Show("No puedes modificar un tipo de arroz inexistente, verifique los datos", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    paso = repositorio.Modificar(tiposArroz);
+                    if (paso)
+                    {
+                        MessageBox.Show("Tipo de arroz modificada exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Limpiar();
+                        return;
+                    }
                 }
-                paso = repositorio.Modificar(tiposArroz);
                 if (paso)
                 {
-                    MessageBox.Show("Tipo de arroz modificada exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tipo de arroz guardado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
-                    return;
                 }
+                else
+                    MessageBox.Show("No se oudo guardar!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (paso)
-            {
-                MessageBox.Show("Tipo de arroz guardado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Limpiar();
-            }
-            else
-                MessageBox.Show("No se oudo guardar!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception)
+            { throw; }
+            finally
+            { repositorio.Dispose(); }
+
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            if (!ExisteEnLaBaseDeDatos())
+            try
             {
-                errorProvider.SetError(TipoIDTextBox, "No puede borrar Un Tipo de arroz inexistente");
-                return;
-            }
-            var respuesta = MessageBox.Show("¿Va a eliminar este tipo de arroz", "AgroSoft"
-                , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (respuesta == DialogResult.Yes)
-            {
-                if (KilostextBox.Text != Convert.ToString("0"))
+
+                if (!ExisteEnLaBaseDeDatos())
                 {
-                    MessageBox.Show("Este tipo de arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    errorProvider.SetError(TipoIDTextBox, "No puede borrar Un Tipo de arroz inexistente");
                     return;
                 }
-                if (repositorio.Eliminar(Convert.ToInt32(TipoIDTextBox.Text)))
+                var respuesta = MessageBox.Show("¿Va a eliminar este tipo de arroz", "AgroSoft"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta == DialogResult.Yes)
                 {
-                    Limpiar();
-                    MessageBox.Show("Tipo de arroz eliminado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (KilostextBox.Text != Convert.ToString("0"))
+                    {
+                        MessageBox.Show("Este tipo de arroz no puede ser eliminado !!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    if (repositorio.Eliminar(Convert.ToInt32(TipoIDTextBox.Text)))
+                    {
+                        Limpiar();
+                        MessageBox.Show("Tipo de arroz eliminado exitosamente!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
+            catch (Exception)
+            { throw; }
+            finally
+            { repositorio.Dispose(); }
+
 
         }
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -146,16 +175,24 @@ namespace ProyectoFinal.UI.Registro
         private void Buscar()
         {
             errorProvider.Clear();
-            int.TryParse(TipoIDTextBox.Text, out int Id);
             RepositorioBase<TipoArroz> repositorio = new RepositorioBase<TipoArroz>();
-            TipoArroz tiposArroz = repositorio.Buscar(Id);
-            if (tiposArroz != null)
+            try
             {
-                errorProvider.Clear();
-                LlenaCampo(tiposArroz);
+                int.TryParse(TipoIDTextBox.Text, out int Id);
+                TipoArroz tiposArroz = repositorio.Buscar(Id);
+                if (tiposArroz != null)
+                {
+                    errorProvider.Clear();
+                    LlenaCampo(tiposArroz);
+                }
+                else
+                    MessageBox.Show("Tipo de arroz encontrado!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-                MessageBox.Show("Tipo de arroz encontrado!!", "AgroSoft!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception)
+            { throw; }
+            finally
+            { repositorio.Dispose(); }
+
         }
         private void TipoIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {

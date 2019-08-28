@@ -1,6 +1,7 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿
+using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
@@ -196,6 +197,11 @@ namespace ProyectoFinal.UI.Consulta
             };
             PContrato.Ejecutar(p);
             this.Close();
+        }
+
+        private void ConsultaProductores_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

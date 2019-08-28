@@ -1,5 +1,4 @@
-﻿using ProyectoFinal.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,16 +12,16 @@ namespace ProyectoFinal.UI.Reportes.ReporteDeUsuarios
 {
     public partial class ReporteDeUsuario : Form
     {
-        DataTable data = new DataTable();
+        private DataTable Data { get; set; }
         public ReporteDeUsuario(DataTable Lista)
         {
             InitializeComponent();
-            data = Lista;
+            Data = Lista;
         }
         private void UsuariocrystalReportViewer_Load(object sender, EventArgs e)
         {
             ReporteUsuario reporteUsuario = new ReporteUsuario();
-            reporteUsuario.SetDataSource(data);
+            reporteUsuario.SetDataSource(Data);
             UsuariocrystalReportViewer.ReportSource = reporteUsuario;
             UsuariocrystalReportViewer.Refresh();
         }
@@ -30,6 +29,12 @@ namespace ProyectoFinal.UI.Reportes.ReporteDeUsuarios
         private void ReporteDeUsuario_Load(object sender, EventArgs e)
         {
             UsuariocrystalReportViewer_Load(sender, e);
+        }
+
+        private void ReporteDeUsuario_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Data.Dispose();
+            this.Dispose();
         }
     }
 }

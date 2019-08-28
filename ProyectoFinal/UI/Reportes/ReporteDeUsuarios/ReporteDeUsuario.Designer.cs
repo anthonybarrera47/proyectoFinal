@@ -52,6 +52,7 @@
             this.Name = "ReporteDeUsuario";
             this.Text = "ReporteDeUsuario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReporteDeUsuario_FormClosed);
             this.Load += new System.EventHandler(this.ReporteDeUsuario_Load);
             this.ResumeLayout(false);
 

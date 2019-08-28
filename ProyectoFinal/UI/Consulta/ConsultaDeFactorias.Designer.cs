@@ -228,6 +228,7 @@
             this.MaximizeBox = false;
             this.Name = "ConsultaDeFactorias";
             this.Text = "Consulta De Factorias | AgroSoft";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConsultaDeFactorias_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.FactoriasdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

@@ -62,6 +62,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{9A9647C2-46DF-4A09-ACD3-CC3578E20094}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{61CA7A76-5372-482F-BC63-44CD30B46E6E}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProyectoFinal\ProyectoFinal.csproj">
       <Project>{809E0FE1-7B77-47EA-88DE-7D84191E6D2A}</Project>
       <Name>ProyectoFinal</Name>

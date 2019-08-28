@@ -54,6 +54,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte De Productor | AgroSoft";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReporteDeProductor_FormClosed);
             this.Load += new System.EventHandler(this.ReporteDeProductor_Load);
             this.ResumeLayout(false);
 

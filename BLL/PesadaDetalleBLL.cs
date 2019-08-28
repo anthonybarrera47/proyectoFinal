@@ -1,11 +1,11 @@
-﻿using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using DAL;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace ProyectoFinal.BLL
+namespace BLL
 {
     public class PesadaDetalleBLL
     {
@@ -16,7 +16,8 @@ namespace ProyectoFinal.BLL
             try
             {
                 pesadaDetalle = db.PesadaDetalle.Find(Id);
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -42,7 +43,7 @@ namespace ProyectoFinal.BLL
             { db.Dispose(); }
             return paso;
         }
-        public static PesadasDetalle BuscarElemento(List<PesadasDetalle> lista,PesadasDetalle DetalleOriginal,int ID)
+        public static PesadasDetalle BuscarElemento(List<PesadasDetalle> lista, PesadasDetalle DetalleOriginal, int ID)
         {
             PesadasDetalle pDetalle = new PesadasDetalle();
             pDetalle = lista.Find(x => x.PesadaDetalleID == ID);
@@ -54,19 +55,20 @@ namespace ProyectoFinal.BLL
             return pDetalle;
 
         }
-        public static List<PesadasDetalle> GetList(Expression<Func<PesadasDetalle,bool>>pesadas)
+        public static List<PesadasDetalle> GetList(Expression<Func<PesadasDetalle, bool>> pesadas)
         {
             List<PesadasDetalle> pesadasDetalles = new List<PesadasDetalle>();
             Contexto db = new Contexto();
             try
             {
                 pesadasDetalles = db.PesadaDetalle.Where(pesadas).ToList();
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
             return pesadasDetalles;
         }
     }
-    
+
 }

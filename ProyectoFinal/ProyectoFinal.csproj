@@ -91,23 +91,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\FactoriaBLL.cs" />
-    <Compile Include="BLL\PesadaDetalleBLL.cs" />
-    <Compile Include="BLL\PesadasBLL.cs" />
-    <Compile Include="BLL\ProductoresBLL.cs" />
-    <Compile Include="BLL\RepositorioBase.cs" />
-    <Compile Include="BLL\IRepository.cs" />
-    <Compile Include="BLL\TipoArrozBLL.cs" />
-    <Compile Include="DAL\Constantes.cs" />
-    <Compile Include="DAL\Contexto.cs" />
-    <Compile Include="Entidades\Factoria.cs" />
-    <Compile Include="Entidades\IRetorno.cs" />
-    <Compile Include="Entidades\CallerMemberName.cs" />
-    <Compile Include="Entidades\Pesadas.cs" />
-    <Compile Include="Entidades\PesadasDetalle.cs" />
-    <Compile Include="Entidades\Productores.cs" />
-    <Compile Include="Entidades\TipoArroz.cs" />
-    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -426,6 +409,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\invoice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{9A9647C2-46DF-4A09-ACD3-CC3578E20094}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{3E01A4AA-F2E5-4E1E-8439-B49FB7814A9A}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{61CA7A76-5372-482F-BC63-44CD30B46E6E}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

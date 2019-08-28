@@ -1,47 +1,46 @@
-﻿using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using DAL;
+using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.BLL
+namespace BLL
 {
-    public class FactoriaBLL
+    public class ProductoresBLL
     {
-        public static bool Guardar(Factoria factoria)
+        public static bool Guardar(Productores productores)
         {
             Contexto db = new Contexto();
             bool paso = false;
             try
             {
-                if(db.Factorias.Add(factoria)!=null)
+                if (db.Productores.Add(productores) != null)
                 {
                     db.SaveChanges();
                     paso = true;
                 }
-            }catch(Exception)
-            {
-                throw;
             }
+            catch (Exception)
+            { throw; }
             finally
-            {
-                db.Dispose();
-            }
+            { db.Dispose(); }
             return paso;
         }
-        public static bool Modificar(Factoria factoria)
+        public static bool Modificar(Productores productores)
         {
             Contexto db = new Contexto();
-            bool paso = false;
+            bool paso = true;
             try
             {
-                db.Entry(factoria).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(productores).State = System.Data.Entity.EntityState.Modified;
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -49,45 +48,48 @@ namespace ProyectoFinal.BLL
         }
         public static bool Eliminar(int id)
         {
-            bool paso = false;
             Contexto db = new Contexto();
+            bool paso = true;
             try
             {
-                Factoria factoria = db.Factorias.Find(id);
-                db.Factorias.Remove(factoria);
+                Productores productores = db.Productores.Find(id);
+                db.Productores.Remove(productores);
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
             return paso;
         }
-        public static Factoria Buscar(int id)
+        public static Productores Buscar(int id)
         {
             Contexto db = new Contexto();
-            Factoria factoria = new Factoria();
+            Productores productores = new Productores();
             try
             {
-                factoria = db.Factorias.Find(id);
-            }catch(Exception)
+                productores = db.Productores.Find(id);
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
-            return factoria;
+            return productores;
         }
-        public static List<Factoria> GetList(Expression<Func<Factoria,bool>>expression)
+        public static List<Productores> GetList(Expression<Func<Productores, bool>> expression)
         {
-            List<Factoria> factorias = new List<Factoria>();
             Contexto db = new Contexto();
+            List<Productores> productores = new List<Productores>();
             try
             {
-                factorias = db.Factorias.Where(expression).ToList();
-            }catch(Exception)
+                productores = db.Productores.Where(expression).ToList();
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
-            return factorias;
+            return productores;
         }
     }
 }

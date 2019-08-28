@@ -247,6 +247,7 @@
             this.MaximizeBox = false;
             this.Name = "ConsultaTipoArroz";
             this.Text = "Consulta De Tipos De Arroz | AgroSoft";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConsultaTipoArroz_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.TipodataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

@@ -1,5 +1,4 @@
 ﻿using System;
-using ProyectoFinal.Entidades;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ProyectoFinal.BLL;
 using System.Text.RegularExpressions;
-using ProyectoFinal.DAL;
 using ProyectoFinal.UI.Consulta;
+using Entidades;
+using DAL;
+using BLL;
 
 namespace ProyectoFinal.UI.Registro
 {
-    public partial class RegistroFactoria : Form,IRetorno<Factoria>
+    public partial class RegistroFactoria : Form, IRetorno<Factoria>
     {
         public RegistroFactoria()
         {
@@ -150,7 +150,7 @@ namespace ProyectoFinal.UI.Registro
                 FFactoria = this
             };
             cConsultaFactorias.ShowDialog();
-            cConsultaFactorias.Dispose();     
+            cConsultaFactorias.Dispose();
         }
         private void Buscar()
         {
@@ -169,7 +169,7 @@ namespace ProyectoFinal.UI.Registro
         private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             Constantes.ValidarNombreTextBox(sender, e);
-        }    
+        }
         public void Ejecutar(Factoria template)
         {
             if (template.FactoriaID == 0)

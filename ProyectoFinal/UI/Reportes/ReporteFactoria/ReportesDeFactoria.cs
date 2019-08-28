@@ -1,4 +1,4 @@
-﻿using ProyectoFinal.Entidades;
+﻿using Entidades;
 using ProyectoFinal.UI.Reportes.ReporteFactoria;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ProyectoFinal.UI.Reportes
 {
     public partial class ReportesDeFactoria : Form
     {
-        List<Factoria> data = new List<Factoria>();
+        readonly List<Factoria> data = new List<Factoria>();
         public ReportesDeFactoria(List<Factoria> lista)
         {
             InitializeComponent();
@@ -32,6 +32,11 @@ namespace ProyectoFinal.UI.Reportes
         private void ReportesDeFactoria_Load(object sender, EventArgs e)
         {
             FactoriacrystalReportViewer_Load(sender, e);
+        }
+
+        private void ReportesDeFactoria_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

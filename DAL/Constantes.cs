@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ProyectoFinal.DAL
+namespace DAL
 {
     public static class Constantes
     {

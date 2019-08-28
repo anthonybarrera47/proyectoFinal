@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Consulta;
 using ProyectoFinal.UI.Reportes;
 using System;

@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Consulta;
 using ProyectoFinal.UI.Login;
 using ProyectoFinal.UI.Registro;
@@ -119,9 +119,9 @@ namespace ProyectoFinal
             {
                 MdiParent = this
             };
-            consulta.Show();
+            consulta.Show();     
         }
-
+        
         private void ConsultaTipoArrozToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var cmd = new CallerMemberName();

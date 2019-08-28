@@ -54,6 +54,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportesDeTipoArroz";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReportesDeTipoArroz_FormClosed);
             this.Load += new System.EventHandler(this.ReportesDeTipoArroz_Load);
             this.ResumeLayout(false);
 

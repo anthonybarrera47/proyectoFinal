@@ -1,4 +1,4 @@
-﻿using ProyectoFinal.DAL;
+﻿using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.BLL
+namespace BLL
 {
     public class RepositorioBase<T> : IDisposable, IRepository<T> where T : class
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.Entidades
+namespace Entidades
 {
     public class TipoArroz
     {
@@ -14,7 +14,6 @@ namespace ProyectoFinal.Entidades
         public String Descripcion { get; set; }
         public decimal Kilos { get; set; }
         public DateTime FechaRegistro { get; set; }
-
         public TipoArroz(int TipoArrozID,String Descripcion,decimal Kilos,DateTime FechaRegistro)
         {
             this.TipoArrozID = TipoArrozID;

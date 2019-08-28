@@ -1,4 +1,5 @@
-﻿using ProyectoFinal.Entidades;
+﻿
+using Entidades;
 using ProyectoFinal.UI.Reportes.ReportePesadas;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace ProyectoFinal.UI.Reportes
 {
     public partial class ReporteDePesadas : Form
     {
-        List<Pesadas> data = new List<Pesadas>();
+        private readonly List<Pesadas> data = new List<Pesadas>();
 
         public ReporteDePesadas()
         {
@@ -37,6 +38,11 @@ namespace ProyectoFinal.UI.Reportes
         private void ReporteDePesadas_Load(object sender, EventArgs e)
         {
             PesadascrystalReportViewer_Load(sender, e);
+        }
+
+        private void ReporteDePesadas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

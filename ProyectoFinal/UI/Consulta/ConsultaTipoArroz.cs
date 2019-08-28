@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
@@ -133,12 +133,10 @@ namespace ProyectoFinal.UI.Consulta
             else
                 errorProvider.Clear();
         }
-
         private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
-             ReportesDeTipoArroz reporte = new ReportesDeTipoArroz(ListaArroz);
-             reporte.Show();
-
+            ReportesDeTipoArroz reporte = new ReportesDeTipoArroz(ListaArroz);     
+            reporte.Show();
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -169,6 +167,11 @@ namespace ProyectoFinal.UI.Consulta
             };
             TContrato.Ejecutar(tipoArroz);
             this.Close();
+        }
+
+        private void ConsultaTipoArroz_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

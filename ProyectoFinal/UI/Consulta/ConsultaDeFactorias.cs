@@ -1,17 +1,14 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Reportes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace ProyectoFinal.UI.Consulta
 {
@@ -77,7 +74,7 @@ namespace ProyectoFinal.UI.Consulta
                         filtro = x => x.Telefono.Contains(CriteriotextBox.Text);
                         break;
                 }
-            }
+            }    
             if (FiltracheckBox.Checked == true)
                  ListaFactorias = FactoriaBLL.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker1.Value.Date).ToList();            
             else
@@ -197,6 +194,11 @@ namespace ProyectoFinal.UI.Consulta
         private void CriteriotextBox_TextChanged(object sender, EventArgs e)
         {
             Seleccion();
+        }
+
+        private void ConsultaDeFactorias_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

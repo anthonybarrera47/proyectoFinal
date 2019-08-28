@@ -54,6 +54,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte De Pesadas | AgroSoft";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReporteDePesadas_FormClosed);
             this.Load += new System.EventHandler(this.ReporteDePesadas_Load);
             this.ResumeLayout(false);
 

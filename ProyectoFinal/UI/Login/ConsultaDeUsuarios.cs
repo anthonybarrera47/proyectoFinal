@@ -1,6 +1,6 @@
-﻿using ProyectoFinal.BLL;
-using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using BLL;
+using DAL;
+using Entidades;
 using ProyectoFinal.UI.Reportes.ReporteDeUsuarios;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,9 @@ namespace ProyectoFinal.UI.Login
     {
         public static string Llamado;
         public IRetorno<Usuarios> UContrato { get; set; }
+        List<Usuarios> ListaUsuarios;
+        private DataTable Data { get; set; }
+        Expression<Func<Usuarios, bool>> filtro = x => true;
         public ConsultaDeUsuarios()
         {
             InitializeComponent();
@@ -39,53 +42,59 @@ namespace ProyectoFinal.UI.Login
             if (Llamado.Equals("ConsultaUsuariosToolStripMenuItem_Click"))
                 ImprimirButton.Visible = true;
         }
-        List<Usuarios> ListaUsuarios;
-        DataTable data;
-        Expression<Func<Usuarios, bool>> filtro = x => true;
+
         private void Seleccion()
         {
             errorProvider.Clear();
-            RepositorioBase<Usuarios> repositorio = new RepositorioBase<Usuarios>();
-            ListaUsuarios = new List<Usuarios>();
-            if (CriteriotextBox.Text.Trim().Length >= 0)
+            RepositorioBase<Usuarios> repositorioBase = new RepositorioBase<Usuarios>();
+            try
             {
-                switch (FiltrocomboBox.SelectedIndex)
+                ListaUsuarios = new List<Usuarios>();
+                if (CriteriotextBox.Text.Trim().Length >= 0)
                 {
-                    case 0: //Todo
-                        //lista = ProductoresBLL.GetList(x => true);
-                        filtro = x => true;
-                        break;
-                    case 1:
-                        if (!Validar())
-                            return;
-                        int id = Convert.ToInt32(CriteriotextBox.Text);
-                        //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
-                        filtro = x => x.UsuarioID == id;
-                        break;
-                    case 2:
-                        if (!Validar())
-                            return;
-                        //lista = ProductoresBLL.GetList(p => p.Nombre.Contains(CriteriotextBox.Text));
-                        filtro = x => x.Nombre.Contains(CriteriotextBox.Text);
-                        break;
-                    case 3:
-                        if (!Validar())
-                            return;
-                        
-                        filtro = x => x.UserName.Contains(CriteriotextBox.Text);
-                        break;
+                    switch (FiltrocomboBox.SelectedIndex)
+                    {
+                        case 0: //Todo
+                                //lista = ProductoresBLL.GetList(x => true);
+                            filtro = x => true;
+                            break;
+                        case 1:
+                            if (!Validar())
+                                return;
+                            int id = Convert.ToInt32(CriteriotextBox.Text);
+                            //lista = ProductoresBLL.GetList(p => p.ProductorId == id);
+                            filtro = x => x.UsuarioID == id;
+                            break;
+                        case 2:
+                            if (!Validar())
+                                return;
+                            //lista = ProductoresBLL.GetList(p => p.Nombre.Contains(CriteriotextBox.Text));
+                            filtro = x => x.Nombre.Contains(CriteriotextBox.Text);
+                            break;
+                        case 3:
+                            if (!Validar())
+                                return;
 
+                            filtro = x => x.UserName.Contains(CriteriotextBox.Text);
+                            break;
+
+                    }
+                    //filtro =(c => c.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && c.FechaRegistro.Date <= HastadateTimePicker.Value.Date);
                 }
-                //filtro =(c => c.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && c.FechaRegistro.Date <= HastadateTimePicker.Value.Date);
-            }
-            if (FiltracheckBox.Checked == true)
-            {
-                ListaUsuarios = repositorio.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList(); 
-            }
-            else
-                ListaUsuarios = repositorio.GetList(filtro).ToList();
+                if (FiltracheckBox.Checked == true)
+                {
+                    ListaUsuarios = repositorioBase.GetList(filtro).Where(x => x.FechaRegistro.Date >= DesdedateTimePicker.Value.Date && x.FechaRegistro.Date <= HastadateTimePicker.Value.Date).ToList();
+                }
+                else
+                    ListaUsuarios = repositorioBase.GetList(filtro).ToList();
 
-            CargarGrid(ListaUsuarios);
+                CargarGrid(ListaUsuarios);
+            }
+            catch(Exception)
+            { throw; }
+            finally
+            {repositorioBase.Dispose();}
+
         }
         private void CargarGrid(List<Usuarios> lista)
         {
@@ -96,14 +105,15 @@ namespace ProyectoFinal.UI.Login
             dt.Columns.Add("Nombre", typeof(string));
             dt.Columns.Add("Tipo de Usuario", typeof(string));
             dt.Columns.Add("Fecha de registro", typeof(DateTime));
-            foreach(var item in lista)
+            foreach (var item in lista)
             {
                 dt.Rows.Add(item.UsuarioID, item.UserName, item.Nombre, item.TipoUsuario, item.FechaRegistro);
             }
             UsuariosdataGridView.DataSource = dt;
-            data = new DataTable();
-            data = dt;
+            Data = new DataTable();
+            Data = dt;
             TotalTextBox.Text = lista.Count.ToString();
+            dt.Dispose();
         }
         private bool Validar()
         {
@@ -149,8 +159,9 @@ namespace ProyectoFinal.UI.Login
         }
         private void ImprimirButton_Click_1(object sender, EventArgs e)
         {
-            ReporteDeUsuario reporte = new ReporteDeUsuario(data);
+            ReporteDeUsuario reporte = new ReporteDeUsuario(Data);
             reporte.Show();
+            reporte.Dispose(); 
         }
         private void FiltrocomboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -165,7 +176,7 @@ namespace ProyectoFinal.UI.Login
             if (FiltracheckBox.Checked == true)
                 HabilitarTimePicker();
             else
-                DeshabilitarTimePicker();      
+                DeshabilitarTimePicker();
         }
         private void HabilitarTimePicker()
         {

@@ -1,5 +1,5 @@
-﻿using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using DAL;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.BLL
+namespace BLL
 {
     public class PesadasBLL
     {
@@ -20,10 +20,11 @@ namespace ProyectoFinal.BLL
             Contexto db = new Contexto();
             try
             {
-                if(db.Pesadas.Add(pesadas)!=null)
-                    paso =(db.SaveChanges() > 0);
-            }catch(Exception)
-            { throw;}
+                if (db.Pesadas.Add(pesadas) != null)
+                    paso = (db.SaveChanges() > 0);
+            }
+            catch (Exception)
+            { throw; }
             finally
             { db.Dispose(); }
             return paso;
@@ -34,20 +35,20 @@ namespace ProyectoFinal.BLL
             var Anterior = Buscar(pesadas.PesadaID);
             Contexto db = new Contexto();
             try
-            {              
-                foreach(var item in Anterior.PesadasDetalles)
+            {
+                foreach (var item in Anterior.PesadasDetalles)
                 {
                     var Kilos = db.TiposArroz.Find(item.TipoArrozID);
-                    if(!pesadas.PesadasDetalles.Exists(d=>d.PesadaDetalleID == item.PesadaDetalleID))
+                    if (!pesadas.PesadasDetalles.Exists(d => d.PesadaDetalleID == item.PesadaDetalleID))
                     {
                         Kilos.Kilos -= item.Kilos;
                         db.Entry(item).State = EntityState.Deleted;
                     }
                 }
-                foreach(var item in pesadas.PesadasDetalles)
+                foreach (var item in pesadas.PesadasDetalles)
                 {
                     var estado = System.Data.Entity.EntityState.Unchanged;
-                    if(item.PesadaDetalleID==0)
+                    if (item.PesadaDetalleID == 0)
                     {
                         var Kilos = db.TiposArroz.Find(item.TipoArrozID);
                         Kilos.Kilos += item.Kilos;
@@ -64,8 +65,9 @@ namespace ProyectoFinal.BLL
                     db.Entry(item).State = estado;
                 }
                 db.Entry(pesadas).State = EntityState.Modified;
-                paso = (db.SaveChanges() > 0); 
-            }catch(Exception)
+                paso = (db.SaveChanges() > 0);
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -79,7 +81,7 @@ namespace ProyectoFinal.BLL
             try
             {
                 var Eliminar = db.Pesadas.Find(Id);
-                if(Eliminar!=null)
+                if (Eliminar != null)
                 {
                     db.PesadaDetalle.RemoveRange(db.PesadaDetalle.Where(x => x.PesadasID == Eliminar.PesadaID));
                     db.Entry(Eliminar).State = EntityState.Deleted;
@@ -87,7 +89,8 @@ namespace ProyectoFinal.BLL
                         paso = true;
                 }
 
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -100,28 +103,30 @@ namespace ProyectoFinal.BLL
             try
             {
                 pesadas = db.Pesadas.Find(Id);
-                if(pesadas!=null)
+                if (pesadas != null)
                 {
                     pesadas.PesadasDetalles.Count();
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
             return pesadas;
         }
-        public static List<Pesadas> GetList(Expression<Func<Pesadas,bool>> pesadas)
+        public static List<Pesadas> GetList(Expression<Func<Pesadas, bool>> pesadas)
         {
             List<Pesadas> pesada = new List<Pesadas>();
             Contexto db = new Contexto();
             try
             {
                 pesada = db.Pesadas.Where(pesadas).ToList();
-                foreach(var item in pesada)
+                foreach (var item in pesada)
                 {
                     item.PesadasDetalles.Count();
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -129,7 +134,7 @@ namespace ProyectoFinal.BLL
         }
         public static void EnviarKilaje(List<PesadasDetalle> detalle)
         {
-            foreach(var item in detalle)
+            foreach (var item in detalle)
             {
                 TipoArroz kilaje = TipoArrozBLL.Buscar(item.TipoArrozID);
                 kilaje.Kilos += item.Kilos;
@@ -138,14 +143,14 @@ namespace ProyectoFinal.BLL
         }
         public static void ArreglarDetalle(Pesadas pesada)
         {
-            foreach(var item in pesada.PesadasDetalles)
+            foreach (var item in pesada.PesadasDetalles)
             {
                 var tipoArroz = TipoArrozBLL.Buscar(item.TipoArrozID);
                 tipoArroz.Kilos -= item.Kilos;
                 TipoArrozBLL.Modificar(tipoArroz);
             }
         }
-        public static void UsuarioParaLogin(String Nombre,int id)
+        public static void UsuarioParaLogin(String Nombre, int id)
         {
             Usuario.Nombre = Nombre;
             Usuario.UsuarioID = id;

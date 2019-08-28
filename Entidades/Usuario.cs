@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.Entidades
+namespace Entidades
 {
-
     public class Usuarios
     {
         [Key]
@@ -27,7 +26,6 @@ namespace ProyectoFinal.Entidades
             TipoUsuario = string.Empty;
             FechaRegistro = DateTime.Now;
         }
-
         public Usuarios(int usuarioId, string userName, string nombre, string password, string tipo, DateTime fechaRegistro)
         {
             UsuarioID = usuarioId;

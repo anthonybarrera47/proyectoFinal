@@ -1,4 +1,4 @@
-﻿using ProyectoFinal.Entidades;
+﻿using Entidades;
 using ProyectoFinal.UI.Reportes.ReporteDeTipoArroz;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ProyectoFinal.UI.Reportes
 {
     public partial class ReportesDeTipoArroz : Form
     {
-        List<TipoArroz> data = new List<TipoArroz>(); 
+        readonly List<TipoArroz> data = new List<TipoArroz>(); 
         public ReportesDeTipoArroz(List<TipoArroz> lista)
         {
             InitializeComponent();
@@ -31,6 +31,11 @@ namespace ProyectoFinal.UI.Reportes
         private void ReportesDeTipoArroz_Load(object sender, EventArgs e)
         {
             TipoArrozcrystalReportViewer_Load(sender, e);
+        }
+
+        private void ReportesDeTipoArroz_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using ProyectoFinal.DAL;
-using ProyectoFinal.Entidades;
+﻿using DAL;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal.BLL
+namespace BLL
 {
     public class TipoArrozBLL
     {
@@ -22,7 +22,8 @@ namespace ProyectoFinal.BLL
                     db.SaveChanges();
                     paso = true;
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -37,7 +38,8 @@ namespace ProyectoFinal.BLL
                 db.Entry(tiposArroz).State = System.Data.Entity.EntityState.Modified;
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -53,7 +55,8 @@ namespace ProyectoFinal.BLL
                 db.TiposArroz.Remove(tiposArroz);
                 if (db.SaveChanges() > 0)
                     paso = true;
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
@@ -65,21 +68,23 @@ namespace ProyectoFinal.BLL
             TipoArroz tiposArroz = new TipoArroz();
             try
             {
-                 tiposArroz = db.TiposArroz.Find(id);
-            }catch(Exception)
+                tiposArroz = db.TiposArroz.Find(id);
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
             return tiposArroz;
         }
-        public static List<TipoArroz> GetList(Expression<Func<TipoArroz,bool>>expression)
+        public static List<TipoArroz> GetList(Expression<Func<TipoArroz, bool>> expression)
         {
             Contexto db = new Contexto();
             List<TipoArroz> tiposArroz = new List<TipoArroz>();
             try
             {
                 tiposArroz = db.TiposArroz.Where(expression).ToList();
-            }catch(Exception)
+            }
+            catch (Exception)
             { throw; }
             finally
             { db.Dispose(); }
