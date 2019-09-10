@@ -210,6 +210,11 @@ namespace ProyectoFinal.UI.Registro
             }
             else
             {
+                if(!ExisteEnLaBaseDeDatos())
+                {
+                    MessageBox.Show("Pesada No Existente!!", "AgroSoft", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 var resultado = MessageBox.Show("Va a modificar algo, ¿Seguro que desea Hacerlo?", "AgroSoft",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado == DialogResult.Yes)
@@ -240,6 +245,12 @@ namespace ProyectoFinal.UI.Registro
 
             }
         }
+
+        private bool ExisteEnLaBaseDeDatos()
+        {
+            return (FactoriaBLL.Buscar(PesadaIDTextBox.Text.ToInt())!=null);
+        }
+
         private void DetalledataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             FilaSeleccionada = e.RowIndex;
