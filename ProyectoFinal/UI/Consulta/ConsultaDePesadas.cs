@@ -56,8 +56,7 @@ namespace ProyectoFinal.UI.Consulta
                         break;
                     case 3://Direccion
                         if (!Validar())
-                            return;
-                        filtro = x => x.TipoArrozID == ID;
+                            return; 
                         break;
                     case 4://Telefono
                         if (!Validar())

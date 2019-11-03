@@ -25,15 +25,13 @@ namespace ProyectoFinal.UI.Reportes
         }
         private void Cargar()
         {
-            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID);
-            TipoArroz tipoArroz = TipoArrozBLL.Buscar(pesadas.TipoArrozID);
+            Productores productores = ProductoresBLL.Buscar(pesadas.ProductorID); 
             Factoria factoria = FactoriaBLL.Buscar(pesadas.FactoriaID);
             
             
             reporte.SetDataSource(data);
             reporte.SetParameterValue("Usuario", Nombre);
-            reporte.SetParameterValue("Productor", productores.Nombre);
-            reporte.SetParameterValue("Tipo Arroz", tipoArroz.Descripcion);
+            reporte.SetParameterValue("Productor", productores.Nombre); 
             reporte.SetParameterValue("Factoria", factoria.Nombre);
             reporte.SetParameterValue("PesadaID", pesadas.PesadaID);
             reporte.SetParameterValue("TotalKilos", pesadas.TotalKiloGramos);

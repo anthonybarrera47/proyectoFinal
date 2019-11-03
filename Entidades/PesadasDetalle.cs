@@ -16,6 +16,8 @@ namespace Entidades
         public int TipoArrozID { get; set; }
         public decimal Kilos { get; set; }
         public decimal CantidadDeSacos { get; set; }
+        [ForeignKey("TipoArrozID")]
+        public virtual TipoArroz TipoArroz { get; set; }
         public PesadasDetalle()
         {
             PesadaDetalleID = 0;

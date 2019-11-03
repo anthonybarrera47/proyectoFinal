@@ -13,7 +13,6 @@ namespace Entidades
         [Key]
         public int PesadaID { get; set; }
         public int ProductorID { get; set; }
-        public int TipoArrozID { get; set; }
         public int FactoriaID { get; set; }
         public int UsuarioID { get; set; }
         public decimal Fanega { get; set; }
@@ -24,19 +23,16 @@ namespace Entidades
         public DateTime FechaRegistro { get; set; }
         [ForeignKey("ProductorID")]
         public virtual Productores Productores { get; set; }
-        [ForeignKey("TipoArrozID")]
-        public virtual TipoArroz TipoArroz { get; set; }
         [ForeignKey("FactoriaID")]
         public virtual Factoria Factoria { get; set; }
         [ForeignKey("UsuarioID")]
         public virtual Usuarios Usuarios { get; set; }
         public virtual List<PesadasDetalle> PesadasDetalles { get; set; }
-        public Pesadas(int PesadaID, int ProductorId, int TipoArrozId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
+        public Pesadas(int PesadaID, int ProductorId, int FactoriaId, int UsuarioId, decimal Fanega, decimal PrecioFanega
             ,decimal TotalKiloGramos,decimal TotalSacos,decimal TotalPagar,List<PesadasDetalle> pesadasDetalles)
         {
             this.PesadaID = PesadaID;
             this.ProductorID = ProductorId;
-            this.TipoArrozID = TipoArrozId;
             this.FactoriaID = FactoriaId;
             this.UsuarioID = UsuarioId;
             this.Fanega = Fanega;
@@ -50,7 +46,6 @@ namespace Entidades
         {
             PesadaID = 0;
             ProductorID = 0;
-            TipoArrozID = 0;
             FactoriaID = 0;
             UsuarioID = 0;
             Fanega = 0;
